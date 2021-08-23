@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="turbolinks-cache-control" content="no-cache">
+    <title>Record Referral</title>
+    <link rel="icon" type="image/x-icon" href="/assets/img/thecuatui.png" />
+    <!-- @font-face{
+        font-family: Reef;
+        src: local('../Fonts/Reef/reef-webfont.woff'), url('../Fonts/Reef/reef-webfont.woff') format('woff');
+    } -->
+    <!-- Google fonts-->
+    <link href="/template/fonts/SVN-Gilroy.otf" rel='stylesheet' type='text/css' />
+    <!-- <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet" /> -->
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="/template/css/styles.css" rel="stylesheet" />
+    <link href="/template/css/styles.scss" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .button {
+            background-color: #4CAF50;
+            /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+        
+        div {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+        
+        .full-name {
+            font-weight: 700;
+            font-size: 25px;
+        }
+        
+        .text {
+            font-size: 22px;
+        }
+        
+        .list {
+            list-style: none;
+            width: 600px;
+            max-width: 90%;
+        }
+        
+        .item {
+            display: block;
+            clear: both;
+            counter-increment: list;
+            padding-bottom: 4rem;
+            font-size: 1.1rem;
+            line-height: 1.375;
+            position: relative;
+        }
+        
+        .item:before {
+            font: bold 2.25rem/1 var(--font-number);
+            content: counter(list);
+            width: 5rem;
+            height: 5rem;
+            float: left;
+            margin: 0 1.5rem 0.75rem 0;
+            color: var(--bg);
+            background: var(--highlight1) linear-gradient(to bottom right, var(--highlight1) 25%, var(--highlight2));
+            text-shadow: 0 0 2px var(--highlight1);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            shape-outside: ellipse();
+            z-index: 1;
+        }
+        
+        .item:after {
+            width: 2.5rem;
+            height: 2.5rem;
+            position: absolute;
+            top: 0;
+            left: 0;
+            content: "";
+            background: var(--highlight1);
+            z-index: -1;
+            border-top-left-radius: 3px;
+        }
+        
+        .headline {
+            padding: 0rem 0 0 0;
+            margin: 0 0 1rem 0;
+            font: normal 2rem var(--font-head);
+        }
+        /* Demo styles */
+        
+        body {
+            width: 100%;
+            height: 100%;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: var(--font);
+            padding: 4rem 0;
+        }
+        
+         :root {
+            --bg: #bd7171;
+            --highlight1: #ED4264;
+            --highlight2: #FFEDBC;
+            --color: #1a1e24;
+            --font-number: Montserrat, Roboto, Helvetica, Arial, sans-serif;
+            --font-head: "Space Mono", Consolas, Menlo, Monaco, "Courier New", monospace;
+            --font: SVN-Gilroy;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="page-section d-flex justify-content-center w-100 row bg-primary">
+        <h3 class="h_dowload_app row text row" style="color:white; ">TẢI APP ĐỂ NHẬN THÔNG TIN VỀ CÁC ƯU ĐÃI</h3>
+        <div class="dowload_app col" style="align-items: center !important; justify-content: center !important;">
+
+            <div class="row section_download row">
+                <a class="btn btn_download btn_download_ios col" href="https://apps.apple.com/us/app/thecuatui/id1568831849">
+                    <img width="30" src="/assets/img/svg/apple.svg">
+                    <p style="margin-top: 12px; margin-left: 6px;">
+                        <span>Tải app tại</span><br>
+                        <span>APP STORE</span>
+                    </p>
+                </a>
+                <a class="btn btn_download btn_download_android col" href="https://play.google.com/store/apps/details?id=com.thecuatui">
+                    <img width="30" src="/assets/img/svg/google-play.svg">
+                    <p style="margin-top: 10px; margin-left: 6px;">
+                        <span>Tải app tại</span><br>
+                        <span>GOOGLE PLAY</span>
+                    </p>
+                </a>
+            </div>
+        </div>
+        <video class="intro-img img-fluid mt-0 mt-lg-0 rounded col" autoplay="" muted="" loop="" playsinline="">
+            <source src="/template/about.mov" type="video/mp4">
+        </video>
+
+    </section>
+</body>
+
+</html>

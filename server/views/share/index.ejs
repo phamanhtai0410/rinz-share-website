@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta property="og:url" content="https://thecuatui.vn/share/<%= detail.id %>" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="<% if (detail.amount) {%>-<%= detail.amount %><%= detail.amount_unit %><% }%> <%= detail.title %>" />
+    <meta property="og:description" content="Khám phá nhiều hơn tại thecuatui" />
+    <meta property="og:image" content="<%= detail.banner_img %>" />
+    <meta name="turbolinks-cache-control" content="no-cache">
+    <title>
+        <% if (detail.amount) {%>-
+            <%= detail.amount %>
+                <%= detail.amount_unit %>
+                    <% } %>
+                        <%= detail.title %>
+    </title>
+    <link rel="icon" type="image/x-icon" href="/assets/img/thecuatui.png" />
+    <!-- @font-face{
+        font-family: Reef;
+        src: local('../Fonts/Reef/reef-webfont.woff'), url('../Fonts/Reef/reef-webfont.woff') format('woff');
+    } -->
+    <!-- Google fonts-->
+    <link href="/template/fonts/SVN-Gilroy.otf" rel='stylesheet' type='text/css' />
+    <!-- <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet" /> -->
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="/template/css/styles.css" rel="stylesheet" />
+    <link href="/template/css/styles.scss" rel="stylesheet" />
+</head>
+
+<body>
+    <header>
+        <h1 class="site-heading text-center text-faded">
+            <span class="site-heading-upper text-primary mb-0">Chi tiết ưu đãi</span>
+        </h1>
+    </header>
+    <section class="page-section">
+        <div class="container">
+            <div class="intro">
+
+                <div class="intro-text left-0 pt-10 text-center bg-faded p-3">
+                    <div>
+                        <img width="100%" src="<%= detail.banner_img %>?w=800" />
+                        <% if (detail.amount) {%>
+                            <div class="sale">
+                                <h4 style="color: red;  text-align: left; margin-top: 5px; width: 70px;">
+                                    -
+                                    <%= detail.amount %>
+                                        <%= detail.amount_unit %>
+                                </h4>
+                            </div>
+
+                            <% } %>
+                    </div>
+
+                    <div style="margin: 6px; margin-bottom: 10px;">
+                        <p class="mb-4">
+                            <%= detail.title %>
+                        </p>
+                    </div>
+                    <!-- <p class="mb-3"><%= detail.description %></p> -->
+
+                </div>
+                <div class="dowload_app" style="align-items: center !important; justify-content: center !important;">
+                    <h3 class="h_dowload_app" style="color:white;">Tải app ngay để khám phá</h3>
+                    <div class="row section_download">
+                        <a class="btn btn_download btn_download_ios" href="https://apps.apple.com/us/app/thecuatui/id1568831849">
+                            <img width="30" src="/assets/img/svg/apple.svg" />
+                            <p style="margin-top: 12px; margin-left: 6px;">
+                                <span>Tải app tại</span><br />
+                                <span>APP STORE</span>
+                            </p>
+                        </a>
+                        <a class="btn btn_download btn_download_android" href="https://play.google.com/store/apps/details?id=com.thecuatui">
+                            <img width="30" src="/assets/img/svg/google-play.svg" />
+                            <p style="margin-top: 10px; margin-left: 6px;">
+                                <span>Tải app tại</span><br />
+                                <span>GOOGLE PLAY</span>
+                            </p>
+                        </a>
+                    </div>
+                </div>
+                <video class="intro-img img-fluid mt-0 mt-lg-0 rounded" autoplay muted loop playsinline>
+                    <source src="/template/about.mov" type="video/mp4">
+                </video>
+
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

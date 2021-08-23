@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="turbolinks-cache-control" content="no-cache">
+    <title>Card Issue</title>
+    <link rel="icon" type="image/x-icon" href="/assets/img/thecuatui.png" />
+    <!-- @font-face{
+        font-family: Reef;
+        src: local('../Fonts/Reef/reef-webfont.woff'), url('../Fonts/Reef/reef-webfont.woff') format('woff');
+    } -->
+    <!-- Google fonts-->
+    <link href="/template/fonts/SVN-Gilroy.otf" rel='stylesheet' type='text/css' />
+    <!-- <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet" /> -->
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="/template/css/styles.css" rel="stylesheet" />
+    <link href="/template/css/styles.scss" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        @font-face {
+            font-family: --font;
+            src: url(/template/fonts/SVN-Gilroy.otf);
+        }
+        
+        .text-title {
+            font-weight: 700;
+            color: #262626;
+            font-size: 16px;
+            line-height: 24px;
+        }
+        /* Demo styles */
+        
+        body {
+            width: 100%;
+            height: 100%;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: --font;
+        }
+        
+         :root {
+            --bg: #bd7171;
+            --highlight1: #ED4264;
+            --highlight2: #FFEDBC;
+            --color: #1a1e24;
+        }
+        
+        .container {
+            max-width: 500px;
+            overflow: hidden;
+        }
+        
+        .button {
+            background: linear-gradient(90deg, #A34097 -1.69%, #ED2A5C 49.76%, #F05E2B 98.07%);
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            margin: 0px 12px;
+            color: #FFFFFF;
+        }
+        
+        .img-content {
+            width: 100%;
+            display: block;
+            max-height: 30%;
+        }
+        
+        .card-type {
+            left: 50%;
+            top: 50%;
+            max-width: 40%;
+        }
+        
+        .text-special {
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 22px;
+            color: #F05E2B;
+        }
+        
+        .display-number {
+            font-weight: bold;
+            font-size: 19px;
+            line-height: 28px;
+            color: #EE3156;
+        }
+        
+        .submit-class {
+            margin: 10px 0px;
+        }
+        
+        .text-big {
+            font-weight: 500;
+            font-size: 30px;
+            line-height: 38px;
+        }
+        
+        .text-normal {
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 20px;
+        }
+        
+        .text-header {
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 30px;
+        }
+        
+        .phone-form {
+            border: none;
+            background: #E7E7E7;
+            border-radius: 3px;
+            font-weight: normal;
+            font-size: 25px;
+            line-height: 20px;
+        }
+        
+        .submit-btn {
+            font-weight: bold;
+            font-size: 16px;
+            line-height: 20px;
+        }
+        
+        .popup-text {
+            font-weight: normal;
+            font-size: 20px;
+            line-height: 30px;
+        }
+        
+        .modal {
+            
+            float: left;
+            left: 50%;
+            top: 75%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+
+<body style="align-items: baseline; background: white;">
+    <section class="page-section d-flex justify-content-center w-100" style="position: relative;">
+        <div class="container pb-4 shadow px-0" style="background: white;">
+            <div class='header mb-4'>
+                <div class="img-content">
+                    <img src="/assets/img/record-referral/Banner.png" alt="Banner Thecuatui...">
+                </div>
+            </div>
+            <div class="content px-4 mb-5">
+                <div class="full-name text-header px-3 mb-4">
+                    <strong style="text-transform: uppercase;"><%= fullname %></strong> đã mời bạn sử dụng App <strong>Thecuatui</strong> vô cùng hữu ích, giúp cập nhật các thông tin ưu đãi từ thẻ tín dụng một cách nhanh chóng, tiện lợi cùng tính năng
+                    quản lý thẻ tín dụng siêu việt.
+                </div>
+                <div class="list-step px-3 my-4 pt-2">
+                    <div class="text-normal mb-4 py-3   ">
+                        Hoàn tất các bước sau để đăng ký:
+                    </div>
+                    <div class="mx-4 mb-4">
+                        <div class="text-normal mb-4">
+                            <strong>Bước 1:</strong> Đăng ký số điện thoại
+                        </div>
+                        <div class="text-normal pb-2">
+                            <strong>Bước 2:</strong> Tải app, xác thực tài khoản và trải nghiệm
+                        </div>
+                    </div>
+
+                </div>
+                <div class="input-phone">
+                    <div>
+                        <form id='input_phone' action="/">
+                            <label for="fname" class="text text-normal w-100 mb-3 px-3 mx-4"><strong>Nhập số điện thoại:</strong></label>
+                            <input type="text" class="text phone-form w-80 p-3 mb-4 mx-4" id="fname" name="phone" placeholder="Số điện thoại.." required>
+                            <input type="submit" id="submit" style='border: none;' class="my-3 mx-0 button w-100 submit-btn py-4" value="Đăng kí ngay">
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Success Modal -->
+        <div class="modal" style="max-width: 500px; max-height: 80%; background: transparent;" id="successModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog p-0 m-0" role="document">
+                <div class="modal-content" style="background: #F2F2F2;">
+                    <div class="modal-body text mt-5">
+                        <div class="popup-text m-5 text-center">Ghi nhận số điện thoại thành công.</div>
+                    </div>
+                    <div class="modal-footer border-0" style="justify-content: center;">
+
+                        <div class="text-bold text border-none my-5" data-dismiss="modal"><strong style="color: white;" class="button py-4 px-5">OK</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Failed Modal -->
+        <div class="modal " style="max-width: 500px; background: transparent;" id="failedModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog p-0 m-0" role="document">
+                <div class="modal-content d-flex align-items-center" style="background: #F2F2F2">
+                    <div class="modal-body text my-5">
+                        <div class="popup-text m-5 text-center">Số điện thoại của bạn đã được ghi nhận. Hãy tải ứng dụng Thecuatui ngay để trai nghiệm</div>
+                        <div class="modal-footer border-0" style="justify-content: center;">
+                            <button type="button" class="button btn text text-normal py-4">
+                            <a href="https://thecuatui.vn/taiapp" class="px-5">
+                                <strong style="color: white;">
+                                    Tải ứng dụng
+                                </strong>
+                            </a>
+                        </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </section>
+    <script>
+        $("#input_phone").submit(function(e) {
+            var phone = $("input[name=phone]").val();
+            var url = '/record-referral/record/' + '<%= token %>'; // the script where you handle the form input.
+            console.log('url ajax = ' + url);
+            $.ajax({
+                    type: "GET",
+                    url: url,
+                    data: {
+                        phone: phone
+                    },
+                    success: function(data) {
+                        //if request successful
+                        if (data.data.new_user) {
+                            $('#successModal').modal('show');
+                        } else {
+                            $('#failedModal').modal('show');
+                        }
+                        console.log('success ajax = ' + data);
+                    },
+                    error: function(data) {
+                        //if request unsuccessful
+                        console.log('record - error data =' + JSON.stringify(data));
+                        alert('Không tồn tại !');
+
+                    }
+                })
+                // .done(function() {
+                //     //finally, reinitialise modal text back to default 'merci'
+                //     $(".modal-title").text('merci');
+                // });
+
+            e.preventDefault(); // avoid to execute the actual submit of the form.
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            var elements = document.getElementsByTagName("INPUT");
+            for (var i = 0; i < elements.length; i++) {
+                elements[i].oninvalid = function(e) {
+                    e.target.setCustomValidity("");
+                    if (!e.target.validity.valid) {
+                        e.target.setCustomValidity("Số điện thoại không thể để trống");
+                    }
+                };
+                elements[i].oninput = function(e) {
+                    e.target.setCustomValidity("");
+                };
+            }
+        })
+    </script>
+</body>
+
+</html>
