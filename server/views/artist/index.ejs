@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta property="og:url" content="https://rinzworld.com/<%= type %>/<%= id %>" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="<% detail.name %>" />
+    <meta property="og:description" content="Khám phá nhiều hơn tại RinZ World" />
+    <meta property="og:image" content="<%= detail.avatar %>" />
+    <meta name="turbolinks-cache-control" content="no-cache">
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="turbolinks-cache-control" content="no-cache">
+    <title>Share: Artist <%= detail.name %></title>
+    <link rel="icon" type="image/x-icon" href="/assets/img/thecuatui.png" />
+    <!-- @font-face{
+        font-family: Reef;
+        src: local('../Fonts/Reef/reef-webfont.woff'), url('../Fonts/Reef/reef-webfont.woff') format('woff');
+    } -->
+    <!-- Google fonts-->
+    <link href="/template/fonts/SVN-Gilroy.otf" rel='stylesheet' type='text/css' />
+    <!-- <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet" /> -->
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="/template/css/styles.css" rel="stylesheet" />
+    <link href="/template/css/styles.scss" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        @font-face {
+            font-family: --font;
+            src: url(/template/fonts/SVN-Gilroy.otf);
+        }
+        body {
+            font-family: --font;
+        }
+    </style>
+
+</head>
+<body>
+    <header>
+        <div class="col shadow bg-transparent" >
+            <img src="/assets/img/Logo_2_4.png" style="max-width: 200px;" alt="RinZ Network">
+        </div>
+        <h1 class="site-heading text-center text-faded col">
+            
+            <span class="site-heading-upper text-primary mb-5" style="font-family: --font;">RinZ World - Thông tin chi tiết:</span>
+        </h1>
+    </header>
+    <section class="page-section">
+        <div class="container w-100">
+            <div class="row">
+
+            </div>
+            <div class="intro-text left-0 pt-10 p-3 row">
+                <div class="col bg-faded">
+                    <div class="text-center">
+                        <h4 style="color: red;  text-align: center; margin: 25px; margin-bottom: 50px;">
+                            ARTIST Sharing Info:
+                        </h4>
+                    </div>
+                    <div class="mb-4 text-left" style="margin-left: 50px;">
+                        <ul style="list-style: none;">
+                            <li class="detail-items">
+                                <span class="mx-3">
+                                    <i class="fa fa-id-badge" aria-hidden="true"></i>
+                                </span>
+                                <span>
+                                    <strong>Name:</strong>            
+                                </span>
+                                <span><%= detail.name %></span>
+                            </li>
+                            <li class="detail-items">
+                                <span class="mx-3">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                </span>
+                                <span>
+                                    <strong>
+                                        Short Name:
+                                    </strong>
+                                     
+                                </span>
+                                <span><%= detail.shor_name %></span>
+                            </li>
+                            <li class="detail-items">
+                                <span class="mx-3">
+                                    <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                                </span>
+                                <span>
+                                    <strong>
+                                        Age:     
+                                    </strong>
+                                    
+                                </span>
+                                <span>
+                                    <%= detail.age %>
+                                </span>
+                                
+                            </li>
+                        </ul>
+                        
+                    </div>
+                </div>
+
+                <div class="col p-0 w-100">
+                    <img src="<%= detail.avatar %>?w=800" />
+                    
+                </div>
+                <!-- <p class="mb-3"><%= detail.description %></p> -->
+
+            </div>
+            <div class="intro row">
+                <div class="dowload_app col-6 text-center shadow rounded" style="align-items: center !important; justify-content: center !important">
+                    <h3 class="h_dowload_app text-center" style="color:white;">Tải app ngay để khám phá</h3>
+                    <div class="row section_download text-center">
+                        <a class="btn btn_download btn_download_ios" href="https://apps.apple.com/us/app/thecuatui/id1568831849">
+                            <img width="30" src="/assets/img/svg/apple.svg" />
+                            <p style="margin-top: 12px; margin-left: 6px;">
+                                <span>Tải app tại</span><br />
+                                <span>APP STORE</span>
+                            </p>
+                        </a>
+                        <a class="btn btn_download btn_download_android" href="https://play.google.com/store/apps/details?id=com.thecuatui">
+                            <img width="30" src="/assets/img/svg/google-play.svg" />
+                            <p style="margin-top: 10px; margin-left: 6px;">
+                                <span>Tải app tại</span><br />
+                                <span>GOOGLE PLAY</span>
+                            </p>
+                        </a>
+                    </div>
+                </div>
+                <video class="intro-img img-fluid mt-0 mt-lg-0 rounded col-6 shadow rounded" autoplay muted loop playsinline> 
+                    <source src="/template/about.mov" type="video/mp4">
+                </video>
+
+            </div>
+            
+        </div>
+    </section>
+</body>
+   
+</html>

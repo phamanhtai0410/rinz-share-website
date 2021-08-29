@@ -10517,7 +10517,8 @@ p {
     text-align: left;
   }
   .dowload_app .section_download {
-    justify-content: left;
+    justify-content: center;
+    align-items: center;
     /* margin-left: 2%; */
     /* margin-right: auto; */
   }
@@ -10683,4 +10684,8 @@ p {
   to {
     transform: rotate(-20deg) scale(1.6);
   }
+}
+
+.detail-items {
+  padding: 10px;
 }

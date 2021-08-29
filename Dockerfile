@@ -5,12 +5,12 @@ RUN apt-get upgrade -y
 RUN apt-get -y install docker-compose
 
 # Create app directory
-RUN mkdir -p /webapps/the-cua-tui-website
-WORKDIR /webapps/the-cua-tui-website
+RUN mkdir -p /webapps/rinz-share-website
+WORKDIR /webapps/rinz-share-website
 
 # Install modules
 
-COPY server /webapps/the-cua-tui-website
+COPY server /webapps/rinz-share-website
 
 RUN yarn install
 
