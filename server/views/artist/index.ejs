@@ -13,12 +13,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
     <meta name="turbolinks-cache-control" content="no-cache">
-    <title>Share: Artist <%= detail.name %></title>
-    <link rel="icon" type="image/x-icon" href="/assets/img/thecuatui.png" />
-    <!-- @font-face{
-        font-family: Reef;
-        src: local('../Fonts/Reef/reef-webfont.woff'), url('../Fonts/Reef/reef-webfont.woff') format('woff');
-    } -->
+    <title>Share: Aritst <%= id %></title>
+    <link rel="icon" type="image/x-icon" href="/assets/img/share_website/logo.png" />
     <!-- Google fonts-->
     <link href="/template/fonts/SVN-Gilroy.otf" rel='stylesheet' type='text/css' />
     <!-- <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet" /> -->
@@ -44,109 +40,185 @@
         body {
             font-family: --font;
         }
+
+        .share-content {
+            text-align: center;
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 32px;
+            padding: 30px 0px;
+            text-transform: uppercase;
+            color: #FEBA08;
+        }
+
+        .banner img {
+            max-width: 400px;
+            max-height: 400px;
+            margin-bottom: 40px;
+        }
+
+        .author_name {
+            color: #FEBA08;
+            font-size: 30px;
+            font-weight: 600;
+            line-height: 38px;
+            margin-bottom: 10px;
+        }
+        
+        .text_white {
+            font-style: normal;
+            font-weight: normal;
+            font-size: 20px;
+            line-height: 28px;
+            text-align: center;
+            color: #E8E8E8;
+            margin-bottom: 100px;
+        }
+
+        .download-content {
+            text-align: center;
+
+        }
+        .download-content-mobile {
+            text-align: center;
+            margin-top: 35%;
+        }
+
+        .download-title {
+            font-style: normal;
+            font-weight: bold;
+            font-size: 24px;
+            line-height: 133.69%;
+            color: #FEBA08;
+        }
+
+        .download-btn > a img {
+            max-width: 240px;
+            margin-top: 24px;
+        }
+
+        #mobile {
+            display: none;
+        }
+
+        @media only screen and (max-device-width: 480px) {
+            #mobile {
+                display: block;
+                
+            }
+
+            body {
+                background-image: url(/assets/img/share_website/mobile_background.png);
+            }
+
+            #desktop {display: none;}
+        }
+
+        @media only screen and (min-device-width: 480px) {
+            body {
+                background-image: url(/assets/img/share_website/background.png);
+                padding: 50px 100px;
+            }
+        }
+
+        .mobile-banner img {
+            max-width: 200px;
+            max-height: 200px;
+            margin-top: 50%;
+            margin-bottom: 24px;
+        }
+
+        .author_name_mobile {
+            color: #E8E8E8;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 18px;
+            line-height: 28px;
+            margin-bottom: 6px;
+        }
+       
+        .text-mobile {
+            font-style: normal;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 20px;
+            text-align: center;
+            color: #BFBFBF;
+        }
+
+        .download-title-mobile {
+            font-style: normal;
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 28px;
+            color: #E8E8E8;
+            margin-bottom: 16px;
+        }
+
+        .download-btn-mobile > a img {
+            max-width: 170px;
+        }
     </style>
 
 </head>
 <body>
-    <header>
-        <div class="col shadow bg-transparent" >
-            <img src="/assets/img/Logo_2_4.png" style="max-width: 200px;" alt="RinZ Network">
+    <div id="desktop">
+        <div class="w-100">
+            <div class="share-content">
+                <div class='logo text-left'>
+                    <img src="/assets/img/share_website/logo.png" style="max-width: 160px;" alt="RinZ Network">
+                </div>
+                <div class="banner">
+                    <img style="border-radius: 50%;" src="<%= detail.avatar %>" alt="Banner">
+                </div>
+                <div class="author_name">
+                        <%=  detail.name %>
+                </div>
+                <div class="text_white">
+                    Artist on RinZ Music
+                </div>
+            </div>
+            <div class="download-content">
+                <div class="download-title">
+                    TẢI APP NGAY ĐỂ KHÁM PHÁ
+                </div>
+                <div class="row text-center d-flex justify-content-center">
+                    <div class="download-btn col text-right">
+                        <a href="https://apps.apple.com/us/app/thecuatui/id1568831849"><img src="/assets/img/share_website/appstore.png" alt=""></a>
+                    </div>
+                    <div class="download-btn col text-left">
+                        <a href="https://play.google.com/store/apps/details?id=com.thecuatui"><img src="/assets/img/share_website/googleplay.png" alt=""></a>
+                    </div>
+                </div>
+            </div>           
         </div>
-        <h1 class="site-heading text-center text-faded col">
-            
-            <span class="site-heading-upper text-primary mb-5" style="font-family: --font;">RinZ World - Thông tin chi tiết:</span>
-        </h1>
-    </header>
-    <section class="page-section">
-        <div class="container w-100">
+    </div>
+    <div id="mobile" class="w-100 text-center">
+        <div class="mobile-banner">
+            <img style="border-radius: 50%;" src="<%= detail.avatar %>" alt="Banner">
+        </div>
+        <div class="author_name_mobile">
+            <%= detail.name %>
+        </div>
+        <div class="text-mobile">
+            Artist on RinZ Music
+        </div>
+        <div class="download-content-mobile">
+            <div class="download-title-mobile">
+                TẢI APP NGAY ĐỂ KHÁM PHÁ
+            </div>
             <div class="row">
-
-            </div>
-            <div class="intro-text left-0 pt-10 p-3 row">
-                <div class="col bg-faded">
-                    <div class="text-center">
-                        <h4 style="color: red;  text-align: center; margin: 25px; margin-bottom: 50px;">
-                            ARTIST Sharing Info:
-                        </h4>
-                    </div>
-                    <div class="mb-4 text-left" style="margin-left: 50px;">
-                        <ul style="list-style: none;">
-                            <li class="detail-items">
-                                <span class="mx-3">
-                                    <i class="fa fa-id-badge" aria-hidden="true"></i>
-                                </span>
-                                <span>
-                                    <strong>Name:</strong>            
-                                </span>
-                                <span><%= detail.name %></span>
-                            </li>
-                            <li class="detail-items">
-                                <span class="mx-3">
-                                    <i class="fa fa-user" aria-hidden="true"></i>
-                                </span>
-                                <span>
-                                    <strong>
-                                        Short Name:
-                                    </strong>
-                                     
-                                </span>
-                                <span><%= detail.shor_name %></span>
-                            </li>
-                            <li class="detail-items">
-                                <span class="mx-3">
-                                    <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-                                </span>
-                                <span>
-                                    <strong>
-                                        Age:     
-                                    </strong>
-                                    
-                                </span>
-                                <span>
-                                    <%= detail.age %>
-                                </span>
-                                
-                            </li>
-                        </ul>
-                        
-                    </div>
+                <div class="download-btn-mobile col text-right">
+                    <a href="https://apps.apple.com/us/app/thecuatui/id1568831849"><img src="/assets/img/share_website/appstore.png" alt=""></a>
                 </div>
-
-                <div class="col p-0 w-100">
-                    <img src="<%= detail.avatar %>?w=800" />
-                    
+                <div class="download-btn-mobile col text-left">
+                    <a href="https://play.google.com/store/apps/details?id=com.thecuatui"><img src="/assets/img/share_website/googleplay.png" alt=""></a>
                 </div>
-                <!-- <p class="mb-3"><%= detail.description %></p> -->
-
             </div>
-            <div class="intro row">
-                <div class="dowload_app col-6 text-center shadow rounded" style="align-items: center !important; justify-content: center !important">
-                    <h3 class="h_dowload_app text-center" style="color:white;">Tải app ngay để khám phá</h3>
-                    <div class="row section_download text-center">
-                        <a class="btn btn_download btn_download_ios" href="https://apps.apple.com/us/app/thecuatui/id1568831849">
-                            <img width="30" src="/assets/img/svg/apple.svg" />
-                            <p style="margin-top: 12px; margin-left: 6px;">
-                                <span>Tải app tại</span><br />
-                                <span>APP STORE</span>
-                            </p>
-                        </a>
-                        <a class="btn btn_download btn_download_android" href="https://play.google.com/store/apps/details?id=com.thecuatui">
-                            <img width="30" src="/assets/img/svg/google-play.svg" />
-                            <p style="margin-top: 10px; margin-left: 6px;">
-                                <span>Tải app tại</span><br />
-                                <span>GOOGLE PLAY</span>
-                            </p>
-                        </a>
-                    </div>
-                </div>
-                <video class="intro-img img-fluid mt-0 mt-lg-0 rounded col-6 shadow rounded" autoplay muted loop playsinline> 
-                    <source src="/template/about.mov" type="video/mp4">
-                </video>
-
-            </div>
-            
         </div>
-    </section>
+    </div>
 </body>
-   
 </html>

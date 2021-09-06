@@ -109,4 +109,16 @@ router.get('/event/:event_id', async (req, res) => {
 });
 
 
+router.get('/share/:track_id', async (req, res) => {
+  const { track_id } = req.params;
+  // const id = artist_id.split('-')[0];
+  const detail = await get_track_detail(track_id);
+  console.log(detail);
+  res.render('share/index', {
+    detail: detail,
+    type: 'track',
+    id: detail.id
+  });
+});
+
 module.exports = router;
