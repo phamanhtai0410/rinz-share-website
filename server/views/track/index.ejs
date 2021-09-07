@@ -100,11 +100,12 @@
         .download-btn > a img {
             max-width: 240px;
             margin-top: 24px;
+            margin-right: 24px;
         }
 
         .track-title {
             font-style: normal;
-            font-weight: 500;
+            font-weight: bold;
             font-size: 38px;
             line-height: 46px;
             color: #FEBA08;
@@ -126,6 +127,7 @@
         .download-content-mobile {
             text-align: center;
             margin-top: 35%;
+            margin-bottom: 12%;
         }
 
         @media only screen and (max-device-width: 480px) {
@@ -208,7 +210,7 @@
                     <div class="banner col-4">
                         <img src="<%= detail.banner %>" alt="Banner">
                     </div>
-                    <div class="col-8" style="margin-top: 100px;">
+                    <div class="col-6" style="margin-top: 100px; margin-left: 5%;">
                         <div class='track-title'>
                             <%= detail.title %>
                         </div>
@@ -222,14 +224,14 @@
                 </div>
             </div>
             <div class="download-content">
-                <div class="download-title row">
+                <div class="download-title text-left">
                     TẢI APP NGAY ĐỂ KHÁM PHÁ
                 </div>
-                <div class="row" style="width: 37%">
-                    <div class="download-btn col">
+                <div class="d-flex justify-content-start">
+                    <div class="download-btn">
                         <a href="https://apps.apple.com/us/app/thecuatui/id1568831849"><img src="/assets/img/share_website/appstore.png" alt=""></a>
                     </div>
-                    <div class="download-btn col">
+                    <div class="download-btn">
                         <a href="https://play.google.com/store/apps/details?id=com.thecuatui"><img src="/assets/img/share_website/googleplay.png" alt=""></a>
                     </div>
                 </div>
