@@ -176,6 +176,32 @@
             margin-bottom: 24px;
         }
 
+        .mobile-banner {
+            position: relative;
+        }
+
+        .start-time-mobile {
+            position: absolute;
+            bottom: 6px;
+            left: 25%;
+        }
+
+        .start-time-mobile p {
+            position: absolute;
+            bottom: 28px;
+            left: 2%;
+            font-family: --font;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 12px;
+            line-height: 16px;
+            color: #FAFAFA;
+            flex: none;
+            order: 1;
+            flex-grow: 0;
+            margin: 0px 3px;
+        }
+
         .author_name_mobile {
             font-family: --font;
             color: #E8E8E8;
@@ -297,6 +323,11 @@
     <div id="mobile">
         <div class="mobile-banner">
             <img src="<%= detail.banner %>?w=200" alt="Banner">
+            <div class="start-time-mobile">
+                <img src="/assets/img/share_website/start_time_tag.png" alt="" style="max-width: 100px;">
+                <p id="start-time-mobile"><%= detail.start_time %></p>
+            </div>
+            
         </div>
         <div class="">
             <p class="author_name_mobile d-flex justify-content-center">
@@ -355,6 +386,13 @@
                 document.getElementById("sec").innerHTML = "--";
             }
         }, 1000);
+
+        var date = new Date(start_time);
+        var month = date.getMonth() < 9 ? "0" + (date.getMonth() + 1) : date.getMonth();
+        var day = date.getDate() < 9 ? "0" + date.getDate() : date.getDate();
+        var hour = date.getHours() < 9 ? "0" + date.getHours() : date.getHours();
+        var min = date.getMinutes() < 9 ? "0" + date.getMinutes() : date.getMinutes();
+        document.getElementById("start-time-mobile").innerHTML = day + " THG " + month + " • " + hour + ":" + min;
 
     });
 </script>
