@@ -70,6 +70,9 @@ const get_track_detail = id =>
     });
   });
 
+
+
+/////
 // define the home page route
 router.get('/artist/:artist_id', async (req, res) => {
   const { artist_id } = req.params;
@@ -108,17 +111,31 @@ router.get('/event/:event_id', async (req, res) => {
   });
 });
 
+// Test route
+router.get('/share/:event_id/key', async (req, res) => {
+  const { event_id } = req.params;
+  console.log('URL params query = ', req.query);
+  const server = req.query.server;
+  const key = req.query.key;
+  const username = req.query.username;
+  const password = req.query.password;
 
-router.get('/share/:track_id', async (req, res) => {
-  const { track_id } = req.params;
   // const id = artist_id.split('-')[0];
-  const detail = await get_track_detail(track_id);
+  const detail = await get_event_detail(event_id);
   console.log(detail);
   res.render('share/index', {
     detail: detail,
-    type: 'track',
-    id: detail.id
+    type: 'event',
+    id: detail.id,
+    server: server,
+    key: key,
+    username: username,
+    password: password
   });
 });
+
+
+
+////  End of definations
 
 module.exports = router;
