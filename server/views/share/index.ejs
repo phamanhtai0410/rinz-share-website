@@ -254,13 +254,13 @@
 
         .stream-info-list{
             width: 70vw;
-            height: 40vh;
+            max-height: 50vh;
             background-color: black;
             margin: 5vh auto;
         }
 
         .stream-info-title {
-            padding-top: 2vh;
+            padding-top: 5vh;
             font-style: normal;
             font-weight: bold;
             font-size: 36px;
@@ -272,7 +272,7 @@
         .stream-info-items {
             margin-top: 2vh;
             text-align: left;
-            padding: 1vh 2vw;
+            padding: 2vh 2vw;
             
         }
 
@@ -323,18 +323,18 @@
                 <div class='logo text-left'>
                     <img src="/assets/img/share_website/logo.png" style="max-width: 160px;" alt="RinZ Network">
                 </div>
-                <div class="content-detail text-center">
+                <!-- <div class="content-detail text-center">
                     <div class="title">
                         <%= detail.title %>
                     </div>
-                </div>
-                <div class="banner">
+                </div> -->
+                <!-- <div class="banner">
                     <img src="<%= detail.banner %>?w=270" alt="Banner">
                 </div>
                 <div class="author_name">
                         <%=  detail.author_name %>
-                </div>
-                <div class="counter">
+                </div> -->
+                <!-- <div class="counter">
                     <div class="counter-title">
                         LIVESTREAM BẮT ĐẦU SAU
                     </div>
@@ -372,11 +372,11 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="stream-info">
                     <div class="stream-info-list text-shadow">
                         <div class="stream-info-title">
-                            Thông tin chi tiết về Stream Settings
+                            Thông tin chi tiết về Stream Settings: "<%= detail.title %>"
                         </div>
                         <div class="stream-info-items">
                             <div class="stream-info-item row">
@@ -503,7 +503,7 @@
         </div>
     </div>
 </body>
-<script>
+<!-- <script>
     $(document).ready(function() {
         var start_time = parseInt("<%= detail.start_time %>") * 1000;
         // console.log('start time =', start_time);
@@ -546,7 +546,7 @@
         document.getElementById("start-time-mobile").innerHTML = day + " THG " + month + " • " + hour + ":" + min;
 
     });
-</script>
+</script> -->
 <script>
     const toggleKey = document.querySelector('#toggleKey');
     const toggleUsername = document.querySelector('#toggleUsername');
