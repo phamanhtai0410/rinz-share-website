@@ -603,9 +603,10 @@
 
     copyKey.addEventListener('click', function (e) {
         var keyText = key.value;
-        key.select();
-        key.setSelectionRange(0, 99999);
-        navigator.clipboard.writeText(keyText);
+        // key.select();
+        // key.setSelectionRange(0, 99999);
+        copyToClipboard(keyText);
+        // navigator.clipboard.writeText(keyText);
         document.getElementById("custom-tooltip-key").style.display = "inline";
         document.execCommand("copy");
         setTimeout( function() {
@@ -616,9 +617,10 @@
 
     copyUsername.addEventListener('click', function (e) {
         var usernameText = username.value;
-        username.select();
-        username.setSelectionRange(0, 99999);
-        navigator.clipboard.writeText(usernameText);
+        // username.select();
+        // username.setSelectionRange(0, 99999);
+        copyToClipboard(usernameText);
+        // navigator.clipboard.writeText(usernameText);
         document.getElementById("custom-tooltip-username").style.display = "inline";
         document.execCommand("copy");
         setTimeout( function() {
@@ -629,9 +631,10 @@
 
     copyPassword.addEventListener('click', function (e) {
         var passwordText = password.value;
-        password.select();
-        password.setSelectionRange(0, 99999);
-        navigator.clipboard.writeText(passwordText);
+        // password.select();
+        // password.setSelectionRange(0, 99999);
+        copyToClipboard(passwordText);
+        // navigator.clipboard.writeText(passwordText);
         document.getElementById("custom-tooltip-password").style.display = "inline";
         document.execCommand("copy");
         setTimeout( function() {
