@@ -308,8 +308,8 @@
 
         #custom-tooltip-key, #custom-tooltip-server, #custom-tooltip-username, #custom-tooltip-password {
             display: none;
-            margin-left: -30px;
-            padding: 4px 12px;
+            margin-left: -3vw;
+            padding: 1vh 1vw;
             background-color: #000000df;
             border-radius: 4px;
             color: #fff;
@@ -378,7 +378,10 @@
                 <div class="stream-info">
                     <div class="stream-info-list text-shadow">
                         <div class="stream-info-title">
-                            Thông tin chi tiết về Stream Settings: "<%= detail.title %>"
+                            Thông tin chi tiết về Stream Settings:
+                        </div>
+                        <div class="stream-info-title" style="padding-top: 1vh;">
+                            "<%= detail.title %>"
                         </div>
                         <div class="stream-info-items">
                             <div class="stream-info-item row">
@@ -389,9 +392,9 @@
                                     :
                                 </div>
                                 <div class="stream-info-item-value col-5" id="server"><%= server %></div>
-                                <div class=" showHideBtn col-1">
+                                <!-- <div class=" showHideBtn col-1">
                                     
-                                </div>
+                                </div> -->
                                 <div class="copy-btn col">
                                     <i class="far fa-copy fa-lg" id="copyServer"></i>
                                     <span id="custom-tooltip-server">Copied!</span>
@@ -407,10 +410,11 @@
                                 <div class="stream-info-item-value col-5">
                                     <input disabled type="password" value="<%= key %>" id="key" style="border: none;">
                                 </div>
-                                <div class="showHideBtn col-1">
+                                <!-- <div class="showHideBtn col-1">
                                     <i class="far fa-eye fa-lg" id="toggleKey" style="cursor: pointer;"></i>
-                                </div>
+                                </div> -->
                                 <div class="copy-btn col">
+                                    <i class="far fa-eye fa-lg" id="toggleKey" style="cursor: pointer; margin-right: 3vw;"></i>
                                     <i class="far fa-copy fa-lg" id="copyKey"></i>
                                     <span id="custom-tooltip-key">Copied!</span>
                                 </div>
@@ -425,10 +429,11 @@
                                 <div class="stream-info-item-value col-5">
                                     <input disabled type="password" value="<%= username %>" id="username" style="border: none;">
                                 </div>
-                                <div class="showHideBtn col-1">
+                                <!-- <div class="showHideBtn col-1">
                                     <i class="far fa-eye fa-lg" id="toggleUsername" style="cursor: pointer;"></i>
-                                </div>
+                                </div> -->
                                 <div class="copy-btn col">
+                                    <i class="far fa-eye fa-lg" id="toggleUsername" style="cursor: pointer; margin-right: 3vw;"></i>
                                     <i class="far fa-copy fa-lg" id="copyUsername"></i>
                                     <span id="custom-tooltip-username">Copied!</span>
                                 </div>
@@ -443,10 +448,11 @@
                                 <div class="stream-info-item-value col-5">
                                     <input disabled type="password" value="<%= password %>" id="password" style="border: none;">
                                 </div>
-                                <div class="showHideBtn col-1">
+                                <!-- <div class="showHideBtn col-1">
                                     <i class="far fa-eye fa-lg" id="togglePassword" style="cursor: pointer;"></i>
-                                </div>
+                                </div> -->
                                 <div class="copy-btn col">
+                                    <i class="far fa-eye fa-lg" id="togglePassword" style="cursor: pointer; margin-right: 3vw;"></i>
                                     <i class="far fa-copy fa-lg" id="copyPassword"></i>
                                     <span id="custom-tooltip-password">Copied!</span>
                                 </div>
