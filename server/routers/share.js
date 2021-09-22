@@ -74,6 +74,9 @@ const get_track_detail = id =>
 
 /////
 // define the home page route
+
+
+
 router.get('/artist/:artist_id', async (req, res) => {
   const { artist_id } = req.params;
   // const id = artist_id.split('-')[0];
@@ -99,20 +102,8 @@ router.get('/track/:track_id', async (req, res) => {
   });
 });
 
-router.get('/event/:event_id', async (req, res) => {
-  const { event_id } = req.params;
-  // const id = artist_id.split('-')[0];
-  const detail = await get_event_detail(event_id);
-  console.log(detail);
-  res.render('event/index', {
-    detail: detail,
-    type: 'event',
-    id: detail.id
-  });
-});
 
-// Test route
-router.get('/share/:event_id/key', async (req, res) => {
+router.get('/event/:event_id/key', async (req, res) => {
   const { event_id } = req.params;
   console.log('URL params query = ', req.query);
   const server = req.query.server;
@@ -133,6 +124,22 @@ router.get('/share/:event_id/key', async (req, res) => {
     password: password
   });
 });
+
+
+router.get('/event/:event_id', async (req, res) => {
+  const { event_id } = req.params;
+  // const id = artist_id.split('-')[0];
+  const detail = await get_event_detail(event_id);
+  console.log(detail);
+  res.render('event/index', {
+    detail: detail,
+    type: 'event',
+    id: detail.id
+  });
+});
+
+// Test route
+
 
 
 

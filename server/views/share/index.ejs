@@ -3,9 +3,9 @@
 <head> 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <meta property="og:url" content="https://rinzworld.com/<%= type %>/<%= id %>" />
+    <meta property="og:url" content="https://rinzworld.com/<%= type %>/<%= id %>/key" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="<% detail.name %>" />
+    <meta property="og:title" content="<% detail.title %>- Stream Key" />
     <meta property="og:description" content="Khám phá nhiều hơn tại RinZ World" />
     <meta property="og:image" content="<%= detail.avatar %>" />
     <meta name="turbolinks-cache-control" content="no-cache">
@@ -13,7 +13,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
     <meta name="turbolinks-cache-control" content="no-cache">
-    <title>Share: Event <%= id %></title>
+    <title>Stream Key: Event "<%= detail.title %>"</title>
     <link rel="icon" type="image/x-icon" href="/assets/img/share_website/logo.png" />
     <!-- Google fonts-->
     <link href="/template/fonts/SVN-Gilroy.otf" rel='stylesheet' type='text/css' />
@@ -254,7 +254,7 @@
 
         .stream-info-list{
             width: 70vw;
-            max-height: 50vh;
+            /* min-height: 50vh; */
             background-color: black;
             margin: 5vh auto;
         }
@@ -281,6 +281,8 @@
             padding: 1vh;
             background-color: white;
             margin: 2vh;
+            display: flex;
+            align-items: center;
         }
 
         .stream-info-item-title, .stream-info-item-value, .colon {
@@ -306,7 +308,7 @@
 
         #custom-tooltip-key, #custom-tooltip-server, #custom-tooltip-username, #custom-tooltip-password {
             display: none;
-            margin-left: 10px;
+            margin-left: -30px;
             padding: 4px 12px;
             background-color: #000000df;
             border-radius: 4px;
@@ -380,7 +382,7 @@
                         </div>
                         <div class="stream-info-items">
                             <div class="stream-info-item row">
-                                <div class="stream-info-item-title col-3">
+                                <div class="stream-info-item-title col">
                                     Máy chủ
                                 </div>
                                 <div class="colon col-1">
@@ -390,13 +392,13 @@
                                 <div class=" showHideBtn col-1">
                                     
                                 </div>
-                                <div class="copy-btn col-1">
+                                <div class="copy-btn col">
                                     <i class="far fa-copy fa-lg" id="copyServer"></i>
                                     <span id="custom-tooltip-server">Copied!</span>
                                 </div>
                             </div>
                             <div class="stream-info-item row">
-                                <div class="stream-info-item-title col-3">
+                                <div class="stream-info-item-title col">
                                         Khóa
                                 </div>
                                 <div class="colon col-1">
@@ -408,13 +410,13 @@
                                 <div class="showHideBtn col-1">
                                     <i class="far fa-eye fa-lg" id="toggleKey" style="cursor: pointer;"></i>
                                 </div>
-                                <div class="copy-btn col-1">
+                                <div class="copy-btn col">
                                     <i class="far fa-copy fa-lg" id="copyKey"></i>
                                     <span id="custom-tooltip-key">Copied!</span>
                                 </div>
                             </div>
                             <div class="stream-info-item row">
-                                <div class="stream-info-item-title col-3">
+                                <div class="stream-info-item-title col">
                                     Stream user
                                 </div>
                                 <div class="colon col-1">
@@ -426,13 +428,13 @@
                                 <div class="showHideBtn col-1">
                                     <i class="far fa-eye fa-lg" id="toggleUsername" style="cursor: pointer;"></i>
                                 </div>
-                                <div class="copy-btn col-1">
+                                <div class="copy-btn col">
                                     <i class="far fa-copy fa-lg" id="copyUsername"></i>
                                     <span id="custom-tooltip-username">Copied!</span>
                                 </div>
                             </div>
                             <div class="stream-info-item row">
-                                <div class="stream-info-item-title col-3">
+                                <div class="stream-info-item-title col">
                                     Stream password
                                 </div>
                                 <div class="colon col-1">
@@ -444,7 +446,7 @@
                                 <div class="showHideBtn col-1">
                                     <i class="far fa-eye fa-lg" id="togglePassword" style="cursor: pointer;"></i>
                                 </div>
-                                <div class="copy-btn col-1">
+                                <div class="copy-btn col">
                                     <i class="far fa-copy fa-lg" id="copyPassword"></i>
                                     <span id="custom-tooltip-password">Copied!</span>
                                 </div>
