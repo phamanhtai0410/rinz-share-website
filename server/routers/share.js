@@ -114,7 +114,7 @@ router.get('/event/:event_id/key', async (req, res) => {
   // const id = artist_id.split('-')[0];
   const detail = await get_event_detail(event_id);
   console.log(detail);
-  res.render('share/index', {
+  res.render('stream_key/index', {
     detail: detail,
     type: 'event',
     id: detail.id,
