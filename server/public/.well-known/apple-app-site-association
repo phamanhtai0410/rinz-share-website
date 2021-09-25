@@ -1,0 +1,13 @@
+{
+  "applinks": {
+      "apps": [],
+      "details": [
+           {
+             "appID": "3B7ANL479U.com.esol.RinZWorld",
+             "paths": [
+               "*"
+             ]
+           }
+       ]
+   }
+}
