@@ -32,7 +32,13 @@ app.use(
     express.static(path.join(__dirname, 'node_modules/bootstrap'))
 );
 app.use('/template', express.static(path.join(__dirname, 'template')));
-app.use(express.static(path.join(__dirname, 'public')));
+/// options for static serve
+const static_options = {
+    setHeaders: function (res, path, stat) {
+        res.set('Content-Type', 'application/json')
+      }
+};
+app.use(express.static(path.join(__dirname, 'public'), static_options));
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.json());
 
