@@ -76,33 +76,40 @@ const get_track_detail = id =>
 // define the home page route
 
 
+////
+//    Artist Share
+////
 
 router.get('/artist/:artist_id', async (req, res) => {
   const { artist_id } = req.params;
   // const id = artist_id.split('-')[0];
   const detail = await get_artist_detail(artist_id);
   console.log(detail);
-  res.render('artist/index', {
+  res.render('share/artist/index', {
     detail: detail,
     type: 'artist',
     id: detail.id
   });
 });
 
-
+////
+//    Track Share
+////
 router.get('/track/:track_id', async (req, res) => {
   const { track_id } = req.params;
   // const id = artist_id.split('-')[0];
   const detail = await get_track_detail(track_id);
   console.log(detail);
-  res.render('track/index', {
+  res.render('share/track/index', {
     detail: detail,
     type: 'track',
     id: detail.id
   });
 });
 
-
+////
+//    Stream Key Site
+////
 router.get('/event/:event_id/key', async (req, res) => {
   const { event_id } = req.params;
   console.log('URL params query = ', req.query);
@@ -125,20 +132,21 @@ router.get('/event/:event_id/key', async (req, res) => {
   });
 });
 
-
+////
+//  Event Share
+////
 router.get('/event/:event_id', async (req, res) => {
   const { event_id } = req.params;
   // const id = artist_id.split('-')[0];
   const detail = await get_event_detail(event_id);
   console.log(detail);
-  res.render('event/index', {
+  res.render('share/event/index', {
     detail: detail,
     type: 'event',
     id: detail.id
   });
 });
 
-// Test route
 
 
 
