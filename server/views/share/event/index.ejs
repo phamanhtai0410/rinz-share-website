@@ -145,7 +145,7 @@
 
         .download-content-mobile {
             text-align: center;
-            margin-top: 35%;
+            margin-top: 15%;
             margin-bottom: 12%;
         }
 
@@ -176,7 +176,7 @@
             margin-bottom: 24px;
         }
 
-        .mobile-banner {
+        .mobile-banner{
             position: relative;
         }
 
@@ -193,7 +193,7 @@
             font-family: --font;
             font-style: normal;
             font-weight: normal;
-            font-size: 12px;
+            font-size: 11px;
             line-height: 16px;
             color: #FAFAFA;
             flex: none;
@@ -239,6 +239,14 @@
 
         .download-btn-mobile > a img {
             max-width: 170px;
+        }
+
+        .open-in-app-btn > a img{
+            max-width: 90%;
+        }
+
+        .open-in-app-btn {
+            padding-top: 15vh;
         }
     </style>
 
@@ -305,6 +313,7 @@
                     <a href="#"><img src="/assets/img/share_website/subcribe.png" alt=""></a>
                 </div>
             </div>
+            
             <div class="download-content">
                 <div class="download-title row">
                     TẢI APP NGAY ĐỂ KHÁM PHÁ
@@ -322,7 +331,7 @@
     </div>
     <div id="mobile">
         <div class="mobile-banner">
-            <img src="<%= detail.banner %>?w=200" alt="Banner">
+            <img class="mobile-banner-img" src="<%= detail.banner %>?w=200" alt="Banner">
             <div class="start-time-mobile">
                 <img src="/assets/img/share_website/start_time_tag.png" alt="" style="max-width: 100px;">
                 <p id="start-time-mobile"><%= detail.start_time %></p>
@@ -336,6 +345,9 @@
         </div>
         <div class="text-mobile">
             <%= detail.author_name %>
+        </div>
+        <div class="open-in-app-btn">
+            <a href="<%= dynamic_link %>"><img src="/assets/img/share_website/download_btn.png" alt=""></a>
         </div>
         <div class="download-content-mobile">
             <div class="download-title-mobile">
