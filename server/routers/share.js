@@ -1,7 +1,7 @@
 var express = require('express');
 var request = require('request');
 var router = express.Router();
-const { IAPI } = require('../config');
+const { IAPI, FIREBASE_KEY, DOMAIN } = require('../config');
 // middleware that is specific to this router
 router.use(function timeLog(req, res, next) {
   console.log('URL: ', req.url, Date.now());
@@ -50,7 +50,7 @@ const get_track_detail = id =>
     });
   });
 
-  const get_event_detail = id => 
+const get_event_detail = id => 
   new Promise(async (resolve, reject) => {
     var options = {
       method: 'GET',
@@ -70,6 +70,38 @@ const get_track_detail = id =>
     });
   });
 
+
+const get_dyanmic_link = link => 
+  new Promise(async (resolve, reject) => {
+    var options = {
+      method: 'POST',
+      url: `https://firebasedynamiclinks.googleapis.com/v1/shortLinks?key=${FIREBASE_KEY}`,
+      json: {
+        "dynamicLinkInfo": {
+          "domainUriPrefix": "https://rinzworld.page.link",
+          "link": DOMAIN + `${link}`,
+          "androidInfo": {
+            "androidPackageName": "com.esol.rinzworld"
+          },
+          "iosInfo": {
+            "iosBundleId": "com.esol.RinZWorld"
+          }
+        }
+      }
+    };
+
+    await request(options, function(error, response) {
+      if (error) {
+        reject();
+      }
+      let response_json = JSON.parse(response.body);
+      console.log(response_json.status);
+      if (response_json.status === 1) {
+        resolve(response_json);
+      }
+      resolve({});
+    });
+  });
 
 
 /////
@@ -99,6 +131,7 @@ router.get('/track/:track_id', async (req, res) => {
   const { track_id } = req.params;
   // const id = artist_id.split('-')[0];
   const detail = await get_track_detail(track_id);
+  // const dynamic_link_json = await get_dyanmic_link(`/track/${track_id}`);
   console.log(detail);
   res.render('share/track/index', {
     detail: detail,

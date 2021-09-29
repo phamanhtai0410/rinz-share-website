@@ -126,8 +126,8 @@
 
         .download-content-mobile {
             text-align: center;
-            margin-top: 35%;
-            margin-bottom: 12%;
+            margin-top: 15%;
+            margin-bottom: 4%;
         }
 
         @media only screen and (max-device-width: 480px) {
@@ -195,6 +195,14 @@
         .download-btn-mobile > a img {
             max-width: 170px;
         }
+
+        .open-in-app-btn {
+            padding-top: 10vh;
+        }
+
+        .open-in-app-btn > a img {
+            max-width: 90%;
+        }
     </style>
 
 </head>
@@ -232,7 +240,7 @@
                         <a href="https://apps.apple.com/us/app/thecuatui/id1568831849"><img src="/assets/img/share_website/appstore.png" alt=""></a>
                     </div>
                     <div class="download-btn">
-                        <a href="https://play.google.com/store/apps/details?id=com.thecuatui"><img src="/assets/img/share_website/googleplay.png" alt=""></a>
+                        <a id='google-play-desktop' href="https://play.google.com/store/apps/details?id=com.thecuatui"><img src="/assets/img/share_website/googleplay.png" alt=""></a>
                     </div>
                 </div>
             </div>           
@@ -250,6 +258,9 @@
         <div class="text-mobile">
             <%= detail.author_name %>
         </div>
+        <div class="open-in-app-btn">
+            <a href="<%= dynamic_link %>"><img src="/assets/img/share_website/download_btn.png" alt=""></a>
+        </div>
         <div class="download-content-mobile">
             <div class="download-title-mobile">
                 TẢI APP NGAY ĐỂ KHÁM PHÁ
@@ -259,11 +270,19 @@
                     <a href="https://apps.apple.com/us/app/thecuatui/id1568831849"><img src="/assets/img/share_website/appstore.png" alt=""></a>
                 </div>
                 <div class="download-btn-mobile col text-left">
-                    <a href="https://play.google.com/store/apps/details?id=com.thecuatui"><img src="/assets/img/share_website/googleplay.png" alt=""></a>
+                    <a id='google-play-mobile' href="https://play.google.com/store/apps/details?id=com.thecuatui"><img src="/assets/img/share_website/googleplay.png" alt=""></a>
                 </div>
             </div>
         </div>
     </div>
 </body>
-   
+<script>
+    function openInApp() {
+        var platform = window.navigator.userAgent;
+        if (platform.toLowerCase().indexOf('android') > -1) {
+            return 'https://thecuatui.page.link/home';
+        }
+        return 'https://play.google.com/store/apps/details?id=com.thecuatui';
+        
+</script>
 </html>
