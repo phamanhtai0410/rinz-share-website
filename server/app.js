@@ -9,8 +9,9 @@ const _ = require('lodash');
 const share_router = require('./routers/share');
 const upload_router = require('./routers/upload');
 // --------
-const { IAPI } = require('./config');
+const { IAPI, FIREBASE_KEY } = require('./config');
 console.log(`Your IAPI is ${IAPI}`);
+console.log(`Your Firebase Key is ${FIREBASE_KEY}`);
 //---------------
 const app = express();
 app.set('view engine', 'ejs');

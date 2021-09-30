@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head> 
+
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta property="og:url" content="https://rinzworld.com/<%= type %>/<%= id %>" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="Event <%= detail.name %>" />
-    <meta property="og:description" content="Khám phá nhiều hơn tại RinZ World" />
-    <meta property="og:image" content="<%= detail.avatar %>" />
+    <meta property="og:title" content="Event <%= detail.title %>" />
+    <meta property="og:description" content="Khám phá nhiều hơn tại RinZ" />
+    <meta property="og:image" content="<%= detail.banner %>" />
     <meta name="turbolinks-cache-control" content="no-cache">
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
     <meta name="turbolinks-cache-control" content="no-cache">
-    <title>Event <%= detail.name %></title>
+    <title>Event
+        <%= detail.title %>
+    </title>
     <link rel="icon" type="image/x-icon" href="/assets/img/share_website/logo.png" />
     <!-- Google fonts-->
     <link href="/template/fonts/SVN-Gilroy.otf" rel='stylesheet' type='text/css' />
@@ -37,14 +40,15 @@
             font-family: --font;
             src: url(/template/fonts/SVN-Gilroy.otf);
         }
+        
         body {
             font-family: --font;
         }
-
+        
         .share-content {
             text-align: center;
         }
-
+        
         .title {
             font-size: 24px;
             font-weight: 700;
@@ -53,22 +57,20 @@
             text-transform: uppercase;
             color: #FEBA08;
         }
-
+        
         .banner img {
             max-width: 270px;
             max-height: 300px;
             margin-bottom: 25px;
-        
         }
-
+        
         .author_name {
             color: #FEBA08;
             font-size: 20px;
             font-weight: 600;
             line-height: 133.69%;
-          
         }
-
+        
         .counter-title {
             margin-top: 85px;
             margin-bottom: 40px;
@@ -76,22 +78,21 @@
             font-weight: 700;
             font-size: 36px;
             line-height: 133.69%;
-         
         }
-
+        
         .counter {
             text-align: center;
         }
-
+        
         .counter-dhms {
             margin: 0 auto;
             max-width: 650px;
         }
-
+        
         .counter-items {
             margin: 0 auto;
         }
-
+        
         .counter-number p {
             font-size: 72px;
             line-height: 133.69%;
@@ -99,9 +100,8 @@
             color: #FFFFFF;
             text-align: center;
             font-family: --font;
-           
         }
-
+        
         .counter-legend p {
             padding-top: 10px;
             font-size: 18px;
@@ -109,22 +109,22 @@
             color: white;
             line-height: 21px;
             text-align: center;
-           font-family: --font;
+            font-family: --font;
         }
-
+        
         .subcribe-btn {
             margin-top: 60px;
         }
-
-        .subcribe-btn > a img {
+        
+        .subcribe-btn>a img {
             max-width: 150px;
         }
-
+        
         .download-content {
             text-align: left;
             margin-top: 100px;
         }
-
+        
         .download-title {
             font-style: normal;
             font-weight: bold;
@@ -132,60 +132,59 @@
             line-height: 133.69%;
             color: #FEBA08;
         }
-
-        .download-btn > a img {
+        
+        .download-btn>a img {
             max-width: 240px;
             margin-top: 24px;
         }
-
+        
         #mobile {
             display: none;
             text-align: center;
         }
-
+        
         .download-content-mobile {
             text-align: center;
-            margin-top: 35%;
+            margin-top: 15%;
             margin-bottom: 12%;
         }
-
+        
         @media only screen and (max-device-width: 480px) {
             #mobile {
                 display: block;
-                
             }
-
             body {
                 background-image: url(/assets/img/share_website/mobile_background.png);
             }
-
-            #desktop {display: none;}
+            #desktop {
+                display: none;
+            }
         }
-
+        
         @media only screen and (min-device-width: 480px) {
             body {
                 background-image: url(/assets/img/share_website/background.png);
                 padding: 50px 100px;
             }
         }
-
+        
         .mobile-banner img {
             max-width: 200px;
             max-height: 200px;
             margin-top: 50%;
             margin-bottom: 24px;
         }
-
+        
         .mobile-banner {
             position: relative;
         }
-
+        
         .start-time-mobile {
             position: absolute;
             bottom: 6px;
             left: 25%;
         }
-
+        
         .start-time-mobile p {
             position: absolute;
             bottom: 28px;
@@ -193,7 +192,7 @@
             font-family: --font;
             font-style: normal;
             font-weight: normal;
-            font-size: 12px;
+            font-size: 11px;
             line-height: 16px;
             color: #FAFAFA;
             flex: none;
@@ -201,7 +200,7 @@
             flex-grow: 0;
             margin: 0px 3px;
         }
-
+        
         .author_name_mobile {
             font-family: --font;
             color: #E8E8E8;
@@ -218,7 +217,7 @@
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
         }
-       
+        
         .text-mobile {
             font-style: normal;
             font-weight: normal;
@@ -227,7 +226,7 @@
             text-align: center;
             color: #BFBFBF;
         }
-
+        
         .download-title-mobile {
             font-style: normal;
             font-weight: 600;
@@ -236,15 +235,24 @@
             color: #E8E8E8;
             margin-bottom: 16px;
         }
-
-        .download-btn-mobile > a img {
+        
+        .download-btn-mobile>a img {
             max-width: 170px;
+        }
+        
+        .open-in-app-btn>a img {
+            max-width: 90%;
+        }
+        
+        .open-in-app-btn {
+            padding-top: 15vh;
         }
     </style>
 
 </head>
+
 <body>
-    
+
     <div id="desktop">
         <div class="w-100">
             <div class="share-content">
@@ -260,7 +268,7 @@
                     <img src="<%= detail.banner %>?w=270" alt="Banner">
                 </div>
                 <div class="author_name">
-                        <%=  detail.author_name %>
+                    <%=  detail.author_name %>
                 </div>
                 <div class="counter">
                     <div class="counter-title">
@@ -272,7 +280,7 @@
                                 <p id="day">--</p>
                             </div>
                             <div class="counter-legend row">
-                                <p>NGÀY</p> 
+                                <p>NGÀY</p>
                             </div>
                         </div>
                         <div class="counter-items col-3">
@@ -280,7 +288,7 @@
                                 <p id="hour">--</p>
                             </div>
                             <div class="counter-legend row">
-                                <p>GIỜ</p> 
+                                <p>GIỜ</p>
                             </div>
                         </div>
                         <div class="counter-items col-3">
@@ -305,6 +313,7 @@
                     <a href="#"><img src="/assets/img/share_website/subcribe.png" alt=""></a>
                 </div>
             </div>
+
             <div class="download-content">
                 <div class="download-title row">
                     TẢI APP NGAY ĐỂ KHÁM PHÁ
@@ -317,17 +326,19 @@
                         <a href="https://play.google.com/store/apps/details?id=com.thecuatui"><img src="/assets/img/share_website/googleplay.png" alt=""></a>
                     </div>
                 </div>
-            </div>           
+            </div>
         </div>
     </div>
     <div id="mobile">
         <div class="mobile-banner">
-            <img src="<%= detail.banner %>?w=200" alt="Banner">
+            <img class="mobile-banner-img" src="<%= detail.banner %>?w=200" alt="Banner">
             <div class="start-time-mobile">
                 <img src="/assets/img/share_website/start_time_tag.png" alt="" style="max-width: 100px;">
-                <p id="start-time-mobile"><%= detail.start_time %></p>
+                <p id="start-time-mobile">
+                    <%= detail.start_time %>
+                </p>
             </div>
-            
+
         </div>
         <div class="">
             <p class="author_name_mobile d-flex justify-content-center">
@@ -336,6 +347,9 @@
         </div>
         <div class="text-mobile">
             <%= detail.author_name %>
+        </div>
+        <div class="open-in-app-btn">
+            <a href="<%= dynamic_link %>"><img src="/assets/img/share_website/download_btn.png" alt=""></a>
         </div>
         <div class="download-content-mobile">
             <div class="download-title-mobile">
@@ -396,5 +410,5 @@
 
     });
 </script>
-   
+
 </html>

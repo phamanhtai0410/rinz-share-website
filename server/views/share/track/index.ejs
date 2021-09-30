@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head> 
+
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta property="og:url" content="https://rinzworld.com/<%= type %>/<%= id %>" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="Track <%= detail.title %>"/>
-    <meta property="og:description" content="Khám phá nhiều hơn tại RinZ World" />
+    <meta property="og:title" content="Track <%= detail.title %>" />
+    <meta property="og:description" content="Khám phá nhiều hơn tại RinZ" />
     <meta property="og:image" content="<%= detail.banner %>" />
     <meta name="turbolinks-cache-control" content="no-cache">
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
     <meta name="turbolinks-cache-control" content="no-cache">
-    <title>Track <%= detail.title %></title>
+    <title>Track
+        <%= detail.title %>
+    </title>
     <link rel="icon" type="image/x-icon" href="/assets/img/share_website/logo.png" />
     <!-- Google fonts-->
     <link href="/template/fonts/SVN-Gilroy.otf" rel='stylesheet' type='text/css' />
@@ -37,14 +40,15 @@
             font-family: --font;
             src: url(/template/fonts/SVN-Gilroy.otf);
         }
+        
         body {
             font-family: --font;
         }
-
+        
         .share-content {
             text-align: left;
         }
-
+        
         .title {
             font-size: 24px;
             font-weight: 700;
@@ -53,17 +57,17 @@
             text-transform: uppercase;
             color: #FEBA08;
         }
-
+        
         .banner {
             margin-top: 100px;
             max-width: 30vw;
         }
+        
         .banner img {
             width: 100%;
             margin-bottom: 40px;
-        
         }
-
+        
         .author_name {
             font-style: normal;
             font-weight: 500;
@@ -83,12 +87,12 @@
             color: #E8E8E8;
             margin-bottom: 100px;
         }
-
+        
         .download-content {
             text-align: center;
             margin-top: 100px;
         }
-
+        
         .download-title {
             font-style: normal;
             font-weight: bold;
@@ -96,13 +100,13 @@
             line-height: 133.69%;
             color: #FEBA08;
         }
-
-        .download-btn > a img {
+        
+        .download-btn>a img {
             max-width: 240px;
             margin-top: 24px;
             margin-right: 24px;
         }
-
+        
         .track-title {
             font-style: normal;
             font-weight: bold;
@@ -110,53 +114,52 @@
             line-height: 46px;
             color: #FEBA08;
         }
-
+        
         .listen-now-btn {
             margin-top: 65px;
         }
-
-        .listen-now-btn > a img {
+        
+        .listen-now-btn>a img {
             max-width: 170px;
         }
-
+        
         #mobile {
             display: none;
             text-align: center;
         }
-
+        
         .download-content-mobile {
             text-align: center;
-            margin-top: 35%;
-            margin-bottom: 12%;
+            margin-top: 15%;
+            margin-bottom: 4%;
         }
-
+        
         @media only screen and (max-device-width: 480px) {
             #mobile {
                 display: block;
-                
             }
-
             body {
                 background-image: url(/assets/img/share_website/mobile_background.png);
             }
-
-            #desktop {display: none;}
+            #desktop {
+                display: none;
+            }
         }
-
+        
         @media only screen and (min-device-width: 480px) {
             body {
                 background-image: url(/assets/img/share_website/background.png);
                 padding: 50px 100px;
             }
         }
-
+        
         .mobile-banner img {
             max-width: 200px;
             max-height: 200px;
             margin-top: 50%;
             margin-bottom: 24px;
         }
-
+        
         .author_name_mobile {
             font-family: --font;
             color: #E8E8E8;
@@ -173,7 +176,7 @@
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
         }
-       
+        
         .text-mobile {
             font-style: normal;
             font-weight: normal;
@@ -182,7 +185,7 @@
             text-align: center;
             color: #BFBFBF;
         }
-
+        
         .download-title-mobile {
             font-style: normal;
             font-weight: 600;
@@ -191,15 +194,24 @@
             color: #E8E8E8;
             margin-bottom: 16px;
         }
-
-        .download-btn-mobile > a img {
+        
+        .download-btn-mobile>a img {
             max-width: 170px;
+        }
+        
+        .open-in-app-btn {
+            padding-top: 10vh;
+        }
+        
+        .open-in-app-btn>a img {
+            max-width: 90%;
         }
     </style>
 
 </head>
+
 <body>
-    
+
     <div id="desktop">
         <div class="w-100">
             <div class="share-content">
@@ -232,10 +244,10 @@
                         <a href="https://apps.apple.com/us/app/thecuatui/id1568831849"><img src="/assets/img/share_website/appstore.png" alt=""></a>
                     </div>
                     <div class="download-btn">
-                        <a href="https://play.google.com/store/apps/details?id=com.thecuatui"><img src="/assets/img/share_website/googleplay.png" alt=""></a>
+                        <a id='google-play-desktop' href="https://play.google.com/store/apps/details?id=com.thecuatui"><img src="/assets/img/share_website/googleplay.png" alt=""></a>
                     </div>
                 </div>
-            </div>           
+            </div>
         </div>
     </div>
     <div id="mobile">
@@ -250,6 +262,9 @@
         <div class="text-mobile">
             <%= detail.author_name %>
         </div>
+        <div class="open-in-app-btn">
+            <a href="<%= dynamic_link %>"><img src="/assets/img/share_website/download_btn.png" alt=""></a>
+        </div>
         <div class="download-content-mobile">
             <div class="download-title-mobile">
                 TẢI APP NGAY ĐỂ KHÁM PHÁ
@@ -259,11 +274,19 @@
                     <a href="https://apps.apple.com/us/app/thecuatui/id1568831849"><img src="/assets/img/share_website/appstore.png" alt=""></a>
                 </div>
                 <div class="download-btn-mobile col text-left">
-                    <a href="https://play.google.com/store/apps/details?id=com.thecuatui"><img src="/assets/img/share_website/googleplay.png" alt=""></a>
+                    <a id='google-play-mobile' href="https://play.google.com/store/apps/details?id=com.thecuatui"><img src="/assets/img/share_website/googleplay.png" alt=""></a>
                 </div>
             </div>
         </div>
     </div>
 </body>
-   
+<script>
+    function openInApp() {
+        var platform = window.navigator.userAgent;
+        if (platform.toLowerCase().indexOf('android') > -1) {
+            return 'https://thecuatui.page.link/home';
+        }
+        return 'https://play.google.com/store/apps/details?id=com.thecuatui';
+</script>
+
 </html>

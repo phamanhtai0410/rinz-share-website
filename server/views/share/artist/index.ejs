@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head> 
+
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <meta property="og:url" content="https://rinzworld.com/<%= type %>/<%= id %>" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content="Artist <%= detail.name %>" />
-    <meta property="og:description" content="Khám phá nhiều hơn tại RinZ World" />
+    <meta property="og:description" content="Khám phá nhiều hơn tại RinZ" />
     <meta property="og:image" content="<%= detail.avatar %>" />
     <meta name="turbolinks-cache-control" content="no-cache">
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
     <meta name="turbolinks-cache-control" content="no-cache">
-    <title>Aritst <%= detail.name %></title>
+    <title>Aritst
+        <%= detail.name %>
+    </title>
     <link rel="icon" type="image/x-icon" href="/assets/img/share_website/logo.png" />
     <!-- Google fonts-->
     <link href="/template/fonts/SVN-Gilroy.otf" rel='stylesheet' type='text/css' />
@@ -37,14 +40,15 @@
             font-family: --font;
             src: url(/template/fonts/SVN-Gilroy.otf);
         }
+        
         body {
             font-family: --font;
         }
-
+        
         .share-content {
             text-align: center;
         }
-
+        
         .title {
             font-size: 24px;
             font-weight: 700;
@@ -53,13 +57,13 @@
             text-transform: uppercase;
             color: #FEBA08;
         }
-
+        
         .banner img {
             max-width: 400px;
             max-height: 400px;
             margin-bottom: 40px;
         }
-
+        
         .author_name {
             color: #FEBA08;
             font-size: 30px;
@@ -77,17 +81,18 @@
             color: #E8E8E8;
             margin-bottom: 100px;
         }
-
+        
         .download-content {
             text-align: center;
-
         }
+        
         .download-content-mobile {
             text-align: center;
-            margin-top: 35%;
-            margin-bottom: 12%;
+            <<<<<<< HEAD margin-top: 35%;
+            =======margin-top: 15%;
+            >>>>>>>add-deep-link-file-configuration margin-bottom: 12%;
         }
-
+        
         .download-title {
             font-style: normal;
             font-weight: bold;
@@ -95,43 +100,42 @@
             line-height: 133.69%;
             color: #FEBA08;
         }
-
-        .download-btn > a img {
+        
+        .download-btn>a img {
             max-width: 240px;
             margin-top: 24px;
         }
-
+        
         #mobile {
             display: none;
         }
-
+        
         @media only screen and (max-device-width: 480px) {
             #mobile {
                 display: block;
-                
             }
-
             body {
                 background-image: url(/assets/img/share_website/mobile_background.png);
             }
-
-            #desktop {display: none;}
+            #desktop {
+                display: none;
+            }
         }
-
+        
         @media only screen and (min-device-width: 480px) {
             body {
                 background-image: url(/assets/img/share_website/background.png);
                 padding: 50px 100px;
             }
         }
-
+        
         .mobile-banner img {
             max-width: 200px;
             max-height: 200px;
             margin-top: 50%;
             margin-bottom: 24px;
         }
-
+        
         .author_name_mobile {
             color: #E8E8E8;
             font-style: normal;
@@ -140,7 +144,7 @@
             line-height: 28px;
             margin-bottom: 6px;
         }
-       
+        
         .text-mobile {
             font-style: normal;
             font-weight: normal;
@@ -149,7 +153,7 @@
             text-align: center;
             color: #BFBFBF;
         }
-
+        
         .download-title-mobile {
             font-style: normal;
             font-weight: 600;
@@ -158,13 +162,24 @@
             color: #E8E8E8;
             margin-bottom: 16px;
         }
-
-        .download-btn-mobile > a img {
+        
+        .download-btn-mobile>a img {
             max-width: 170px;
         }
+        
+        <<<<<<< HEAD=======.open-in-app-btn>a img {
+            max-width: 90%;
+        }
+        
+        .open-in-app-btn {
+            padding-top: 15vh;
+        }
+        
+        >>>>>>>add-deep-link-file-configuration
     </style>
 
 </head>
+
 <body>
     <div id="desktop">
         <div class="w-100">
@@ -176,7 +191,7 @@
                     <img style="border-radius: 50%;" src="<%= detail.avatar %>?w=400" alt="Banner">
                 </div>
                 <div class="author_name">
-                        <%=  detail.name %>
+                    <%=  detail.name %>
                 </div>
                 <div class="text_white">
                     Artist on RinZ Music
@@ -194,7 +209,7 @@
                         <a href="https://play.google.com/store/apps/details?id=com.thecuatui"><img src="/assets/img/share_website/googleplay.png" alt=""></a>
                     </div>
                 </div>
-            </div>           
+            </div>
         </div>
     </div>
     <div id="mobile" class="w-100 text-center">
@@ -207,19 +222,24 @@
         <div class="text-mobile">
             Artist on RinZ Music
         </div>
-        <div class="download-content-mobile">
-            <div class="download-title-mobile">
-                TẢI APP NGAY ĐỂ KHÁM PHÁ
+        <<<<<<< HEAD=======< div class="open-in-app-btn">
+            <a href="<%= dynamic_link %>"><img src="/assets/img/share_website/download_btn.png" alt=""></a>
+    </div>
+    >>>>>>> add-deep-link-file-configuration
+    <div class="download-content-mobile">
+        <div class="download-title-mobile">
+            TẢI APP NGAY ĐỂ KHÁM PHÁ
+        </div>
+        <div class="row">
+            <div class="download-btn-mobile col text-right">
+                <a href="https://apps.apple.com/us/app/thecuatui/id1568831849"><img src="/assets/img/share_website/appstore.png" alt=""></a>
             </div>
-            <div class="row">
-                <div class="download-btn-mobile col text-right">
-                    <a href="https://apps.apple.com/us/app/thecuatui/id1568831849"><img src="/assets/img/share_website/appstore.png" alt=""></a>
-                </div>
-                <div class="download-btn-mobile col text-left">
-                    <a href="https://play.google.com/store/apps/details?id=com.thecuatui"><img src="/assets/img/share_website/googleplay.png" alt=""></a>
-                </div>
+            <div class="download-btn-mobile col text-left">
+                <a href="https://play.google.com/store/apps/details?id=com.thecuatui"><img src="/assets/img/share_website/googleplay.png" alt=""></a>
             </div>
         </div>
     </div>
+    </div>
 </body>
+
 </html>
