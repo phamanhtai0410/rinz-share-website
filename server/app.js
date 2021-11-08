@@ -1,12 +1,32 @@
 const path = require('path');
 const express = require('express');
-const share_router = require('./routers/share')
+const fileUpload = require('express-fileupload');
+const cors = require('cors');
+const morgan = require('morgan');
+
+const _ = require('lodash');
+
+const share_router = require('./routers/share');
+const upload_router = require('./routers/upload');
+const dj_management = require('./routers/dj_management');
 // --------
-const { IAPI } = require('./config');
+const { IAPI, FIREBASE_KEY } = require('./config');
 console.log(`Your IAPI is ${IAPI}`);
+console.log(`Your Firebase Key is ${FIREBASE_KEY}`);
 //---------------
 const app = express();
 app.set('view engine', 'ejs');
+
+// enable files upload
+app.use(fileUpload({
+    createParentPath: true
+}));
+
+//add other middleware
+app.use(cors());
+app.use(morgan('dev'));
+
+
 // ----------
 console.log(__dirname);
 app.use(
@@ -14,11 +34,22 @@ app.use(
     express.static(path.join(__dirname, 'node_modules/bootstrap'))
 );
 app.use('/template', express.static(path.join(__dirname, 'template')));
-app.use(express.static(path.join(__dirname, 'public')));
+/// options for static serve
+const static_options = {
+    setHeaders: function (res, path, stat) {
+        res.set('Content-Type', 'application/json')
+      }
+};
+app.use(express.static(path.join(__dirname, 'public'), static_options));
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.json());
 
 app.use('/', share_router);
+
+app.use('/upload', upload_router);
+
+app.use('/console', dj_management);
+
 app.get('*', (req, res) => {
     res.render('error/500');
 });
