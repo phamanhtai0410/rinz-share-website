@@ -2,9 +2,22 @@ var express = require('express');
 var request = require('request');
 var router = express.Router();
 const { IAPI, FIREBASE_KEY, DOMAIN } = require('../config');
+const fetch = require('../utils/_fetching');
+const log_st = require('../utils/_debug_log');
+
+
 // middleware that is specific to this router
 router.use(function timeLog(req, res, next) {
-  console.log('URL: ', req.url, Date.now());
+  var now = new Date();
+  var y = now.getFullYear();
+  var m = now.getMonth() < 9 ? "0" + now.getMonth() : now.getMonth() + 1;
+  var d = now.getDate() < 10 ? "0" + now.getDate() : now.getDate();
+  var h = now.getHours() < 10 ? "0" + now.getHours() : now.getHours();
+  var min = now.getMinutes() < 10 ? "0" + now.getMinutes() : now.getMinutes();
+  var sec = now.getSeconds() < 10 ? "0" + now.getSeconds() : now.getSeconds()
+
+  console.log(`***  ${y} ${d}THG${m} ${h}:${min}:${sec}  URL - ${req.url}`);
+  // console.log('URL: ', req.url, Date.now());
   next();
 });
 
@@ -202,6 +215,22 @@ router.get('/event/:event_id', async (req, res) => {
   });
 });
 
+
+//////////////////////////////////////////////////
+//  Feed Share                               ////
+//////////////////////////////////////////////////
+
+router.get('/feed/:feed_id', async(req, res) => {
+  const { feed_id } = req.params;
+  const feed_info = await fetch(IAPI + `/v1/core-api/api/tweet/${feed_id}`, 'GET', {});
+  const dynamic_link_json = await get_dyanmic_link(`/tweet/${feed_id}`);
+  res.render('share/feed/index', {
+    detail: feed_info.data,
+    type: 'tweet',
+    id: feed_info.data.id,
+    dynamic_link: dynamic_link_json.shortLink
+  });
+});
 
 
 

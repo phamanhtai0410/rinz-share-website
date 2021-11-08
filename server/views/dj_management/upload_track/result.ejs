@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" class="js">
+	<head>
+		<meta charset="utf-8">
+
+		<!-- <meta property="og:url" content="https://rinzworld.com" />
+		<meta property="og:type" content="article" />
+		<meta property="og:title" content="" />
+		<meta property="og:description" content="Khám phá nhiều hơn tại RinZ" />
+		<meta property="og:image" content="" />
+		<meta name="turbolinks-cache-control" content="no-cache">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="turbolinks-cache-control" content="no-cache"> -->
+
+		<title>RinZ Upload Site</title>
+
+
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		
+		<link href="/template/css/dj_management/upload_track/styles.css" rel="stylesheet" />
+
+		<link href="/template/css/styles.css" rel="stylesheet" />
+		<link href="/template/css/styles.scss" rel="stylesheet" />
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+		<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+		<script>(function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);</script>
+	</head>
+	<body>
+		<div class="top__nav row">
+			<div class="logo col">
+				<a href="/console/upload"><img src="/assets/img/share_website/logo.png" alt="RinZ" style="width: 6vw;"></a>
+				
+			</div>
+			<div class="nav__list row col">
+				<div class="upload col">
+					<a href="/console/upload">Upload</a>
+				</div>
+				<div class="create__album col">
+					<a id="top__nav__create__album">Tạo Album</a>
+				</div>
+				<div class="live__stream col">
+					<a id="top__nav__list__all">Live Stream</a>
+				</div>
+				<div class="library col">
+					<a id="top__nav__library">Thư viện</a>
+				</div>
+				<div class="log__in col" id="log__in">
+					<a href="/console">Đăng nhập</a>
+				</div>
+				<div class="log__in col" id="logged__in">
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<% if (result == 'success') { %>
+				<div class="result">
+
+						<img class="success_icon" src="/assets/img/dj_management/success_icon.png" alt="Success">
+						<div>Bài hát của bạn đã được tải lên RinZ Music thành công!</div>
+					
+					
+				</div>
+				<div class="upload_more">
+					<a href="/console/upload"><img src="/assets/img/dj_management/upload_more.png" alt="Upload More"></a>
+					
+				</div>
+				<div class="success_track_detail">
+					<div class="track_banner">
+						<img src="<%= banner %>" alt="Track Banner">
+					</div>
+					<div class="track_info_detail">
+						<div class="track_title">
+							<%= title %>
+						</div>
+						<div class="track_category">
+							<span>
+								<% if (category == 'dance-edm') { %>
+									Dance & EDM
+								<% } else { %>
+									<%= category %>
+								<% } %>
+							</span>
+							
+						</div>
+						<div class="track_description">
+							<%= description %>
+						</div>
+						<div class="track_rz_point">
+							<%= rz_point %> RZP
+						</div>
+					</div>
+				</div>
+				<% } else { %>
+					<div class="error__container">
+						<div class="failed__result">
+							<div class="noti__failed">
+								<div>
+									Bài hát của bạn tải lên RinZ Music không thành công!	
+								</div>
+								<div class="try__again">
+									<a href="/console//upload">Vui lòng thử lại</a>
+								</div>
+							</div>
+						</div>
+					
+						<div class="error__code">
+							
+							
+							<code id='code'>Mã lỗi: <%= msg %></code>	
+						</div>
+					</div>
+					
+				<% } %>		
+		</div>
+
+		<script>
+			$(document).ready(function() {
+				$(document).ready(function() {
+					///Check LOGIN	
+					if (!document.cookie.split(';').find(e => e.trim().split('=')[0] == 'BearerToken')) {		
+						window.location.replace('/console');
+					}
+					else if (document.cookie.split(';').find(e => e.trim().split('=')[0] == 'BearerToken').split('=')[1] === "") {
+						window.location.replace('/console');
+					}
+					else {
+						document.getElementById('log__in').style.visibility = "hidden";
+						document.getElementById('logged__in').style.visibility = "visible";
+						document.getElementById('logged__in').innerHTML = `<span style="color:white;">Hello, <span style="color: #FF9E00;">${document.cookie.split(';').find(e => e.trim().split('=')[0] == 'UserFullName').split('=')[1]}</span></span>`;
+					}
+					/// Add link list stream
+					///// Add link for List All
+					var token = document.cookie.split(';').find(e => e.trim().split('=')[0] == 'BearerToken').split('=')[1];
+					document.getElementById('top__nav__list__all').href = `/console/stream/_all?time=${Date.now()}`;
+					document.getElementById('top__nav__library').href = `/console/library?time=${Date.now()}`;
+					document.getElementById('top__nav__create__album').href = `/console/create_album?time=${Date.now()}`;
+				});
+				
+			});
+		</script>
+		
+		
+			
+			
+			
+
+		
+		
+		<script type='text/javascript' src="/template/js/dj_management/upload_track/upload.js"></script>
+
+		<script defer="" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;rayId&quot;:&quot;6970d45a5a3224c3&quot;,&quot;token&quot;:&quot;2863ac31b15c48f5b94bd8b0c38aba94&quot;,&quot;version&quot;:&quot;2021.9.0&quot;,&quot;si&quot;:100}"></script>
+		
+	</body>
+</html>

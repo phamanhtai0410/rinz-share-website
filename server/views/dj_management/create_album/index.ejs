@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en" class="js">
+	<head>
+		<meta charset="utf-8">
+
+		<!-- <meta property="og:url" content="https://rinzworld.com" />
+		<meta property="og:type" content="article" />
+		<meta property="og:title" content="" />
+		<meta property="og:description" content="Khám phá nhiều hơn tại RinZ" />
+		<meta property="og:image" content="" />
+		<meta name="turbolinks-cache-control" content="no-cache">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="turbolinks-cache-control" content="no-cache"> -->
+
+		<title>RinZ Upload Site</title>
+
+
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		
+		<link href="/template/css/dj_management/create_album/style.css" rel="stylesheet" />
+
+		<link href="/template/css/styles.css" rel="stylesheet" />
+		<link href="/template/css/styles.scss" rel="stylesheet" />
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+		<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+		<script>(function(e,t,n){var r=e.querySelectorAll("html")[0];r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")})(document,window,0);</script>
+	</head>
+	<div>
+		<div class="top__nav row">
+			<div class="logo col">
+				<a href="/console/upload"><img src="/assets/img/share_website/logo.png" alt="RinZ" style="width: 6vw;"></a>
+				
+			</div>
+			<div class="nav__list row col">
+				<div class="upload col">
+					<a href="/console/upload">Upload</a>
+				</div>
+				<div class="create__album col">
+					<a id="top__nav__create__album">Tạo Album</a>
+				</div>
+				<div class="live__stream col">
+					<a id="top__nav__list__all">Live Stream</a>
+				</div>
+				<div class="library col">
+					<a id="top__nav__library">Thư viện</a>
+				</div>
+				<div class="log__in col" id="log__in">
+					<a href="/console">Đăng nhập</a>
+				</div>
+				<div class="log__in col" id="logged__in">
+				</div>
+				
+
+				
+			</div>
+		</div>
+		
+		
+
+		<div id="loading__container" class="loading__container">
+			<div class="track__detail">
+				<div class="success__creating__album__noti" id="noti__album__success">
+					<div class="success__icon">
+						<img src="/assets/img/dj_management/success_album_creating.png" alt="Thành công">
+					</div>
+					<div class="success__quotes" id="success__quotes">
+						
+					</div>
+				</div>
+				<form method="post" action="<%= upload_banner_api %>" class="row" id="track_detail_form">
+					<div class="col-5 d-flex align-items-center" style="flex-direction: column">
+						<label class="add_track_banner" for="track__banner">
+							<img id="track_banner_img" src="/assets/img/dj_management/upload_track_banner.png" class=""alt="Upload Track" style="width: 17vw;">
+							<input type="file" accept=".png, .jpg, .jpeg" class="box__file" id="track__banner" style="display: none">
+							
+						</label>
+						<a href="/console/upload">
+							<div class="to__upload__track" onclick="">
+								<img src="/assets/img/dj_management/upload_btn.png" alt="">
+								&emsp;Upload Track
+							</div>
+						</a>
+						
+					</div>
+					
+					
+					<div class="add_track_detail col-7" id="re__form__data">
+						<div class="track_detail_items row">
+							<label for="title">Tiêu đề</label>
+							<input name="title" type="text" id='title' placeholder="Nhập tiêu đề" required>
+						</div>
+						<div class="track_detail_items row">
+							<label for="danh-muc">Danh mục</label>
+							<select id="danh-muc">
+								<option value="producer">Producer</option>
+							</select>
+						</div>
+						<div class="track_detail_items row">
+							<input type="text" id='search__bar' onkeyup="searchTrackForAddingToAlbum()" name="search__bar" placeholder="Tìm kiếm bài hát">
+						</div>
+						<div class="tracks__of__album__search" id="list__tracks__show">
+							<% for (let i=0; i< track_list.length; i++ ) { %>	
+								<label class="container__checkbox" id="re_form__<%= track_list[i].id %>">
+									<div class="track__for__album__detail">
+										<div class="track__for__album__banner">
+											<img src="<%= track_list[i].banner %>" onerror="this.onerror=null; this.src='/assets/img/share_website/logo.png'" alt="">
+										</div>
+										<div class="track__for__album__info">
+											<div class="track__for__album__title">
+												<%= track_list[i].title %>
+											</div>
+											<div class="track__for__album__cat_and_p">
+												<div class="track__for__album__category">
+													<%= track_category.find(e => e.id === track_list[i].category).name  %>
+												</div>
+												<div class="track__for__album__price">
+													<div class="price__gold__icon">
+
+													</div>
+													<div class="price__number">
+														<% if (track_list[i].rz_point / 1000 > 0) { %>
+															<%= track_list[i].rz_point / 1000 %>K RZP
+														<% } else { %>
+															<%= "Miễn phí" %>
+														<% } %>
+													</div>
+												</div>
+											</div>
+										</div>	
+									</div>
+									<input type="checkbox">
+									<span class="checkmark"></span>
+								</label>
+								
+							<% } %>
+						</div>
+
+						<div class="track_detail_control_btns">
+							<div class="cancel-btn">
+								<a href="/console/create_album">Hủy</a>
+							</div>
+							<button class="submit-btn" type="submit" form="track_detail_form" value="Submit"">Tiếp tục</button>
+							
+						</div>
+					</div>
+
+					<div class="add_track_detail col-7" id="confirm__data">
+						
+						<div class="album__confirm__info" id="confirm__title">
+							
+						</div>
+						<div class="total__chosen__tracks" id="confirm__total">
+		
+						</div>
+						<div class="tracks__of__album__search chosen__tracks__album" id="list__chosen__tracks">
+							
+							<% for (let i=0; i< track_list.length; i++ ) { %>	
+								<label class="container__checkbox"  style="padding-left: 0px; width: 100%;" id='confirm__<%= track_list[i].id %>'>
+									<div class="track__for__album__detail">
+										<div class="track__for__album__banner">
+											<img src="<%= track_list[i].banner %>" onerror="this.onerror=null; this.src='/assets/img/share_website/logo.png'" alt="">
+										</div>
+										<div class="track__for__album__info">
+											<div class="track__for__album__title">
+												<%= track_list[i].title %>
+											</div>
+											<div class="track__for__album__cat_and_p">
+												<div class="track__for__album__category">
+													<%= track_category.find(e => e.id === track_list[i].category).name  %>
+												</div>
+												<div class="track__for__album__price">
+													<div class="price__gold__icon">
+		
+													</div>
+													<div class="price__number">
+														<% if (track_list[i].rz_point / 1000 > 0) { %>
+															<%= track_list[i].rz_point / 1000 %>K RZP
+														<% } else { %>
+															<%= "Miễn phí" %>
+														<% } %>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="track__for__album__actions">
+											<div class="delete__action">
+												<img src="/assets/img/dj_management/delete__action.png" alt="">
+											</div>
+											<div class="move__up__down__action">
+												<img src="/assets/img/dj_management/move__action.png" alt="">
+											</div>
+										</div>
+										
+									</div>
+								</label>
+								
+							<% } %>
+						</div>
+
+						<div class="track_detail_control_btns">
+							<div class="cancel-btn">
+								<a href="/console/create_album">Hủy</a>
+							</div>
+							<button class="submit-btn" onclick="onPressFinishCreatingAlbum()">Hoàn tất</button>
+							<button class="redirect__to__create__new__one" onclick="window.location.replace('/console/create_album?time=' + Date.now())">Tạo album mới</button>
+						</div>
+					</div>
+				
+					
+				</form>
+				
+				
+			</div>
+			<div id="track_url"></div>
+			<div id="track_banner_url"></div>
+		</div>
+		<script>
+			function onPressFinishCreatingAlbum() {
+				var title, tracks, rzm_author, banner;
+				title = document.getElementById('confirm__title').innerHTML;
+
+				tracks = [];
+
+				var list_id = document.getElementById('list__chosen__tracks').getElementsByTagName('label');
+				for (let i=0; i < list_id.length; i++) {
+					if (list_id[i].style.display !== "none") {
+						tracks.push(list_id[i].id.split('__')[1]);
+					}
+					
+				}
+
+				rzm_author = document.getElementById('danh-muc').value;
+				
+				banner = document.getElementById('track_banner_url').innerHTML;
+
+				var bodyFormData = new FormData();
+
+				bodyFormData.append("title", title);
+				bodyFormData.append("rzm_author", rzm_author);
+				bodyFormData.append("tracks", tracks);
+
+				if (banner !== "") {
+					bodyFormData.append("banner", banner);
+				}
+
+				var ajaxSubmitAlbum = new XMLHttpRequest();
+
+				ajaxSubmitAlbum.onload = function()
+				{
+					
+					if( ajaxSubmitAlbum.status >= 200 && ajaxSubmitAlbum.status < 400 )
+					{
+						// console.log(ajaxSubmitAlbum.responseText );
+						var data = JSON.parse( ajaxSubmitAlbum.responseText );
+						if (data.status == 1) {
+							var resp_data = data.data;
+							console.log('resp_data=', resp_data)
+							document.getElementById('noti__album__success').style.display = "block";
+							document.getElementById('success__quotes').innerHTML = `Tạo thành công album Album ${resp_data.title}`
+							list_chosen = document.getElementById('list__chosen__tracks').getElementsByTagName('label');
+							for (let i=0; i < list_chosen.length; i++) {
+								list_chosen[i].childNodes[1].childNodes[5].childNodes[1].style.display = 'none';
+								list_chosen[i].childNodes[1].childNodes[5].childNodes[3].style.display = 'none';
+							}
+							document.getElementById('confirm__data').childNodes[7].childNodes[1].style.display = 'none';
+							document.getElementById('confirm__data').childNodes[7].childNodes[3].style.display = 'none';
+							document.getElementById('confirm__data').childNodes[7].childNodes[5].style.display = 'block';
+						}
+						else {
+							alert( 'Error Creating ALbum. Please, try again!' );
+						}
+						
+						
+					}
+					else alert( 'Error. Please, contact the webmaster!' );
+				};
+
+				ajaxSubmitAlbum.onerror = function()
+				{
+					
+					alert( 'Error Creating ALbum. Please, try again!' );
+				};
+
+
+				ajaxSubmitAlbum.open( 'POST', `/console/create_album/submit_album?time=${Date.now()}`, true );
+				
+				ajaxSubmitAlbum.send(bodyFormData);
+
+			}
+		</script>
+		<script>
+			$(document).ready(function() {
+				/// Save p value to cookie
+				document.cookie = "p=" + "<%=p%>" + ";";
+
+				/// Check LOGIN
+				if (!document.cookie.split(';').find(e => e.trim().split('=')[0] == 'BearerToken')) {		
+					window.location.replace('/console');
+				}
+				else if (document.cookie.split(';').find(e => e.trim().split('=')[0] == 'BearerToken').split('=')[1] === "") {
+					window.location.replace('/console');
+				}
+				else {
+					document.getElementById('log__in').style.visibility = "hidden";
+					document.getElementById('logged__in').style.visibility = "visible";
+					document.getElementById('logged__in').innerHTML = `<span style="color:white;">Hello, <span style="color: #FF9E00;">${document.cookie.split(';').find(e => e.trim().split('=')[0] == 'UserFullName').split('=')[1]}</span></span>`;
+					
+				}
+
+
+				///// Add list stream link
+				var token = document.cookie.split(';').find(e => e.trim().split('=')[0] == 'BearerToken').split('=')[1];
+				document.getElementById('top__nav__list__all').href = `/console/stream/_all?time=${Date.now()}`;
+				document.getElementById('top__nav__library').href = `/console/library?time=${Date.now()}`;
+				document.getElementById('top__nav__create__album').href = `/console/create_album?time=${Date.now()}`;
+			});
+
+
+			
+			$(document).on({
+				ajaxStart: function(){
+					$("body").addClass("loading"); 
+				},
+				ajaxStop: function(){ 
+					$("body").removeClass("loading"); 
+				}    
+			});
+
+            
+
+			$("#track__banner").on('change', function(){ 
+				readURL(this);
+				// Banner of  track
+				var uploadBannerFormData = new FormData();
+				var file = document.getElementById('track__banner').files[0];
+				uploadBannerFormData.append('file', file);
+
+				var ajaxUploadBanner = new XMLHttpRequest();
+				var form = document.getElementById('track_detail_form');
+
+				ajaxUploadBanner.onload = function()
+				{
+					
+					if( ajaxUploadBanner.status >= 200 && ajaxUploadBanner.status < 400 )
+					{
+						console.log(ajaxUploadBanner.responseText );
+						var data = JSON.parse( ajaxUploadBanner.responseText );
+						if (data.status == 1) {
+							var url = data.data.url;
+							console.log('url=', url)
+							document.getElementById('track_banner_url').innerHTML = url;
+							
+							
+						}
+						
+						
+					}
+					else alert( 'Error. Please, contact the webmaster!' );
+				};
+
+				ajaxUploadBanner.onerror = function()
+				{
+					
+					alert( 'Error Uploading Banner. Please, try again!' );
+				};
+
+
+				ajaxUploadBanner.open( form.getAttribute( 'method' ), form.getAttribute( 'action' ), true );
+				
+				ajaxUploadBanner.send(uploadBannerFormData);
+
+			});
+
+			function readURL(input) {
+				if (input.files && input.files[0]) {
+					var reader = new FileReader();
+
+					reader.onload = function (e) {
+						$('#track_banner_img').attr('src', e.target.result);
+					}
+
+					reader.readAsDataURL(input.files[0]);
+				}
+			}
+
+			//// Search bar
+			function searchTrackForAddingToAlbum() {
+				var input, filter, list, items, label, detail, title;
+				input = document.getElementById('search__bar');
+				filter = input.value.toUpperCase();
+				list = document.getElementById('list__tracks__show');
+				items = list.getElementsByTagName('label');
+
+				for (let i = 0; i< items.length; i++) {
+					label = items[i].getElementsByTagName('div')[0];
+					detail = label.getElementsByTagName('div')[1];
+					title = detail.getElementsByTagName('div')[0].innerText || detail.getElementsByTagName('div')[0].textContent;
+					if (title.toUpperCase().indexOf(filter) > -1) {
+						items[i].style.display = "";
+					} else {
+						items[i].style.display = 'none';
+					}
+				}
+			}
+
+
+
+
+			//// Submit form to show album cofirm
+			$("#track_detail_form").on('submit', function(e) {
+				e.preventDefault();
+
+				document.getElementById('re__form__data').style.display = 'none';
+				document.getElementById('confirm__data').style.display = 'block';
+
+				////// Show title with author name
+				document.getElementById('confirm__title').innerHTML = document.getElementById('title').value;
+				
+
+				//// Filter track with selection
+				var track__list__of__album = document.getElementById('list__tracks__show').childNodes;
+				var total = 0;
+				
+				for (let i=0; i < track__list__of__album.length; i++) {
+					if (i % 2 === 1) {
+						if (track__list__of__album[i].childNodes[3].checked ) {
+							document.getElementById("confirm__" + track__list__of__album[i].id.split('__')[1]).style.display = 'block';	
+							total += 1;
+											
+						}
+						else {
+							document.getElementById("confirm__" + track__list__of__album[i].id.split('__')[1]).style.display = 'none';	
+						}
+					}
+					
+				}
+				
+				document.getElementById('confirm__total').innerHTML = total + " bài hát" + "&ensp;&bull;&ensp;" + document.cookie.split(';').find(e => e.trim().split('=')[0] == 'UserFullName').split('=')[1]
+				
+			});
+
+			/////		
+			//		Scroll for load more
+			var scrollable__load__more__list = document.getElementById('list__tracks__show');
+
+			$('#list__tracks__show').on('scroll', function() {
+				if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight - 1) {
+					fetchDataLoadMoreForListTrack();
+
+				}
+			})
+
+			function appendData() {
+				
+			}
+
+			function fetchDataLoadMoreForListTrack() {
+				// console.log(1)
+				var ajax_get_load_more = new XMLHttpRequest();
+
+				ajax_get_load_more.onload = function()
+				{	
+					if( ajax_get_load_more.status >= 200 && ajax_get_load_more.status < 400 )
+					{
+						
+						// console.log(ajax_get_load_more.responseText );
+						var data = JSON.parse( ajax_get_load_more.responseText );
+						if (data.status == 1) {
+							var load_more_list = data.load_more_track_list;
+							var track_category = data.track_category;
+							var page = document.cookie.split(';').find(e => e.trim().split('=')[0] == 'p').split('=')[1];
+							console.log(`data_load_more (page=${page})=${JSON.stringify(load_more_list)}`);
+
+							if (load_more_list.length > 0) {
+								for (let i=0; i < load_more_list.length; i++) {
+									var new_item = document.createElement("label");
+									new_item.className = "container__checkbox";
+									new_item.id = 're_form__' +  load_more_list[i].id;
+									new_item.innerHTML = 
+									`
+										<div class="track__for__album__detail">
+											<div class="track__for__album__banner">
+												<img src="${load_more_list[i].banner}" onerror="this.onerror=null; this.src='/assets/img/share_website/logo.png'" alt="">
+											</div>
+											<div class="track__for__album__info">
+												<div class="track__for__album__title">
+													"${load_more_list[i].title}"
+												</div>
+												<div class="track__for__album__cat_and_p">
+													<div class="track__for__album__category">
+														"${track_category.find(e => e.id === load_more_list[i].category).name}"
+													</div>
+													<div class="track__for__album__price">
+														<div class="price__gold__icon">
+															
+														</div>
+														<div class="price__number">
+															"${load_more_list[i].rz_point / 1000 > 0 ? load_more_list[i].rz_point/ 1000 + "K RZP" : "Miễn phí"}"
+														</div>
+													</div>
+												</div>
+											</div>	
+										</div>
+										<input type="checkbox">
+										<span class="checkmark"></span>
+									`;
+									document.getElementById('list__tracks__show').append(new_item)
+								}
+								
+							}
+							else {
+
+							}
+							
+						}
+						
+						
+					}
+					else alert( 'Error. Please, contact the webmaster!' );
+				};
+
+				ajax_get_load_more.onerror = function()
+				{
+					
+					alert( 'Error when Load More Tracks. Please, scroll down again!' );
+				};
+
+				var p = document.cookie.split(';').find(e => e.trim().split('=')[0] == 'p').split('=')[1];
+				
+				ajax_get_load_more.open( 'GET', '/console/create_album/get_data_load_more?p=' + ( Number(p) + 1 ) +'&time=' + Date.now(), true );
+				document.cookie = "p=" + (Number(p) + 1 ) + ";";
+				ajax_get_load_more.setRequestHeader('Authorization', 'Bearer '+ document.cookie.split(';').find(e => e.trim().split('=')[0] == 'BearerToken').split('=')[1])
+				ajax_get_load_more.send();
+			}
+			
+				
+			
+		</script>
+		<script type='text/javascript' src="/template/js/dj_management/upload_track/upload.js"></script>
+
+		<script defer="" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;rayId&quot;:&quot;6970d45a5a3224c3&quot;,&quot;token&quot;:&quot;2863ac31b15c48f5b94bd8b0c38aba94&quot;,&quot;version&quot;:&quot;2021.9.0&quot;,&quot;si&quot;:100}"></script>
+		
+	</body>
+</html>

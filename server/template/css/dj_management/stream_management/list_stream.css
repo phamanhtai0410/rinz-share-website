@@ -1,0 +1,176 @@
+@charset "UTF-8";
+
+
+/*!
+* Start Bootstrap - Business Casual v7.0.1 (https://startbootstrap.com/theme/business-casual)
+* Copyright 2013-2021 Start Bootstrap
+* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-business-casual/blob/master/LICENSE)
+*/
+/*!
+ * Bootstrap v5.0.1 (https://getbootstrap.com/)
+ * Copyright 2011-2021 The Bootstrap Authors
+ * Copyright 2011-2021 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ */
+ :root {
+    --bs-blue: #0d6efd;
+    --bs-indigo: #6610f2;
+    --bs-purple: #6f42c1;
+    --bs-pink: #d63384;
+    --bs-red: #dc3545;
+    --bs-orange: #fd7e14;
+    --bs-yellow: #ffc107;
+    --bs-green: #198754;
+    --bs-teal: #20c997;
+    --bs-cyan: #0dcaf0;
+    --bs-white: #fff;
+    --bs-gray: #6c757d;
+    --bs-gray-dark: #343a40;
+    --bs-primary: #e6a756;
+    --bs-secondary: #2f170f;
+    --bs-success: #198754;
+    --bs-info: #0dcaf0;
+    --bs-warning: #ffc107;
+    --bs-danger: #dc3545;
+    --bs-light: #f8f9fa;
+    --bs-dark: #212529;
+    --bs-font-sans-serif: system-ui, -apple-system, 'Segoe UI', Roboto,
+      'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif,
+      'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+      'Liberation Mono', 'Courier New', monospace;
+    --bs-gradient: linear-gradient(180deg, #e83e8c, #e83e8c);
+  }
+  
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    :root {
+      scroll-behavior: smooth;
+    }
+  }
+
+/* ------------------------ */
+  /* Style for Upload track */
+  /* ------------------------ */
+
+  
+  @font-face {
+    font-family: --font;
+    font-style: normal;
+    font-weight: 400;
+    src: url(/template/fonts/SVN-Gilroy.otf) format('woff2');
+    unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+    }
+
+
+
+html {
+
+}
+
+    body {
+        font-family: --font;
+
+    }
+
+        .list__stream__container {
+            padding: 5vh 9vw;
+        }
+            .stream-content {
+                display: flex;
+                justify-content: baseline;
+                background: #420E8A;
+                border-radius: 20px;
+                margin-bottom: 5vh;
+                padding: 2vh 2vw;
+            }
+                .ordinal-number {
+                   
+                    margin: auto 0px;
+                    margin-right: 2vw;
+                }
+                    .ordinal-number span {
+                        font-size: 20px;
+                        font-weight: bold;
+                        color: white;
+                        background-color: #FAAD14;
+                        border-radius: 50%;
+                        padding: 1vw;
+                    }
+
+                .stream__banner img {
+                    width: 10vw;
+                }
+
+                .stream__content__detail {
+                    margin-left: 4vw;
+                    font-family:  --font;
+                    
+                }
+                    .stream__title {
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 24px;
+                        line-height: 32px;
+                        color: #F5F5F5;
+                        margin-bottom: 2vh;
+                    }
+
+                    .stream__author__name {
+                        
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 16px;
+                        line-height: 20px;
+                        color: #FF9E00;
+                        text-align: left;
+                        margin-bottom: 2vh;
+                        font-style: italic;
+                    }
+
+                    .stream__time {
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 16px;
+                        line-height: 20px;
+                        color: #FA8C16;
+                        margin-bottom: 2vh;
+                    }
+
+                    .stream__description {
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 16px;
+                        line-height: 24px;
+                        color: #F5F5F5;
+                        margin-bottom: 2vh;
+                    }
+            .no__stream__list {
+                text-align: center;
+                margin-top: 10vh;
+                color: #FA8C16;
+                font-family: --font;
+                font-style: italic;
+            }            
+
+
+
+        .list__stream__footer {
+            bottom: 5%;
+            color: pink
+        }
+
+        .log__in span {
+            /* color: #FF9E00 !important; */
+            font-family: --font;
+        }
+
+    #logged__in {
+        visibility: hidden;
+    }
+        

@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en" class="js">
+	<head>
+		<meta charset="utf-8">
+
+		<!-- <meta property="og:url" content="https://rinzworld.com" />
+		<meta property="og:type" content="article" />
+		<meta property="og:title" content="" />
+		<meta property="og:description" content="Khám phá nhiều hơn tại RinZ" />
+		<meta property="og:image" content="" />
+		<meta name="turbolinks-cache-control" content="no-cache">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="turbolinks-cache-control" content="no-cache"> -->
+
+		<title>RinZ Stream Management Site</title>
+
+
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		
+		<link href="/template/css/dj_management/stream_management/styles.css" rel="stylesheet" />
+        <link href="/template/css/dj_management/upload_track/styles.css" rel="stylesheet" />
+		<link href="/template/css/styles.css" rel="stylesheet" />
+		<link href="/template/css/styles.scss" rel="stylesheet" />
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+		<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+        <link href="https://vjs.zencdn.net/7.15.4/video-js.css" rel="stylesheet" />
+
+		<script>
+            (
+                function(e,t,n){
+                    var r=e.querySelectorAll("html")[0];
+                    r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")
+                }
+            )(document,window,0);
+        </script>
+	</head>
+	<body>
+		<div class="top__nav row">
+			<div class="logo col">
+				<a href="/console/upload"><img src="/assets/img/share_website/logo.png" alt="RinZ" style="width: 6vw;"></a>
+				
+			</div>
+			<div class="nav__list row col">
+				<div class="upload col">
+					<a href="/console/upload">Upload</a>
+				</div>
+				<div class="create__album col">
+					<a id="top__nav__create__album">Tạo Album</a>
+				</div>
+				<div class="live__stream col">
+					<a id="top__nav__list__all">Live Stream</a>
+				</div>
+				<div class="library col">
+					<a id="top__nav__library">Thư viện</a>
+				</div>
+				<div class="log__in col" id="log__in">
+					<a href="/console">Đăng nhập</a>
+				</div>
+				<div class="log__in col" id="logged__in">
+				</div>
+			</div>
+		</div>
+		
+		<% if (source !== 0) { %>
+			<div class="stream__container">
+				<div class="left__col">
+					<div class="player">
+						<video
+							id="player"
+							class="video-js"
+							controls
+							preload="auto"
+							autoplay
+							data-setup="{}"
+							muted
+						>
+							<% for(let i=0; i< source.length; i++) { %>
+								<source src="<%= source[i].url %>" type="application/x-mpegURL" res="<%= source[i].profile %>" label="<%= source[i].profile %>">
+							<% } %>
+							<p class="vjs-no-js">
+							To view this video please enable JavaScript, and consider upgrading to a
+							web browser that
+							<a href="https://videojs.com/html5-video-support/" target="_blank"
+								>supports HTML5 video</a
+							>
+							</p>
+							
+						</video>
+						<div class="stream__player__title">
+							<%= title %>
+						</div>
+						
+					</div>
+					<div class="stream__key">
+						<div class="stream__setting__icon">
+							<img src="/assets/img/dj_management/stream_setting_btn.png" alt="Stream Setting Button" onclick="clickStreamKeyBtn()">
+						</div>
+						<div class="stream__setting__frame" id="stream__key__detail">
+							<div class="stream__setting__content">
+								<div class="stream__setting__items">
+									<div class="stream__setting__title">
+										Máy chủ
+									</div>
+									<div class="semi__colon">
+										:
+									</div>
+									<div class="stream__setting__value" id="server">
+										<%= server %>
+									</div>
+									<div class="stream__setting__actions">
+										<i class="far fa-eye fa-lg" id="toggleServer" style="cursor: pointer; margin-right: 3vw; visibility: hidden;"></i>
+										<i class="far fa-copy fa-lg" id="copyServer"></i>
+										<span id="custom-tooltip-server">Copied!</span>
+									</div>
+								</div>
+								<div class="stream__setting__items">
+									<div class="stream__setting__title">
+										Khóa
+									</div>
+									<div class="semi__colon">
+										:
+									</div>
+									<div class="stream__setting__value">
+										<input disabled type="password" value="<%= key %>" id="key">
+									</div>
+									<div class="stream__setting__actions">
+										<i class="far fa-eye fa-lg" id="toggleKey" style="cursor: pointer; margin-right: 3vw;"></i>
+										<i class="far fa-copy fa-lg" id="copyKey"></i>
+										<span id="custom-tooltip-key">Copied!</span>
+									</div>
+									
+								</div>
+								<div class="stream__setting__items">
+									<div class="stream__setting__title">
+										Stream user
+									</div>
+									<div class="semi__colon">
+										:
+									</div>
+									<div class="stream__setting__value">
+										<input disabled type="password" value="<%= username %>" id="username">		
+									</div>
+									<div class="stream__setting__actions">
+										<i class="far fa-eye fa-lg" id="toggleUsername" style="cursor: pointer; margin-right: 3vw;"></i>
+										<i class="far fa-copy fa-lg" id="copyUsername"></i>
+										<span id="custom-tooltip-username">Copied!</span>
+									</div>
+									
+								</div>
+								<div class="stream__setting__items">
+									<div class="stream__setting__title">
+										Stream password
+									</div>
+									<div class="semi__colon">
+										:
+									</div>
+									<div class="stream__setting__value">
+										<input disabled type="password" value="<%= password %>" id="password">
+									</div>
+									<div class="stream__setting__actions">
+										<i class="far fa-eye fa-lg" id="togglePassword" style="cursor: pointer; margin-right: 3vw;"></i>
+										<i class="far fa-copy fa-lg" id="copyPassword"></i>
+										<span id="custom-tooltip-password">Copied!</span>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="right__col">
+					<div class="donation text-center" id="donation">
+						<div id="donation_noti">
+
+						</div>
+						<div class="balance" style="color: white; text-align: center;" id="balance">
+							Tổng Donate:  <span class="balance__amount" id="balance__amount"></span> RZP
+						</div>
+						
+					</div>
+					<div class="chat__box">
+						<div class="chat__panel">
+							<div class="chat__title">
+								BÌNH LUẬN
+							</div>
+							<div class="list__messages" id="list__messages">
+								<% for (let i=messages.length - 1; i >= 0 ; i--) { %>
+									<div class="chat__row">
+										<div class="user__name">
+											<%= messages[i].user_full_name %>
+										</div>
+										<div class="message__content">
+											<%= messages[i].content %>
+										</div>
+									</div>
+								<% } %>
+							</div>
+							<div class="scroll__to__bottom" id="scrollBotBtn">
+								<button onClick="scrollToBottom();"><i class="fas fa-4x fa-sort-down"></i></button>
+								<!-- <input type="button" onClick="scrollToBottom();" /> -->
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		<% } else { %>
+			<div class="no__stream">
+				Hiện tại livestreams này chưa bắt đầu.
+				<a href="/console/stream/_all">Nhấn vào đây để quay lại.</a>
+			</div>
+		<% } %>
+		
+
+		<footer style="bottom: 5%; color: pink">
+			RinZ Music © Copyright Esoltech
+		</footer>
+		
+		
+
+		<script src="https://vjs.zencdn.net/7.15.4/video.min.js"></script>
+		<script src="/template/js/dj_management/stream_management/showHide.js" type="text/javascript"></script>
+		<script src="/template/js/dj_management/stream_management/copyToClipboard.js" type="text/javascript"></script>
+
+
+		<!-- show/hide Stream Key -->
+		<script>
+			function pretty_number(x) {
+				return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			}
+
+			function numWithCommasToNumber(x) {
+				return parseInt(x.replaceAll(",", ""));
+			}
+
+			document.getElementById('balance__amount').innerHTML = pretty_number(parseInt('<%= balance %>'));
+			$(document).ready(function() {
+				var w = document.getElementById('stream__key__detail').offsetWidth;
+				console.log('stream__key__detail Width = ', w);
+				document.getElementById('stream__key__detail').style.height = w / 3.11 + "px";
+			});
+			function clickStreamKeyBtn() {
+				var statusVisualization = document.getElementById('stream__key__detail').style.visibility;
+				if (statusVisualization === "hidden") {
+					document.getElementById('stream__key__detail').style.visibility = "visible";
+				}
+				else {
+					document.getElementById('stream__key__detail').style.visibility = "hidden";
+				}
+				
+			}
+		</script>
+
+
+		<!-- Scroll in Player -->
+		<script>
+            var player = videojs('#player');
+			document.getElementById("list__messages").addEventListener("scroll", function() {
+				if (this.scrollTop + this.offsetHeight < this.scrollHeight) {
+					document.getElementById('scrollBotBtn').style.visibility = 'visible';
+				}
+				else {
+					document.getElementById('scrollBotBtn').style.visibility = 'hidden';
+				}
+			});
+			
+			function scrollToBottom() {
+				var scroll = document.getElementById('list__messages');
+				// scroll.animate({scrollTop: scroll.scrollHeight}, 500, 'swing', function() { 
+				// 	alert("Scroll List messages animating");
+				// });
+				scroll.scrollTop = scroll.scrollHeight;
+			}
+
+			/// Login check
+
+			$(document).ready(function() {
+				/// Check LOGIN
+				if (!document.cookie.split(';').find(e => e.trim().split('=')[0] == 'BearerToken')) {		
+					window.location.replace('/console');
+				}
+				else if (document.cookie.split(';').find(e => e.trim().split('=')[0] == 'BearerToken').split('=')[1] === "") {
+					window.location.replace('/console');
+				}
+				else {
+					document.getElementById('log__in').style.visibility = "hidden";
+					document.getElementById('logged__in').style.visibility = "visible";
+					document.getElementById('logged__in').innerHTML = `<span style="color:white;">Hello, <span style="color: #FF9E00;">${document.cookie.split(';').find(e => e.trim().split('=')[0] == 'UserFullName').split('=')[1]}</span></span>`;
+				}
+				///// Add link for List All
+				var token = document.cookie.split(';').find(e => e.trim().split('=')[0] == 'BearerToken').split('=')[1];
+				document.getElementById('top__nav__list__all').href = `/console/stream/_all?time=${Date.now()}`;
+				document.getElementById('top__nav__library').href = `/console/library?time=${Date.now()}`;
+				document.getElementById('top__nav__create__album').href = `/console/create_album?time=${Date.now()}`;
+			});
+        </script>
+		<script src="https://cdn.socket.io/3.1.3/socket.io.min.js" integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous"></script>
+		
+		<!-- Socket Establishment -->
+		<script>
+			console.log('Balance when refresh = <%= balance %>');
+			
+			// const socket = io();
+			const host = '<%= SOCKET %>';
+			const TOKEN = '<%= BEARER_TOKEN %>';
+			const stream_id = '<%= stream_id %>';
+			const author_id = parseInt('<%= author_id %>');
+			
+			let socket = io(host, {
+				forceNew: true,
+				transports: ["websocket"],
+				auth: {
+					token: TOKEN,
+				}
+			});
+			// console.log('Socket: ', socket);
+			// console.log(2);
+			// socket.on("connect", () => {
+			// 	console.log('Socket connect:', socket.id);
+			// });
+			
+			socket.on("connect", () => {
+				console.log('connected', socket.id, host);
+				socket.emit("subscribe", {
+					'room': stream_id,
+					'author_id': author_id,
+					'type': 'post'
+				}, (response) => {
+					console.log('Socket subcribe room:', response); // ok
+				})
+
+			});
+
+			socket.on("live_chat", (data) => {
+				console.log('message', data);
+				outputMessage(data);
+				// console.log(4);
+			});
+
+			socket.on("donate", (data) => {
+				console.log('donation', data);
+				outputDonation(data);
+				setTimeout(displayNewBalance(data.payload.amount), 2000);
+				// console.log(4);
+			});
+
+			socket.on("disconnect", () => {
+				console.log('disconnected', socket.id);
+			});
+
+			socket.on("error", (e) => {
+				console.log('error', e)
+			});
+
+			socket.on("connect_error", (err) => {
+				console.log(err instanceof Error); // true
+				console.log(err.message); // not authorized
+				console.log(err.data); // { content: "Please retry later" }
+			});
+
+			var position = 0;
+			function outputDonation(data) {
+				document.getElementById('donation_noti').textContent = '';
+
+				const div = document.createElement("div");
+				div.innerHTML = `
+						<div class="donation__title" style="color: white;">
+							<div>
+								<span style='color: #FAAD14;'>${data.payload.user.user_name}</span> đã donate 
+								<span style='color: #FAAD14;'>${ pretty_number(data.payload.amount)} RZP</span>
+							</div>
+						</div>
+						<div class="donation__message" style="color: white;">
+							<span>${data.payload.message}</span>
+						</div>
+				`;
+				document.getElementById('donation_noti').appendChild(div);
+				
+				let timerID = setInterval( animationWhenDonate, 500);
+				setTimeout(() => { clearInterval(timerID); console.log('Stop Animation Donation !'); }, 10000);
+				position = 0;
+				
+			}
+
+			function displayNewBalance(amount) {
+				const author_id = parseInt('<%= author_id %>');
+				// $.ajax({
+				// 	url: `/console/stream/balance?author_id=${author_id}`,
+				// 	type: 'GET'
+				// }).done(function (data) {
+				// 	console.log( "New Balance =", data.balance );
+					
+				// 	// data.balance;
+				// });
+				document.getElementById('balance__amount').innerHTML = pretty_number(numWithCommasToNumber(document.getElementById('balance__amount').innerHTML) + amount);
+			}
+
+			function animationWhenDonate() {
+				position += 1;
+				console.log('position = ', position);
+				// document.getElementById('donation').style.animationName = "background1";
+				// document.getElementById('donation').style.animationDuration = "0.5s";
+				if (position % 2 == 1 ) {
+					document.getElementById('donation').style.animationName = "background_1";
+					document.getElementById('donation').style.animationDuration = "0.25s";
+				}
+				else {
+					document.getElementById('donation').style.animationName = "background_2";
+					document.getElementById('donation').style.animationDuration = "0.25s";
+					// document.getElementById('donation').style.backgroundImage = "url(/assets/img/dj_management/donation_frame.png);";
+				}
+				
+			}
+
+			function outputMessage(message) {
+				const div = document.createElement("div");
+				div.classList.add("chat__row");
+				div.innerHTML = `
+				
+					<div class="user__name">
+						${message.payload.user.user_full_name}
+					</div>
+					<div class="message__content">
+						${message.payload.content}
+					</div>
+				`;
+
+				document.querySelector(".list__messages").appendChild(div);
+
+				var scroll = document.getElementById('list__messages');
+				scroll.scrollTop = scroll.scrollHeight;
+				// function scrollToBottom() {
+				// messages.scrollTop = messages.scrollHeight;
+				// }
+
+				// scrollToBottom();
+
+				// setInterval(getMessages, 100);
+			}
+
+			$(".chat__panel").stop().animate({ scrollTop: $(".chat__panel")[0].scrollHeight}, 1000);
+		</script>
+		<script>
+			if (performance.navigation.type === performance.navigation.TYPE_RELOAD) {
+				window.location.replace(window.location.href.split('?')[0] + "?time" + Date.now())
+			}
+		</script>
+		<!-- <script type='text/javascript' src="/template/js/dj_management/stream_management/socket.js"></script> -->
+
+		<!-- <script defer="" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;rayId&quot;:&quot;6970d45a5a3224c3&quot;,&quot;token&quot;:&quot;2863ac31b15c48f5b94bd8b0c38aba94&quot;,&quot;version&quot;:&quot;2021.9.0&quot;,&quot;si&quot;:100}"></script> -->
+		
+	</body>
+</html>

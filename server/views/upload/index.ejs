@@ -155,7 +155,9 @@
         var file = _("file1").files[0];
         // alert(file.name+" | "+file.size+" | "+file.type);
         var formdata = new FormData();
-        formdata.append("file1", file);
+        formdata.append("file", file);
+        console.log('formData: ', formdata);
+        console.log('formData: ', formdata.file);
 
      
 
@@ -164,7 +166,7 @@
         ajax.addEventListener("load", completeHandler, false);
         ajax.addEventListener("error", errorHandler, false);
         ajax.addEventListener("abort", abortHandler, false);
-        ajax.open("POST", "//localhost:3001/upload/post-file");
+        ajax.open("POST", "https://api-staging.rinznetwork.com/v1/uploader/file/media");
         ajax.send(formdata);
     }
 

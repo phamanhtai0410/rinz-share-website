@@ -4,7 +4,15 @@ var router = express.Router();
 const { IAPI } = require('../config');
 // middleware that is specific to this router
 router.use(function timeLog(req, res, next) {
-  console.log('URL: ', req.url, Date.now());
+  var now = new Date();
+  var y = now.getFullYear();
+  var m = now.getMonth() < 9 ? "0" + now.getMonth() : now.getMonth() + 1;
+  var d = now.getDate() < 10 ? "0" + now.getDate() : now.getDate();
+  var h = now.getHours() < 10 ? "0" + now.getHours() : now.getHours();
+  var min = now.getMinutes() < 10 ? "0" + now.getMinutes() : now.getMinutes();
+  var sec = now.getSeconds() < 10 ? "0" + now.getSeconds() : now.getSeconds()
+
+  console.log(`***  ${y} ${d}THG${m} ${h}:${min}:${sec}  URL - ${req.url}`);
   next();
 });
 
