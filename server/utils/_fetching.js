@@ -44,4 +44,4 @@ const _fetching = (url, method, headers, body=null) =>
   });
 
 
-export default _fetching
+module.exports = _fetching

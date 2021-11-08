@@ -7,6 +7,4 @@ const debug_log = (msg, arg) => {
     console.log('     ' + '- '+ msg, arg);
     console.log('     ' + '-'.repeat(x-5));
   }
-
-  
-export default debug_log
+  module.exports = debug_log;
