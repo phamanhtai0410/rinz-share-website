@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" class="js">
+	<head>
+		<meta charset="utf-8">
+
+		<!-- <meta property="og:url" content="https://rinzworld.com" />
+		<meta property="og:type" content="article" />
+		<meta property="og:title" content="" />
+		<meta property="og:description" content="Khám phá nhiều hơn tại RinZ" />
+		<meta property="og:image" content="" />
+		<meta name="turbolinks-cache-control" content="no-cache">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="turbolinks-cache-control" content="no-cache"> -->
+
+		<title>RinZ Stream Management Site</title>
+
+
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<link href="/template/css/dj_management/stream_management/list_stream.css" rel="stylesheet" />
+		<link href="/template/css/dj_management/stream_management/styles.css" rel="stylesheet" />
+        <link href="/template/css/dj_management/upload_track/styles.css" rel="stylesheet" />
+		<link href="/template/css/styles.css" rel="stylesheet" />
+		<link href="/template/css/styles.scss" rel="stylesheet" />
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+		<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+        <link href="https://vjs.zencdn.net/7.15.4/video-js.css" rel="stylesheet" />
+
+		<script>
+            (
+                function(e,t,n){
+                    var r=e.querySelectorAll("html")[0];
+                    r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")
+                }
+            )(document,window,0);
+        </script>
+	</head>
+	<body>
+		<div class="top__nav row">
+			<div class="logo col">
+				<a href="/console/upload"><img src="/assets/img/share_website/logo.png" alt="RinZ" style="width: 6vw;"></a>
+				
+			</div>
+			<div class="nav__list row col">
+				<div class="upload col">
+					<a href="/console/upload">Upload</a>
+				</div>
+				<div class="create__album col">
+					<a id="top__nav__create__album">Tạo Album</a>
+				</div>
+				<div class="live__stream col">
+					<a id="top__nav__list__all">Live Stream</a>
+				</div>
+				<div class="library col">
+					<a id="top__nav__library">Thư viện</a>
+				</div>
+				<div class="log__in col" id="log__in">
+					<a href="/console">Đăng nhập</a>
+				</div>
+				<div class="log__in col" id="logged__in">
+				</div>
+			</div>
+		</div>
+		
+
+		<div class="list__stream__container">
+			<% if ( list_stream.length !== 0) { %>
+				<% for(let i=0; i < list_stream.length; i++) { %>
+					<a id="stream__link__<%= i %>" href="/console/stream/<%= list_stream[i].id %>">
+						<div class="stream-content">
+							<div class="ordinal-number">
+								<span><%= i + 1 %></span>
+								
+							</div>
+							<div class="stream__banner">
+								<img src="<%= list_stream[i].banner %>?w=270" alt="Banner">
+							</div>
+							<div class="stream__content__detail text-left">
+								<div class="stream__title">
+									<%= list_stream[i].title %>
+								</div>
+								<div class="stream__author__name">
+									<%=  list_stream[i].author_name %>
+								</div>
+								<div class="stream__time" id="stream__time__<%= i %>">
+									<%=  list_stream[i].start_time %>
+								</div>
+								<div class="stream__description">
+									<%=  list_stream[i].description %>
+								</div>
+							</div>			
+						</div>
+					</a>
+					
+				<% } %>
+			<% } else { %>
+				<div class="no__stream__list">
+					Bạn hiện tại không có sự kiện livestream nào.
+					<a href="/console/upload">Nhấn vào đây để vào trang upload nhạc</a>
+				</div>
+			
+			<% } %>
+			
+		</div>
+
+		<footer class="list__stream__footer">
+			RinZ Music © Copyright Esoltech
+		</footer>
+	
+	<script>
+		/// Validate time vissulizations
+		var length = document.getElementsByClassName('stream__time').length;
+		console.log('length =', length);
+
+		for (let i=0; i < length; i++) {
+			var time = document.getElementById('stream__time__' + i).innerHTML;
+			var prettyTime = prettyStreamTime(time);
+			document.getElementById(`stream__time__${i}`).innerHTML = prettyTime;
+		}
+		function prettyStreamTime(stringTime) {
+			var timestamp = parseInt(stringTime) * 1000;
+			var date = new Date(timestamp);
+			var month = date.getMonth() < 9 ? "0" + (date.getMonth() + 1) : date.getMonth();
+			var year = 1900 + date.getYear();
+			var day = date.getDate() < 9 ? "0" + date.getDate() : date.getDate();
+			var hour = date.getHours() < 9 ? "0" + date.getHours() : date.getHours();
+			var min = date.getMinutes() < 9 ? "0" + date.getMinutes() : date.getMinutes();
+			return day + " THG " + month + " " + year + " • " + hour + ":" + min;
+		}
+
+		/// Validate link each stream
+		for (let i=0; i < length; i++) {
+			var href = document.getElementById('stream__link__' + i).href;
+			var token = document.cookie.split(';').find(e => e.trim().split('=')[0] == 'BearerToken').split('=')[1];
+			document.getElementById(`stream__link__${i}`).href = href + "?time=" + Date.now();
+
+		}
+
+		
+	
+	</script>
+	<script>
+		/// Login check
+
+		$(document).ready(function() {
+			/// Check LOGIN
+			if (!document.cookie.split(';').find(e => e.trim().split('=')[0] == 'BearerToken')) {		
+				window.location.replace('/console');
+				
+			}
+			else if (document.cookie.split(';').find(e => e.trim().split('=')[0] == 'BearerToken').split('=')[1] === "") {
+				window.location.replace('/console');
+				
+			}
+			else {
+				document.getElementById('log__in').style.visibility = "hidden";
+				document.getElementById('logged__in').style.visibility = "visible";
+				document.getElementById('logged__in').innerHTML = `<span style="color:white;">Hello, <span style="color: #FF9E00;">${document.cookie.split(';').find(e => e.trim().split('=')[0] == 'UserFullName').split('=')[1]}</span></span>`;	
+			}
+
+
+			///// Add link for List All
+			var token = document.cookie.split(';').find(e => e.trim().split('=')[0] == 'BearerToken').split('=')[1];
+			document.getElementById('top__nav__list__all').href = `/console/stream/_all?time=${Date.now()}`;
+			document.getElementById('top__nav__library').href = `/console/library?time=${Date.now()}`;
+			document.getElementById('top__nav__create__album').href = `/console/create_album?time=${Date.now()}`;
+		});
+	</script>
+	</body>
+</html>

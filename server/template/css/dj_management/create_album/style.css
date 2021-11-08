@@ -1,0 +1,815 @@
+@charset "UTF-8";
+
+
+/*!
+* Start Bootstrap - Business Casual v7.0.1 (https://startbootstrap.com/theme/business-casual)
+* Copyright 2013-2021 Start Bootstrap
+* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-business-casual/blob/master/LICENSE)
+*/
+/*!
+ * Bootstrap v5.0.1 (https://getbootstrap.com/)
+ * Copyright 2011-2021 The Bootstrap Authors
+ * Copyright 2011-2021 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ */
+ :root {
+    --bs-blue: #0d6efd;
+    --bs-indigo: #6610f2;
+    --bs-purple: #6f42c1;
+    --bs-pink: #d63384;
+    --bs-red: #dc3545;
+    --bs-orange: #fd7e14;
+    --bs-yellow: #ffc107;
+    --bs-green: #198754;
+    --bs-teal: #20c997;
+    --bs-cyan: #0dcaf0;
+    --bs-white: #fff;
+    --bs-gray: #6c757d;
+    --bs-gray-dark: #343a40;
+    --bs-primary: #e6a756;
+    --bs-secondary: #2f170f;
+    --bs-success: #198754;
+    --bs-info: #0dcaf0;
+    --bs-warning: #ffc107;
+    --bs-danger: #dc3545;
+    --bs-light: #f8f9fa;
+    --bs-dark: #212529;
+    --bs-font-sans-serif: system-ui, -apple-system, 'Segoe UI', Roboto,
+      'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif,
+      'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+      'Liberation Mono', 'Courier New', monospace;
+    --bs-gradient: linear-gradient(180deg, #e83e8c, #e83e8c);
+  }
+  
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  
+@media (prefers-reduced-motion: no-preference) {
+:root {
+	scroll-behavior: smooth;
+}
+}
+
+
+body {
+    scrollbar-width: none; 
+    -ms-overflow-style: none; 
+
+}
+
+body::-webkit-scrollbar {
+    width: 0px;
+
+}
+
+@font-face {
+    font-family: --sf-regular;
+    src: url(/template/fonts/SanFranciscoDisplay-Regular.otf);
+}
+
+@font-face {
+    font-family: --sf-semibold;
+    src: url(/template/fonts/SanFranciscoDisplay-Semibold.otf);
+}
+/* ------------------------ */
+  /* Style for Create Album */
+  /* ------------------------ */
+
+  
+  @font-face {
+    font-family: --sf-regular;
+    font-style: normal;
+    font-weight: 400;
+    src: url(/template/fonts/SVN-Gilroy.otf) format('woff2');
+    unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+    }
+
+    html
+				{
+				}
+
+				.overlay{
+					display: none;
+					position: fixed;
+					width: 100%;
+					height: 100%;
+					top: 0;
+					left: 0;
+					z-index: 999;
+					background: rgba(255,255,255,0.8) url(/assets/img/dj_management/loader.gif) center no-repeat;
+				}
+				/* Turn off scrollbar when body element has the loading class */
+				body.loading{
+					overflow: hidden;   
+				}
+				/* Make spinner image visible when body element has the loading class */
+				body.loading .overlay{
+					display: block;
+				}
+
+					body
+					{
+						font-family: --font, sans-serif;
+						background-image: url(/assets/img/dj_management/upload_track_background.jpg);
+						color: #0f3c4b;
+						background-color: #e5edf1;
+						padding: 0 !important;
+						 /* 80 20 */
+					}
+
+					.top__nav
+					{
+						background: #020411;
+						padding: 1.5vh 8vw;
+						border-radius: 0px;
+						margin-bottom: 10vh;
+					}
+						
+						.top__nav div 
+						{
+							
+							display: flex;
+							align-items: center;
+							justify-content: center;
+							/* Text format */
+							
+							margin-right: .75vw;
+						}
+							.top__nav > div a
+							{
+								color: #D9D9D9;
+								font-style: normal;
+								font-weight: 500;
+								font-size: 1vw;
+								line-height: 1.5vw;
+							}
+
+						.log__in
+						{
+							border: 1px solid #FF9E00;
+							box-sizing: border-box;
+							border-radius: 0.85vw;
+							padding: 7px 0px;
+							
+						}
+							.log__in span {
+								font-family: --font;
+							}
+
+						#logged__in {
+							visibility: hidden;
+						}
+							.log__in a {
+								color: #FF9E00 !important;
+							}
+					
+						.logo 
+							{
+								justify-content: left !important;
+								
+							}
+		
+					.loading__container
+					{
+						width: 100%;
+						font-family: --font, sans-serif;
+						display: block;
+						text-align: center;
+					
+						align-items: center;
+						margin: 0 auto;
+						width: 100%;
+						position: relative;
+						padding: 0px 9vw;
+
+					}
+
+						.track__detail
+						{
+							padding: 2.5vh 10vw;
+						}
+							.add_track_banner {
+
+							}
+						
+							.to__upload__track {
+								font-family: --sf-semibold;
+								font-style: normal;
+								font-weight: 500;
+								font-size: 14px;
+								line-height: 20px;
+								color: #FAFAFA;
+								/* identical to box height, or 143% */
+
+								display: flex;
+								align-items: center;
+								text-align: center !important;
+
+								background: linear-gradient(136.89deg, #FF5500 16.65%, #FF7D3C 84.97%);
+								border-radius: 26px;
+								width: fit-content;
+								margin-top: 3vh;
+								padding: 6.5px 42px;
+
+
+								/* Text */
+								
+							}
+							.add__track__image
+							{
+								text-align: left;
+							}
+
+							.add_track_detail
+							{
+								text-align: left;
+							}
+
+							#track_url
+							{
+								visibility: hidden;
+							}
+							#track_banner_url
+							{
+								visibility: hidden;
+							}
+								.track_detail_items
+								{
+									padding-bottom: 2.3vh;
+								}
+
+									.track_detail_items label
+									{
+										font-style: normal;
+										font-weight: normal;
+										font-size: 16px;
+										line-height: 24px;
+										color: #E8E8E8;
+										padding: 0px 0px;
+									}
+
+									.track_detail_items input,
+									.track_detail_items select,
+									.track_detail_items textarea
+									{
+										border: 1px solid #9C9CA0;
+										box-sizing: border-box;
+										border-radius: 4px;
+										background-color: transparent;
+										padding: 8px;
+										color: #F5F5F5;
+									}
+
+										/* .track_detail_items > select option
+										{
+											color: green !important;
+											width: 100%;
+										}
+
+										.track_detail_items > select option:first-child{
+											color: green !important;
+											 
+										} */
+
+										::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+											color: #8C8C8C;
+											opacity: 1; /* Firefox */
+										}
+										
+										:-ms-input-placeholder { /* Internet Explorer 10-11 */
+											color: #8C8C8C;
+										}
+										
+										::-ms-input-placeholder { /* Microsoft Edge */
+											color: #8C8C8C;
+										}
+
+										.track_detail_items select > option
+										{
+											color: transparent;
+										}
+									
+
+									.tracks__of__album__search {
+										margin-top: 2.5vh;
+										display: flex;
+										flex-direction: column;
+										overflow-y: scroll;
+										max-height: 40vh;
+										margin-bottom: 5vh;
+									}
+
+									/* width */
+									.tracks__of__album__search::-webkit-scrollbar {
+										width: 6px;
+									}
+									
+									/* Track */
+									.tracks__of__album__search::-webkit-scrollbar-track {
+										background: transparent;
+									}
+									
+									/* Handle */
+									.tracks__of__album__search::-webkit-scrollbar-thumb {
+										background: #00474F;
+										border-radius: 6px;
+									}
+									
+									/* Handle on hover */
+									.tracks__of__album__search::-webkit-scrollbar-thumb:hover {
+										background: white; 
+									}
+
+										/* Customize the label (the container) */
+										.container__checkbox {
+											margin-bottom: 2vh;
+											display: flex;
+											flex-direction: row;
+
+											position: relative;
+											padding-left: 2.25vw;
+											cursor: pointer;
+											
+											-webkit-user-select: none;
+											-moz-user-select: none;
+											-ms-user-select: none;
+											user-select: none;
+											
+										}
+
+											.track__for__album__detail {
+												display: flex;
+												flex-direction: row;
+												position: relative;
+												width: 100%;
+												
+											}
+
+												.track__for__album__banner {
+													margin-right: 1vw;
+													
+												}
+													
+													.track__for__album__banner img {
+														width: 3vw;
+														height: 3vw;
+														border-radius: 0.5vw;
+													}
+
+												.track__for__album__info {
+													display: flex;
+													flex-direction: column;
+													vertical-align: middle;
+													max-width: 65%;
+													margin-right: 5%;
+												}
+
+													.track__for__album__title {
+														font-family: --sf-semibold;
+														font-style: normal;
+														font-weight: 500;
+														font-size: 16px;
+														line-height: 20px;
+														font-size: 22px;
+														color: #D9D9D9;
+														margin-bottom: 0.75vh;
+													}
+
+													.track__for__album__cat_and_p {
+														display: flex;
+														flex-direction: row;
+													}
+
+														.track__for__album__category {
+															font-family: --sf-regular;
+															font-style: normal;
+															font-weight: normal;
+															font-size: 14px;
+															line-height: 20px;
+															color: #32C3E0;
+															margin-right: 1vw;
+														}
+
+														.track__for__album__price {
+
+														}
+
+														.track__for__album__price {
+															display: flex;
+															flex-direction: row;
+															justify-content: flex-end;
+															align-items: center;
+															padding: 2px 8px;
+								
+															position: static;
+															/* width: 4.86vw; */
+															min-width: 70px;
+															height: fit-content;
+															right: 0px;
+															top: 0%;
+															bottom: 75%;
+								
+															background: rgba(255, 255, 255, 0.2);
+															backdrop-filter: blur(8px);
+															border-radius: 4px;
+															margin: 0px 8px;   
+								
+															
+								
+								
+														}
+								
+															.price__gold__icon {
+																position: absolute;
+																left: 10%;
+																height: 100%;
+																top: 25%;
+																width: 1vw;
+																background: url(/assets/img/dj_management/gold.png);
+																background-repeat: no-repeat;
+																margin: 0px;
+															}
+								
+															.price__number {
+																font-family: --sf-regular;
+																font-style: normal;
+																font-weight: normal;
+																font-size: 10px;
+																line-height: 16px;
+								
+																display: flex;
+																align-items: center;
+																text-align: right;
+								
+																color: #D9D9D9;
+								
+								
+																/* Inside Auto Layout */
+								
+																flex: none;
+																order: 1;
+																flex-grow: 0;
+																margin: 0px 0%;
+															}
+
+												.track__for__album__actions {
+													position: absolute;
+													right: 10%;
+													display: flex;
+													flex-direction: row;
+													vertical-align: middle;
+													
+												}
+													.delete__action {
+														margin-right: 45%;
+													}
+
+													.delete__action img{
+														/* background: #C4C4C4; */
+														width: 1vw;
+													}
+
+													.move__up__down__action img {
+														width: 1vw;
+													}
+								
+										
+										/* Hide the browser's default checkbox */
+										.container__checkbox input {
+											position: absolute;
+											opacity: 0;
+											cursor: pointer;
+											height: 0;
+											width: 0;
+										}
+										
+										/* Create a custom checkbox */
+										.checkmark {
+											position: absolute;
+											top: 50%;
+											transform: translateY(-50%);
+											left: 0;
+											height: 25px;
+											width: 25px;
+											background-color: transparent;
+											border-radius: 16px;
+											border: 1px solid #6F707A;	
+										}
+										
+										/* On mouse-over, add a grey background color */
+										.container__checkbox:hover input ~ .checkmark {
+											background-color: #ccc;
+										}
+										
+										/* When the checkbox is checked, add a orange background */
+										.container__checkbox input:checked ~ .checkmark {
+											background-color: #FF5500;
+										}
+										
+										/* Create the checkmark/indicator (hidden when not checked) */
+										.checkmark:after {
+											content: "";
+											position: absolute;
+											display: none;
+										}
+										
+										/* Show the checkmark when checked */
+										.container__checkbox input:checked ~ .checkmark:after {
+											display: block;
+										}
+										
+										/* Style the checkmark/indicator */
+										.container__checkbox .checkmark:after {
+											left: 9px;
+											top: 5px;
+											width: 5px;
+											height: 10px;
+											border: solid white;
+											border-width: 0 3px 3px 0;
+											-webkit-transform: rotate(45deg);
+											-ms-transform: rotate(45deg);
+											transform: rotate(45deg);
+										}
+										
+
+
+							.track_detail_control_btns
+							{
+								width: 60%;
+								text-align: center;
+								margin: 0px 0px 0px auto;
+								display: flex;
+								justify-content: right;
+								
+								
+							}
+								.cancel-btn
+								{
+									font-family: --sf-semibold;
+									border: 1px solid #E8E8E8;
+									box-sizing: border-box;
+									border-radius: 4px;
+									width: 10vw;
+									padding: 6px 0px;
+									margin-right: 2vw;
+									
+								}
+
+									.cancel-btn a
+									{
+										font-family: --sf-semibold;
+										font-style: normal;
+										font-weight: 500;
+										font-size: 16px;
+										line-height: 24px;
+										color: #E8E8E8;
+									}
+								.submit-btn
+								{
+									font-family: --sf-semibold;
+									background: linear-gradient(136.89deg, #FF5500 16.65%, #FF7D3C 84.97%);
+									border-radius: 4px;
+									padding: 6px 0px;
+									width: 10vw;
+									color: white;
+								}
+
+								.redirect__to__create__new__one {
+									display: none;
+									font-family: --sf-semibold;
+									background: linear-gradient(136.89deg, #FF5500 16.65%, #FF7D3C 84.97%);
+									border-radius: 4px;
+									padding: 6px 0px;
+									width: 10vw;
+									color: white;
+								}
+
+						#re__form__data {
+							display: block;
+						}
+
+						#confirm__data {	
+							display: none;
+						}
+
+							.success__creating__album__noti {
+								display: flex;
+								flex-direction: column;
+								justify-content: center;
+								display: none;
+							}
+								.success__icon {
+									margin-bottom: 2vh;
+								}
+
+								.success__quotes {
+									font-family: --sf-semibold;
+									font-style: normal;
+									font-weight: 500;
+									font-size: 16px;
+									line-height: 24px;
+									text-align: center;
+									color: #FFFFFF;
+									margin-bottom: 5vh;
+								}
+
+							.album__confirm__info {
+								font-family: --sf-semibold;
+								font-style: normal;
+								font-weight: 500;
+								font-size: 24px;
+								line-height: 32px;
+								color: #F5F5F5;
+								flex: none;
+								order: 0;
+								flex-grow: 0;
+								margin: 6px 0px;
+							}
+
+							.total__chosen__tracks {
+								font-family: --sf-regular;
+								font-style: normal;
+								font-weight: normal;
+								font-size: 16px;
+								line-height: 24px;
+								color: #9599C1;
+								flex: none;
+								order: 1;
+								flex-grow: 0;
+								margin: 6px 0px;
+							}
+
+			
+			.result {
+				padding-top: 5.75vh;
+				text-align: center;
+				padding-bottom: 4vh;
+			}
+				.success_icon {
+					padding-bottom: 2vh;
+				}
+				.result div {
+					font-style: normal;
+					font-weight: 500;
+					font-size: 16px;
+					line-height: 24px;
+					/* identical to box height, or 150% */
+
+					text-align: center;
+
+					/* Grey / grey-1 */
+
+					color: #FFFFFF;
+
+				}
+			.upload_more {
+				padding-bottom: 4vh;
+			}
+
+			.success_track_detail {
+				background: linear-gradient(270deg, #1A1720 5.31%, rgba(26, 23, 32, 0) 59.08%), #2B242E;
+				border-radius: 10px;
+				margin: 10px auto;
+				width: 70%;
+				display:flex;
+				
+				vertical-align: middle;
+			
+			}
+				.track_banner {
+					width: 30%;
+					display: flex;
+					vertical-align: middle;
+					
+				}
+					
+					
+					.track_banner img {
+						width: 11vw;
+						border-radius: 10px;
+						margin: 10%;
+					}
+
+				.track_info_detail {
+					text-align: left;
+					font-family: --font;
+					padding-left: 2.5vw;
+					
+					
+
+				}
+					.track_title {
+						padding-top: 16px;
+						font-style: normal;
+						font-weight: 500;
+						font-size: 24px;
+						line-height: 32px;
+						/* identical to box height, or 133% */
+
+
+						/* Grey / grey-3 */
+
+						color: #F5F5F5;
+					}
+
+					.track_category {
+						
+						
+						
+						
+
+					}
+						.track_category span {
+							
+							font-style: normal;
+							font-weight: normal;
+							font-size: 16px;
+							line-height: 20px;
+							display:inline-block;
+							padding: 0.33vh 0.6vw;
+							color: #FFFFFF;
+							margin-top: 14px;
+							background: #595959;
+							border-radius: 20px;
+						}
+
+					.track_description {
+						margin-top: 14px;
+				
+						font-style: normal;
+						font-weight: normal;
+						font-size: 16px;
+						line-height: 24px;
+						/* or 150% */
+
+
+						/* Grey / grey-3 */
+
+						color: #F5F5F5;
+					}
+					
+					.track_rz_point {
+						margin-top: 12px;
+						
+						font-style: normal;
+						font-weight: 500;
+						font-size: 16px;
+						line-height: 24px;
+						/* identical to box height, or 150% */
+
+
+						/* Sunset Orange / orange-6 */
+
+						color: #FA8C16;
+						padding-bottom: 16px;
+					}
+			.error__container {
+				border: 1px dashed #BFBFBF;
+				padding: 4vh 5vw;
+				border-radius: 20px;
+			}
+				.failed__result {
+					background-color:transparent;
+
+				}
+					.noti__failed {
+						
+					}
+						.noti__failed div {
+							font-style: normal;
+							font-weight: 500;
+							font-size: 16px;
+							line-height: 24px;
+							text-align: center;
+							color: #FFFFFF;
+							margin-bottom: 4vh;
+						}
+					.try__again a {
+						background: linear-gradient(136.89deg, #FF5500 16.65%, #FF7D3C 84.97%);
+						border-radius: 8px;
+						color: white;
+						padding: 6px 22px;
+					}
+			
+				.error__code {
+					display: flex;
+					justify-content: center;
+					
+				}
+					
+					.error__code code {
+						width: 40%;
+						padding: 12px 20px;
+					}
+
+
+/* -------------
+----------- */
+/* End Style for Create Album     
+/* ------------------------ */                    
+
+

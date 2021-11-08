@@ -1,0 +1,481 @@
+@charset "UTF-8";
+
+
+/*!
+* Start Bootstrap - Business Casual v7.0.1 (https://startbootstrap.com/theme/business-casual)
+* Copyright 2013-2021 Start Bootstrap
+* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-business-casual/blob/master/LICENSE)
+*/
+/*!
+ * Bootstrap v5.0.1 (https://getbootstrap.com/)
+ * Copyright 2011-2021 The Bootstrap Authors
+ * Copyright 2011-2021 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ */
+ :root {
+    --bs-blue: #0d6efd;
+    --bs-indigo: #6610f2;
+    --bs-purple: #6f42c1;
+    --bs-pink: #d63384;
+    --bs-red: #dc3545;
+    --bs-orange: #fd7e14;
+    --bs-yellow: #ffc107;
+    --bs-green: #198754;
+    --bs-teal: #20c997;
+    --bs-cyan: #0dcaf0;
+    --bs-white: #fff;
+    --bs-gray: #6c757d;
+    --bs-gray-dark: #343a40;
+    --bs-primary: #e6a756;
+    --bs-secondary: #2f170f;
+    --bs-success: #198754;
+    --bs-info: #0dcaf0;
+    --bs-warning: #ffc107;
+    --bs-danger: #dc3545;
+    --bs-light: #f8f9fa;
+    --bs-dark: #212529;
+    --bs-font-sans-serif: system-ui, -apple-system, 'Segoe UI', Roboto,
+      'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif,
+      'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+      'Liberation Mono', 'Courier New', monospace;
+    --bs-gradient: linear-gradient(180deg, #e83e8c, #e83e8c);
+  }
+  
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    :root {
+      scroll-behavior: smooth;
+    }
+  }
+
+/* ------------------------ */
+  /* Style for Upload track */
+  /* ------------------------ */
+
+  
+  @font-face {
+    font-family: --font;
+    font-style: normal;
+    font-weight: 400;
+    src: url(/template/fonts/SVN-Gilroy.otf) format('woff2');
+    unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+    }
+
+
+    html {
+
+    }
+
+        body {
+            font-family: --font, sans-serif;
+            color: #0f3c4b;
+            background-color: #e5edf1;
+            padding: 0 !important;
+            background-image: url(/assets/img/dj_management/stream_background.jpg) !important;
+            
+                /* 80 20 */
+        }
+
+        .top__nav {
+          margin-bottom: 3vh !important;;
+        }
+
+       .stream__container {
+         padding: 0px 9vw;
+         display: flex;
+         flex-direction: row;
+       }
+        .left__col {
+          width: 45vw;
+          margin-right: 5vw;
+        }
+          .player {
+            background: url(/assets/img/dj_management/stream_player_frame.png);
+            background-repeat: no-repeat;
+            background-size: 100%;
+            height: 60vh;
+          }
+            #player {
+              width: 100%;
+              height: 100%;
+              /* display: flex;
+              vertical-align: middle;
+              justify-content: center; */
+             
+            }
+            .stream__player__title {
+              font-style: normal;
+              font-weight: 500;
+              font-size: 20px;
+              line-height: 28px;
+              font-family: --font;
+              color: white;
+              position: absolute;
+              top: 11%;
+              left: 13%;
+            }
+
+          .stream__key {
+            margin-top: 2%;
+            width: 100%;
+          }
+            .stream__setting__icon {
+              display: flex;
+              justify-content: end;
+              
+            }
+              .stream__setting__icon img {
+                transform: translate(20%, 100%);
+                cursor: pointer;
+              }
+              
+             
+
+          .stream__setting__frame {
+            background-image: url(/assets/img/dj_management/stream_key_frame.png);
+            width: 100%;
+            
+            background-repeat: no-repeat;
+            background-size: contain;
+            
+          }
+            .stream__setting__content {
+              /* border: 1px solid red; */
+              padding: 3% 5% 4% 5%;
+              height: inherit;
+              color: white;
+              /* background-color: black; */
+              
+            }
+
+              .stream__setting__items {
+                border: 1px solid red;
+                height: 21%;
+                margin: 1% 0 1% 0;
+                width: 100%;
+                display: flex;
+                
+                flex-direction: row;
+                font-family: --font;
+                font-style: normal;
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 20px;
+              }
+
+                .stream__setting__title, .semi__colon, .stream__setting__value, .stream__setting__actions {
+                  margin: auto 0px;
+                  
+                }
+
+                .stream__setting__title {
+                  width: 20%;
+                  text-align: left;
+                  padding-left: 2%;
+                }
+                
+                .semi__colon {
+                  width: 10%;
+                }
+
+                .stream__setting__value {
+                  width: 45%;
+                }
+
+                .stream__setting__actions {
+                  width: 25%;
+                }
+                #custom-tooltip-key, #custom-tooltip-server, #custom-tooltip-username, #custom-tooltip-password {
+                  display: none;
+                  margin-left: -3vw;
+                  padding: 1vh 1vw;
+                  background-color: #000000df;
+                  border-radius: 4px;
+                  border: 1px solid red;
+                  color: #fff;
+                }
+                .stream__setting__value input[type=text] {
+                  background-color: transparent;
+                  border: none;
+                  overflow: hidden;
+                  white-space: nowrap;
+                  text-overflow: ellipsis;
+                }
+                .stream__setting__value input[type=password] {
+                  background-color: transparent;
+                  border: none;
+                }
+          
+
+        .right__col {
+          width: 30vw;
+          display: flex;
+          flex-direction: column;
+          /* justify-content: center;
+          vertical-align: baseline; */
+        }
+          .donation {
+            background: url(/assets/img/dj_management/donation_frame.png);
+            background-repeat: no-repeat;
+            background-size: contain;
+            height: 15vw;
+            display: flex;
+            justify-content: center;
+            vertical-align: middle;
+            flex-direction: column;
+            animation-timing-function: ease;
+          }
+
+          @keyframes background_1 {
+            from {
+              background: url(/assets/img/dj_management/donation_frame.png);
+              background-repeat: no-repeat;
+              background-size: contain;
+              height: 15vw;
+              display: flex;
+              justify-content: center;
+              vertical-align: middle;
+              flex-direction: column;
+            }
+            to {
+              background: url(/assets/img/dj_management/donation_frame_animate.png);
+              background-repeat: no-repeat;
+              background-size: contain;
+              height: 15vw;
+              display: flex;
+              justify-content: center;
+              vertical-align: middle;
+              flex-direction: column;
+            }
+          }
+
+          @keyframes background_2 {
+            from {
+              background: url(/assets/img/dj_management/donation_frame_animate.png);
+              background-repeat: no-repeat;
+              background-size: contain;
+              height: 15vw;
+              display: flex;
+              justify-content: center;
+              vertical-align: middle;
+              flex-direction: column;
+            }
+            to {
+              background: url(/assets/img/dj_management/donation_frame.png);
+              background-repeat: no-repeat;
+              background-size: contain;
+              height: 15vw;
+              display: flex;
+              justify-content: center;
+              vertical-align: middle;
+              flex-direction: column;
+            }
+          }
+
+          #donation_noti {
+            height: 60%;
+          }
+            #donation_noti div {
+              height: 100%;
+              display: flex;
+              align-items: center;
+              flex-direction: column;
+              justify-content: center;
+            }
+
+            .donation__title {
+              font-style: normal;
+              font-weight: 600;
+              font-size: 20px;
+              line-height: 24px;
+              font-family: --font;
+              margin-bottom: 5%;
+              margin-top: 15%;
+              flex-direction: row !important;
+              display: flex !important;
+   
+            }
+              .donation__title div {
+                display: block !important;
+              }
+
+            .donation__message {
+              font-style: normal;
+              font-weight: 500;
+              font-size: 16px;
+              line-height: 24px;
+              font-family: --font;
+              max-width: 60%;
+              
+            }
+              .donation__message span {
+                width: 100%;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+              }
+          .balance {
+            padding-top: 4vh;
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 24px;
+            font-style: normal;
+            color: #FA8C16 !important;
+            font-family: --font;
+            text-align: center;
+            min-width: 50%;
+            height: 40%;
+          }
+
+            .balance__amount {
+              font-weight: 600;
+              font-size: 18px;
+              line-height: 24px;
+              font-style: normal;
+              color: white !important;
+              font-family: --font;              
+              text-align: center;
+              min-width: 50%;
+            }
+
+          .chat__box {
+            background: url(/assets/img/dj_management/chat_frame.png);
+            background-repeat: no-repeat;
+            background-size: contain;
+            height: 35vw;
+          }
+
+            .chat__panel {
+              /* margin: 5%; */
+              position: relative;
+              height: 100%;
+              width: 100%;
+              /* overflow: scroll; */
+            }
+
+              .chat__title {
+                position: absolute;
+                top: 7%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-style: normal;
+                font-weight: bold;
+                font-size: 18px;
+                line-height: 28px;
+                /* identical to box height, or 156% */
+
+
+                color: #FFFFFF;
+
+                mix-blend-mode: overlay;
+              }
+
+              .list__messages {
+                position: absolute;
+                top: 9%;
+                text-align:left;
+                margin:0 auto;
+                padding: 2% 10%;
+                width: 100%;
+                max-height: 80%;
+                overflow-x:hidden;
+                overflow-y:visible;
+                /* overflow:scroll;  */
+              }
+
+              /* Hide scrollbar for Chrome, Safari and Opera */
+              .list__messages::-webkit-scrollbar {
+                display: none;
+              }
+
+              /* Hide scrollbar for IE, Edge and Firefox */
+              .list__messages {
+                -ms-overflow-style: none;  /* IE and Edge */
+                scrollbar-width: none;  /* Firefox */
+              }
+
+                .scroll__to__bottom  {
+                  position: absolute;
+                  z-index: 200;
+                  top: 75%;
+                  left: 50%;
+                  visibility: hidden;
+                  /* width: 24px;
+                  height: 24px;
+                  margin-left: -12px;
+                  border-left: 1px solid #fff;
+                  border-bottom: 1px solid #fff;
+                  -webkit-transform: rotate(-45deg);
+                  transform: rotate(-45deg);
+                  box-sizing: border-box; */
+                  
+                 
+                }
+                  .scroll__to__bottom button {
+                    border: none;
+                    background: transparent;
+                  }
+                  .scroll__to__bottom > button i {
+                    color: orange;
+
+                  }
+                .chat__row {
+                  background: rgba(255, 255, 255, 0.04);
+                  padding: 5% 2%;
+                  border-radius: 12px;
+                  margin-bottom: 1.5vh;
+                  
+                }
+
+                  .user__name {
+                    font-style: normal;
+                    font-weight: bold;
+                    font-size: 14px;
+                    line-height: 22px;
+                    color: #FAFAFA;
+                    font-family: --font;
+                    /* padding-left: 2%; */
+                    display: flex;
+                    text-align: center;
+                    min-width: 50%;
+
+                  }
+
+                  .message__content {
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 14px;
+                    line-height: 22px;
+                    /* identical to box height, or 157% */
+
+
+                    /* Grey / grey-2 */
+                    font-family: --font;
+                    color: #FAFAFA;
+                  }
+
+              .no__stream {
+                text-align: center;
+                margin-top: 10vh;
+                color: #FA8C16;
+                font-family: --font;
+                font-style: italic;
+            }  
+            
+            .log__in span {
+              /* color: #FF9E00 !important; */
+              font-family: --font;
+            }
+
+          #logged__in {
+            visibility: hidden;
+          }
+            
+            
+            

@@ -8,6 +8,7 @@ const _ = require('lodash');
 
 const share_router = require('./routers/share');
 const upload_router = require('./routers/upload');
+const dj_management = require('./routers/dj_management');
 // --------
 const { IAPI, FIREBASE_KEY } = require('./config');
 console.log(`Your IAPI is ${IAPI}`);
@@ -46,6 +47,8 @@ app.use(express.json());
 app.use('/', share_router);
 
 app.use('/upload', upload_router);
+
+app.use('/console', dj_management);
 
 app.get('*', (req, res) => {
     res.render('error/500');

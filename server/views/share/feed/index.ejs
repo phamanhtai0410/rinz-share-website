@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta property="og:url" content="https://rinzworld.com/<%= type %>/<%= id %>" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Feed <%= detail.title %>" />
+    <meta property="og:description" content="Khám phá nhiều hơn tại RinZ" />
+    <meta property="og:image" content="<%= detail.banner %>" />
+    <meta name="turbolinks-cache-control" content="no-cache">
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="turbolinks-cache-control" content="no-cache">
+    <title>Feed
+        <%= detail.title %>
+    </title>
+    <link rel="icon" type="image/x-icon" href="/assets/img/share_website/logo.png" />
+    <!-- Google fonts-->
+    <link href="/template/fonts/SVN-Gilroy.otf" rel='stylesheet' type='text/css' />
+    <!-- <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet" /> -->
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="/template/css/styles.css" rel="stylesheet" />
+    <link href="/template/css/styles.scss" rel="stylesheet" />
+    <link href="/template/css/share/feed/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div id="desktop">
+        <div class="w-100">
+            <div class="share-content">
+                <div class='logo text-left'>
+                    <img src="/assets/img/share_website/logo.png" style="max-width: 160px;" alt="RinZ Network">
+                </div>
+                <div class="content-detail text-center">
+                    <div class="title">
+                        <%= detail.title %>
+                    </div>
+                </div>
+                <div class="banner">
+                    <img src="<%= detail.banner %>?w=270" alt="Banner">
+                </div>
+                <div class="author_name">
+                    <%=  detail.author_name %>
+                </div>
+                <div class="subcribe-btn">
+                    <a href="#"><img src="/assets/img/share_website/subcribe.png" alt=""></a>
+                </div>
+            </div>
+
+            <div class="download-content">
+                <div class="download-title row">
+                    TẢI APP NGAY ĐỂ KHÁM PHÁ
+                </div>
+                <div class="row text-left" style="width: 30%;">
+                    <div class="download-btn col">
+                        <a href="https://apps.apple.com/us/app/thecuatui/id1568831849"><img src="/assets/img/share_website/appstore.png" alt=""></a>
+                    </div>
+                    <div class="download-btn col">
+                        <a href="https://play.google.com/store/apps/details?id=com.thecuatui"><img src="/assets/img/share_website/googleplay.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="mobile">
+        <div class="mobile-banner">
+            <img class="mobile-banner-img" src="<%= detail.banner %>?w=200" alt="Banner">
+            <div class="start-time-mobile">
+                <img src="/assets/img/share_website/start_time_tag.png" alt="" style="max-width: 100px;">
+                <p id="start-time-mobile">
+                    <%= detail.start_time %>
+                </p>
+            </div>
+
+        </div>
+        <div class="">
+            <p class="author_name_mobile d-flex justify-content-center">
+                <%= detail.title %>
+            </p>
+        </div>
+        <div class="text-mobile">
+            <%= detail.author_name %>
+        </div>
+        <div class="open-in-app-btn">
+            <a href="<%= dynamic_link %>"><img src="/assets/img/share_website/download_btn.png" alt=""></a>
+        </div>
+        <div class="download-content-mobile">
+            <div class="download-title-mobile">
+                TẢI APP NGAY ĐỂ KHÁM PHÁ
+            </div>
+            <div class="row">
+                <div class="download-btn-mobile col text-right">
+                    <a href="https://apps.apple.com/us/app/thecuatui/id1568831849"><img src="/assets/img/share_website/appstore.png" alt=""></a>
+                </div>
+                <div class="download-btn-mobile col text-left">
+                    <a href="https://play.google.com/store/apps/details?id=com.thecuatui"><img src="/assets/img/share_website/googleplay.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
