@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en" class="js">
+	<head>
+		<meta charset="utf-8">
+
+		<!-- <meta property="og:url" content="https://rinzworld.com" />
+		<meta property="og:type" content="article" />
+		<meta property="og:title" content="" />
+		<meta property="og:description" content="Khám phá nhiều hơn tại RinZ" />
+		<meta property="og:image" content="" />
+		<meta name="turbolinks-cache-control" content="no-cache">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="turbolinks-cache-control" content="no-cache"> -->
+
+		<title>RinZ Library</title>
+
+
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<link href="/template/css/dj_management/library/style.css" rel="stylesheet" />
+		<!-- <link href="/template/css/dj_management/stream_management/styles.css" rel="stylesheet" /> -->
+        <link href="/template/css/dj_management/upload_track/styles.css" rel="stylesheet" />
+		<link href="/template/css/styles.css" rel="stylesheet" />
+		<link href="/template/css/styles.scss" rel="stylesheet" />
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+		<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+        <link href="https://vjs.zencdn.net/7.15.4/video-js.css" rel="stylesheet" />
+
+		<script>
+            (
+                function(e,t,n){
+                    var r=e.querySelectorAll("html")[0];
+                    r.className=r.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2")
+                }
+            )(document,window,0);
+        </script>
+        <style>
+            #loading {
+                position: fixed;
+                display: block;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                text-align: center;
+                opacity: 0.7;
+                background-color: #fff;
+                z-index: 99;
+            }
+
+                #loading-image {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    z-index: 100;
+                }
+        </style>
+	</head>
+	<body>
+        <div id="loading">
+            <img id="loading-image" src="/assets/img/loader.gif" alt="Loading..." />
+          </div>
+		<div class="top__nav row">
+			<div class="logo col">
+				<a href="/console/upload"><img src="/assets/img/share_website/logo.png" alt="RinZ" style="width: 6vw;"></a>
+				
+			</div>
+			<div class="nav__list row col">
+				<div class="upload col">
+					<a href="/console/upload">Upload</a>
+				</div>
+				<div class="create__album col">
+					<a id="top__nav__create__album">Tạo Album</a>
+				</div>
+				<div class="live__stream col">
+					<a id="top__nav__list__all">Live Stream</a>
+				</div>
+				<div class="library col">
+					<a id="top__nav__library">Thư viện</a>
+				</div>
+				<div class="log__in col" id="log__in">
+					<a href="/console">Đăng nhập</a>
+				</div>
+				<div class="log__in col" id="logged__in">
+				</div>
+			</div>
+		</div>
+        <div class="track__album__control">
+            <div class="control__option__select" id="trackBtn">
+                Track
+            </div>
+            <div class="control__option" id="albumBtn">
+                Album
+            </div>
+        </div>
+        <div class="list__items">
+            <div id="track__list">
+                <div class="track__category__control d-flex flex-wrap" id="control__track__category">
+                    <%  for (let i=0; i < track_category.length; i++ ) { %>
+                        <% if (i === 0) { %>
+                            <div class="track__category__option__select" id="<%= track_category[i].value %>">
+                                <%= track_category[i].name %>
+                            </div>
+                        <% } else { %>
+                            <div class="track__category__option" id="<%= track_category[i].value %>">
+                                <%= track_category[i].name %>
+                            </div>
+                        <% } %>
+                    <% } %>
+                </div>
+                <div class="track__filter__list" id="track__filter__list">
+                    <%  for (let i=0; i < track_list.length; i++ ) { %>
+                        
+                        <div class="track__filter__item" id="<%= track_list[i].id %>">
+                            <div class="track__filter__item__border">
+                                <div class="track__filter__item__banner">
+                                    <img src="<%= track_list[i].banner %>" onerror="this.onerror=null; this.src='/assets/img/share_website/logo.png'" alt="">
+                                </div>
+                                <div class="track__filter__item__info">
+                                    <div class="track__filter__item__info__1">
+                                        <div class="track__filter__item__title">
+                                            <%= track_list[i].title %>
+                                        </div>
+                                        <div class="track__filter__item__duration">
+                                            <%= track_list[i].duration %>
+                                        </div>
+                                    </div>      
+                                    <div class="track__filter__item__category" category="<%= track_list[i].category %>">
+                                        <%= track_category.find(e => e.id === track_list[i].category).name  %>
+                                    </div>
+                                </div>
+                                <div class="track__filter__item__price">
+                                    <div class="price__gold__icon">
+
+                                    </div>
+                                    <div class="price__number">
+                                        <% if (track_list[i].rz_point / 1000 > 0) { %>
+                                            <%= track_list[i].rz_point / 1000 %>K RZP
+                                        <% } else { %>
+                                            <%= "Miễn phí" %>
+                                        <% } %>
+                                    </div>
+                                    
+                                </div>           
+                            </div>                                                                    
+                        </div>      
+                    <% } %>
+                </div>
+            </div>
+            <div id="album__list">
+                <div class="album__wrapper">
+                    <% for (let i =0; i< album_list.length; i++) { %>
+                        <div class="album__item">
+                            <div class="album__item__title">
+                                <%= album_list[i].title %>
+                            </div>
+                            <% if ((i + 1) % 3 === 1) { %>
+                                <div class="album__item__list__1">
+                                    <div class="album__item__banner">
+                                        <img src="<%= album_list[i].banner[0] %>" onerror="this.onerror=null; this.src='/assets/img/share_website/logo.png'" alt="">
+                                    </div>
+                                    <div class="album__item__tracks__list">
+                                        <% for(let j=0; j < album_list[i].tracks_info.length; j++) { %>
+                                            <div class="album__item__track_item">
+                                                <div class="album__item__track_item__title">
+                                                    <%= album_list[i].tracks_info[j].title %>
+                                                </div>
+                                                <div class="hyphen">
+                                                    &emsp;&#8208;&emsp;
+                                                </div>
+                                                <div class="album__item__track_item__duration">
+                                                    <%= album_list[i].tracks_info[j].duration %>
+                                                </div>
+                                                <div class="hyphen">
+                                                    &emsp;&#8208;&emsp;
+                                                </div>
+                                                <div class="album__item__track_item__category">
+                                                    <%= track_category.find(e => e.id === album_list[i].tracks_info[j].category).name   %>
+                                                </div>
+                                                <div class="album__item__track_item__price">
+                                                    <div class="price__gold__icon">
+    
+                                                    </div>
+                                                    <div class="price__number" style="margin-left: 25%;">
+                                                        <% if (album_list[i].tracks_info[j].rz_point / 1000 > 0) { %>
+                                                            <%= album_list[i].tracks_info[j].rz_point / 1000 %>K RZP
+                                                        <% } else { %>
+                                                            <%= "Miễn phí" %>
+                                                        <% } %>
+                                                    </div>   
+                                                </div>
+                                            </div>
+                                        <% } %>
+                                    </div>
+                                </div>
+                            <% } else if ( (i + 1) % 3 === 2) { %>
+                                <div class="album__item__list__2">
+                                    <div class="album__item__banner">
+                                        <img src="<%= album_list[i].banner[0] %>" onerror="this.onerror=null; this.src='/assets/img/share_website/logo.png'" alt="">
+                                    </div>
+                                    <div class="album__item__tracks__list">
+                                        <% for(let j=0; j < album_list[i].tracks_info.length; j++) { %>
+                                            <div class="album__item__track_item">
+                                                <div class="album__item__track_item__title">
+                                                    <%= album_list[i].tracks_info[j].title %>
+                                                </div>
+                                                <div class="hyphen">
+                                                    &emsp;&#8208;&emsp;
+                                                </div>
+                                                <div class="album__item__track_item__duration">
+                                                    <%= album_list[i].tracks_info[j].duration %>
+                                                </div>
+                                                <div class="hyphen">
+                                                    &emsp;&#8208;&emsp;
+                                                </div>
+                                                <div class="album__item__track_item__category">
+                                                    <%= track_category.find(e => e.id === album_list[i].tracks_info[j].category).name   %>
+                                                </div>
+                                                <div class="album__item__track_item__price">
+                                                    <div class="price__gold__icon">
+    
+                                                    </div>
+                                                    <div class="price__number" style="margin-left: 25%;">
+                                                        <% if (album_list[i].tracks_info[j].rz_point / 1000 > 0) { %>
+                                                            <%= album_list[i].tracks_info[j].rz_point / 1000 %>K RZP
+                                                        <% } else { %>
+                                                            <%= "Miễn phí" %>
+                                                        <% } %>
+                                                    </div>   
+                                                </div>
+                                            </div>
+                                        <% } %>
+                                    </div>
+                                </div>
+                            <% } else { %>
+                                <div class="album__item__list__3">
+                                    <div class="album__item__banner">
+                                        <img src="<%= album_list[i].banner[0] %>" onerror="this.onerror=null; this.src='/assets/img/share_website/logo.png'" alt="">
+                                    </div>
+                                    <div class="album__item__tracks__list">
+                                        <% for(let j=0; j < album_list[i].tracks_info.length; j++) { %>
+                                            <div class="album__item__track_item">
+                                                <div class="album__item__track_item__title">
+                                                    <%= album_list[i].tracks_info[j].title %>
+                                                </div>
+                                                <div class="hyphen">
+                                                    &emsp;&#8208;&emsp;
+                                                </div>
+                                                <div class="album__item__track_item__duration">
+                                                    <%= album_list[i].tracks_info[j].duration %>
+                                                </div>
+                                                <div class="hyphen">
+                                                    &emsp;&#8208;&emsp;
+                                                </div>
+                                                <div class="album__item__track_item__category">
+                                                    <%= track_category.find(e => e.id === album_list[i].tracks_info[j].category).name   %>
+                                                </div>
+                                                <div class="album__item__track_item__price">
+                                                    <div class="price__gold__icon">
+    
+                                                    </div>
+                                                    <div class="price__number" style="margin-left: 25%;">
+                                                        <% if (album_list[i].tracks_info[j].rz_point / 1000 > 0) { %>
+                                                            <%= album_list[i].tracks_info[j].rz_point / 1000 %>K RZP
+                                                        <% } else { %>
+                                                            <%= "Miễn phí" %>
+                                                        <% } %>
+                                                    </div>   
+                                                </div>
+                                            </div>
+                                        <% } %>
+                                    </div>
+                                </div>
+                            <% } %>
+
+                            
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+		
+
+		
+
+		<!-- <footer class="list__stream__footer">
+			RinZ Music © Copyright Esoltech
+		</footer> -->
+	
+	<script>
+        
+		/// Login check
+
+		$(document).ready(function() {
+            document.cookie = "p_tracks=" + "<%=p_tracks%>" + ";";
+            
+			/// Check LOGIN
+			if (!document.cookie.split(';').find(e => e.trim().split('=')[0] == 'BearerToken')) {		
+				window.location.replace('/console');
+				
+			}
+			else if (document.cookie.split(';').find(e => e.trim().split('=')[0] == 'BearerToken').split('=')[1] === "") {
+				window.location.replace('/console');
+				
+			}
+			else {
+				document.getElementById('log__in').style.visibility = "hidden";
+				document.getElementById('logged__in').style.visibility = "visible";
+				document.getElementById('logged__in').innerHTML = `<span style="color:white;">Hello, <span style="color: #FF9E00;">${document.cookie.split(';').find(e => e.trim().split('=')[0] == 'UserFullName').split('=')[1]}</span></span>`;	
+			}
+
+
+			///// Add link for List All
+			var token = document.cookie.split(';').find(e => e.trim().split('=')[0] == 'BearerToken').split('=')[1];
+			document.getElementById('top__nav__list__all').href = `/console/stream/_all?time=${Date.now()}`;
+            document.getElementById('top__nav__library').href = `/console/library?time=${Date.now()}`;
+            document.getElementById('top__nav__create__album').href = `/console/create_album?time=${Date.now()}`;
+
+            /// Modify duration each item
+            function secondsToHms(d) {
+                d = Number(d);
+                var h = Math.floor(d / 3600);
+                var m = Math.floor(d % 3600 / 60);
+                var s = Math.floor(d % 3600 % 60);
+                
+                if (h === 0 && m === 0 && s === 0) {
+                    return 0
+                } 
+                if (h > 0) {
+                    return h + " giờ " + m + " phút"
+                }
+                else {
+                    var mDisplay = m > 0 ? m + (m == 1 ? "  " : ":") : "";
+                    var sDisplay = s > 0 ? s + (s == 1 ? " " : "  ") : "";
+                    return mDisplay + sDisplay
+                }
+            }
+
+            var track_durations = document.getElementsByClassName("track__filter__item__duration");
+            for (let i=0; i< track_durations.length; i++) {
+                track_durations[i].innerHTML = secondsToHms(track_durations[i].innerHTML); 
+            }
+
+            var tracks_of_album_durations = document.getElementsByClassName("album__item__track_item__duration");
+            for (let i=0; i< tracks_of_album_durations.length; i++) {
+                tracks_of_album_durations[i].innerHTML = secondsToHms(tracks_of_album_durations[i].innerHTML); 
+            }
+		});
+
+        //////
+        // Handle Switch track/album
+        document.getElementById('trackBtn').addEventListener("click", function () {
+            document.getElementById('trackBtn').className = "control__option__select";
+            document.getElementById('track__list').style.display = "block";
+            document.getElementById('albumBtn').className = "control__option";
+            document.getElementById('album__list').style.display = "none";
+        })
+        document.getElementById('albumBtn').addEventListener("click", function () {
+            document.getElementById('albumBtn').className = "control__option__select";
+            document.getElementById('album__list').style.display = "block";
+            document.getElementById('trackBtn').className = "control__option";
+            document.getElementById('track__list').style.display = "none";
+        })
+        ////
+        ///         Hanlde filter track
+        var index_options = 1;
+        var selection = "dance-edm";
+        var track_category_control_options = document.getElementById('control__track__category').childNodes;
+        track_category_control_options.forEach(function(item, index) {
+            
+            item.addEventListener("click", function() {
+                
+                track_category_control_options[index_options].className = "track__category__option";
+                track_category_control_options[index].className = "track__category__option__select";
+                index_options = index;
+                selection = track_category_control_options[index].id;
+
+                var list_track = document.getElementsByClassName("track__filter__item");
+
+                for (let i = 0; i< list_track.length; i++) {
+                    if (list_track[i].childNodes[1].childNodes[3].childNodes[3].getAttribute('category') === selection) {
+                        list_track[i].style.display = 'block';
+                    }
+                    else {
+                        list_track[i].style.display = 'none';
+                    }
+                }
+            })
+        })
+	</script>
+    <script>
+        if (performance.navigation.type === performance.navigation.TYPE_RELOAD) {
+            window.location.replace(window.location.href.split('?')[0] + "?time" + Date.now())
+        }
+    </script>
+    <script>
+        /////		
+			//		Scroll for load more
+			var scrollable__load__more__list = document.getElementById('track__filter__list');
+
+            $('#track__filter__list').on('scroll', function() {
+                if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight - 1) {
+                    fetchDataLoadMoreForListTrack();
+
+                }
+            })
+
+            function appendData() {
+                
+            }
+
+            function fetchDataLoadMoreForListTrack() {
+                // console.log(1)
+                var ajax_get_load_more = new XMLHttpRequest();
+
+                ajax_get_load_more.onload = function()
+                {	
+                    if( ajax_get_load_more.status >= 200 && ajax_get_load_more.status < 400 )
+                    {
+                        
+                        // console.log(ajax_get_load_more.responseText );
+                        var data = JSON.parse( ajax_get_load_more.responseText );
+                        if (data.status == 1) {
+                            var load_more_list = data.load_more_track_list;
+                            var track_category = data.track_category;
+                            var page = document.cookie.split(';').find(e => e.trim().split('=')[0] == 'p_tracks').split('=')[1];
+                            console.log(`data_load_more_tracks (page=${page})=${JSON.stringify(load_more_list)}`);
+
+                            if (load_more_list.length > 0) {
+                                for (let i=0; i < load_more_list.length; i++) {
+                                    
+                                    var new_item = document.createElement("div");
+                                    new_item.className = "track__filter__item";
+                                    new_item.id = load_more_list[i].id;
+                                    new_item.innerHTML = 
+                                    `
+                                        <div class="track__filter__item__border">
+                                            <div class="track__filter__item__banner">
+                                                <img src="${load_more_list[i].banner}" onerror="this.onerror=null; this.src='/assets/img/share_website/logo.png'" alt="">
+                                            </div>
+                                            <div class="track__filter__item__info">
+                                                <div class="track__filter__item__info__1">
+                                                    <div class="track__filter__item__title">
+                                                        ${load_more_list[i].title}
+                                                    </div>
+                                                    <div class="track__filter__item__duration">
+                                                        ${load_more_list[i].duration}
+                                                    </div>
+                                                </div>
+                                                <div class="track__filter__item__category" category="${load_more_list[i].category}">
+                                                    ${track_category.find(e => e.id === load_more_list[i].category).name}
+                                                </div>
+                                            </div>
+                                            <div class="track__filter__item__price">
+                                                <div class="price__gold__icon">
+
+                                                </div>
+                                                <div class="price__number">
+                                                    ${load_more_list[i].rz_point / 1000 > 0 ? load_more_list[i].rz_point/ 1000 + "K RZP" : "Miễn phí"}
+                                                </div>
+                                                
+                                            </div> 	
+                                        </div>
+                                       
+                                    `;
+
+                                    document.getElementById('track__filter__list').append(new_item);
+                                    
+                                    var track_category_control_options = document.getElementById('control__track__category').childNodes;
+                                    track_category_control_options.forEach(function(item, index) {
+                                        track_category_control_options[index].className = 'track__category__option';
+                                    })
+                                }
+                                
+                            }
+                            else {
+
+                            }
+                            
+                        }
+                        
+                        
+                    }
+                    else alert( 'Error. Please, contact the webmaster!' );
+                };
+
+                ajax_get_load_more.onerror = function()
+                {
+                    
+                    alert( 'Error when Load More Tracks. Please, scroll down again!' );
+                };
+
+                var p = document.cookie.split(';').find(e => e.trim().split('=')[0] == 'p_tracks').split('=')[1];
+                
+                ajax_get_load_more.open( 'GET', '/console/library/get_data_load_more?p=' + ( Number(p) + 1 ) +'&time=' + Date.now(), true );
+                document.cookie = "p_tracks=" + (Number(p) + 1 ) + ";";
+                ajax_get_load_more.setRequestHeader('Authorization', 'Bearer '+ document.cookie.split(';').find(e => e.trim().split('=')[0] == 'BearerToken').split('=')[1])
+                ajax_get_load_more.send();
+            }
+    </script>
+    <script>
+        $(window).on('load', function () {
+          $('#loading').hide();
+        }) 
+    </script>
+	</body>
+</html>

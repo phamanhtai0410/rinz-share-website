@@ -10336,7 +10336,7 @@ fieldset:disabled .btn {
   }
 }
 body {
-  background-image: linear-gradient(#f05e2b, #ed2a5c, #a34097);
+  /* background-image: linear-gradient(#f05e2b, #ed2a5c, #a34097); */
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
@@ -10688,4 +10688,14 @@ p {
 
 .detail-items {
   padding: 10px;
+}
+
+@font-face {
+  font-family: --font;
+  src: url(/template/fonts/SVN-Gilroy.otf);
+}
+body {
+  font-family: --font;
+  
+  padding: 4vh 4vw;
 }

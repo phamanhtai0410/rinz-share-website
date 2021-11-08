@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta property="og:url" content="https://rinzworld.com" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="" />
+    <meta property="og:description" content="Khám phá nhiều hơn tại RinZ World" />
+    <meta property="og:image" content="" />
+    <meta name="turbolinks-cache-control" content="no-cache">
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="turbolinks-cache-control" content="no-cache">
+    <title></title>
+    <link rel="icon" type="image/x-icon" href="/assets/img/share_website/logo.png" />
+    <!-- Google fonts-->
+    <link href="/template/fonts/SVN-Gilroy.otf" rel='stylesheet' type='text/css' />
+    <!-- <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet" /> -->
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="/template/css/styles.css" rel="stylesheet" />
+    <link href="/template/css/styles.scss" rel="stylesheet" />
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+        @font-face {
+            font-family: --font;
+            src: url(/template/fonts/SVN-Gilroy.otf);
+        }
+        body {
+            font-family: --font;
+            background-image: url(/assets/img/share_website/mobile_background.png);
+            padding: 4vh 4vw;
+        }
+
+        .content {
+            text-align: center;
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 32px;
+            padding: 30px 0px;
+            text-transform: uppercase;
+            color: #FEBA08;
+        }
+
+        .banner img {
+            max-width: 270px;
+            max-height: 300px;
+            margin-bottom: 25px;
+        
+        }
+
+        .text-normal {
+            color: #FEBA08;
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 133.69%;
+          
+        }
+
+        .upload-title {
+            margin-top: 85px;
+            margin-bottom: 40px;
+            color: #FEBA08;
+            font-weight: 700;
+            font-size: 36px;
+            line-height: 133.69%;
+         
+        }
+
+        .subcribe-btn {
+            margin-top: 60px;
+        }
+
+        .subcribe-btn > a img {
+            max-width: 150px;
+        }
+
+        .download-content {
+            text-align: left;
+            margin-top: 100px;
+        }
+
+        .download-title {
+            font-style: normal;
+            font-weight: bold;
+            font-size: 24px;
+            line-height: 133.69%;
+            color: #FEBA08;
+        }
+
+        .download-btn > a img {
+            max-width: 240px;
+            margin-top: 24px;
+        }
+
+    </style>
+
+</head>
+<body>
+    
+    <div id="desktop">
+        <div class="w-100">
+            <div class="content">
+                <div class='logo text-left'>
+                    <img src="/assets/img/share_website/logo.png" style="max-width: 160px;" alt="RinZ Network">
+                </div>
+                <div class="text-center">
+                    <h2 class="upload-title">RinZ Resource Uploading Site</h2>
+                    <form id="upload_form" enctype="multipart/form-data" method="post" class="text-center">
+                        <input class="text-normal" type="file" name="file1" id="file1" onchange="uploadFile()" multiple><br>
+                        <progress id="progressBar" value="0" max="100" style="width:300px;"></progress>
+                        <h3 class="text-normal" id="status"></h3>
+                        <p class="text-normal" id="loaded_n_total"></p>
+                    </form>
+                </div>
+            </div>
+            <div class="download-content">
+                <div class="download-title row">
+                    TẢI APP NGAY ĐỂ KHÁM PHÁ
+                </div>
+                <div class="row text-left" style="width: 30%;">
+                    <div class="download-btn col">
+                        <a href="https://apps.apple.com/us/app/thecuatui/id1568831849"><img src="/assets/img/share_website/appstore.png" alt=""></a>
+                    </div>
+                    <div class="download-btn col">
+                        <a href="https://play.google.com/store/apps/details?id=com.thecuatui"><img src="/assets/img/share_website/googleplay.png" alt=""></a>
+                    </div>
+                </div>
+            </div>           
+        </div>
+    </div>
+</body>
+<script>
+    function _(el) {
+        return document.getElementById(el);
+    }
+
+    function uploadFile() {
+        var file = _("file1").files[0];
+        // alert(file.name+" | "+file.size+" | "+file.type);
+        var formdata = new FormData();
+        formdata.append("file", file);
+        console.log('formData: ', formdata);
+        console.log('formData: ', formdata.file);
+
+     
+
+        var ajax = new XMLHttpRequest();
+        ajax.upload.addEventListener("progress", progressHandler, false);
+        ajax.addEventListener("load", completeHandler, false);
+        ajax.addEventListener("error", errorHandler, false);
+        ajax.addEventListener("abort", abortHandler, false);
+        ajax.open("POST", "https://api-staging.rinznetwork.com/v1/uploader/file/media");
+        ajax.send(formdata);
+    }
+
+    function progressHandler(event) {
+        _("loaded_n_total").innerHTML = "Uploaded " + event.loaded + " bytes of " + event.total;
+        var percent = (event.loaded / event.total) * 100;
+        _("progressBar").value = Math.round(percent);
+        _("status").innerHTML = Math.round(percent) + "% uploaded... please wait";
+    }
+
+    function completeHandler(event) {
+        _("status").innerHTML = event.target.responseText;
+        _("progressBar").value = 0; //wil clear progress bar after successful upload
+    }
+
+    function errorHandler(event) {
+        _("status").innerHTML = "Upload Failed";
+    }
+
+    function abortHandler(event) {
+        _("status").innerHTML = "Upload Aborted";
+    }
+</script>
+
+</html>

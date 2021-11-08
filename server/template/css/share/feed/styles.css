@@ -1,0 +1,267 @@
+@charset "UTF-8";
+
+
+/*!
+* Start Bootstrap - Business Casual v7.0.1 (https://startbootstrap.com/theme/business-casual)
+* Copyright 2013-2021 Start Bootstrap
+* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-business-casual/blob/master/LICENSE)
+*/
+/*!
+ * Bootstrap v5.0.1 (https://getbootstrap.com/)
+ * Copyright 2011-2021 The Bootstrap Authors
+ * Copyright 2011-2021 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ */
+ :root {
+    --bs-blue: #0d6efd;
+    --bs-indigo: #6610f2;
+    --bs-purple: #6f42c1;
+    --bs-pink: #d63384;
+    --bs-red: #dc3545;
+    --bs-orange: #fd7e14;
+    --bs-yellow: #ffc107;
+    --bs-green: #198754;
+    --bs-teal: #20c997;
+    --bs-cyan: #0dcaf0;
+    --bs-white: #fff;
+    --bs-gray: #6c757d;
+    --bs-gray-dark: #343a40;
+    --bs-primary: #e6a756;
+    --bs-secondary: #2f170f;
+    --bs-success: #198754;
+    --bs-info: #0dcaf0;
+    --bs-warning: #ffc107;
+    --bs-danger: #dc3545;
+    --bs-light: #f8f9fa;
+    --bs-dark: #212529;
+    --bs-font-sans-serif: system-ui, -apple-system, 'Segoe UI', Roboto,
+      'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif,
+      'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+      'Liberation Mono', 'Courier New', monospace;
+    --bs-gradient: linear-gradient(180deg, #e83e8c, #e83e8c);
+  }
+  
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  
+@media (prefers-reduced-motion: no-preference) {
+:root {
+	scroll-behavior: smooth;
+}
+}
+
+@font-face {
+    font-family: --font;
+    src: url(/template/fonts/SVN-Gilroy.otf);
+}
+
+body {
+    font-family: --font;
+}
+
+.share-content {
+    text-align: center;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+    padding: 30px 0px;
+    text-transform: uppercase;
+    color: #FEBA08;
+}
+
+.banner img {
+    max-width: 270px;
+    max-height: 300px;
+    margin-bottom: 25px;
+}
+
+.author_name {
+    color: #FEBA08;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 133.69%;
+}
+
+.counter-title {
+    margin-top: 85px;
+    margin-bottom: 40px;
+    color: #FEBA08;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 133.69%;
+}
+
+.counter {
+    text-align: center;
+}
+
+.counter-dhms {
+    margin: 0 auto;
+    max-width: 650px;
+}
+
+.counter-items {
+    margin: 0 auto;
+}
+
+.counter-number p {
+    font-size: 72px;
+    line-height: 133.69%;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-align: center;
+    font-family: --font;
+}
+
+.counter-legend p {
+    padding-top: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    color: white;
+    line-height: 21px;
+    text-align: center;
+    font-family: --font;
+}
+
+.subcribe-btn {
+    margin-top: 60px;
+}
+
+.subcribe-btn>a img {
+    max-width: 150px;
+}
+
+.download-content {
+    text-align: left;
+    margin-top: 100px;
+}
+
+.download-title {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 133.69%;
+    color: #FEBA08;
+}
+
+.download-btn>a img {
+    max-width: 240px;
+    margin-top: 24px;
+}
+
+#mobile {
+    display: none;
+    text-align: center;
+}
+
+.download-content-mobile {
+    text-align: center;
+    margin-top: 15%;
+    margin-bottom: 12%;
+}
+
+@media only screen and (max-device-width: 480px) {
+    #mobile {
+        display: block;
+    }
+    body {
+        background-image: url(/assets/img/share_website/mobile_background.png);
+    }
+    #desktop {
+        display: none;
+    }
+}
+
+@media only screen and (min-device-width: 480px) {
+    body {
+        background-image: url(/assets/img/share_website/background.png);
+        padding: 50px 100px;
+    }
+}
+
+.mobile-banner img {
+    max-width: 200px;
+    max-height: 200px;
+    margin-top: 50%;
+    margin-bottom: 24px;
+}
+
+.mobile-banner {
+    position: relative;
+}
+
+.start-time-mobile {
+    position: absolute;
+    bottom: 6px;
+    left: 25%;
+}
+
+.start-time-mobile p {
+    position: absolute;
+    bottom: 28px;
+    left: 2%;
+    font-family: --font;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 11px;
+    line-height: 16px;
+    color: #FAFAFA;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin: 0px 3px;
+}
+
+.author_name_mobile {
+    font-family: --font;
+    color: #E8E8E8;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 28px;
+    margin-bottom: 6px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    overflow: hidden;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.text-mobile {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    color: #BFBFBF;
+}
+
+.download-title-mobile {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 28px;
+    color: #E8E8E8;
+    margin-bottom: 16px;
+}
+
+.download-btn-mobile>a img {
+    max-width: 170px;
+}
+
+.open-in-app-btn>a img {
+    max-width: 90%;
+}
+
+.open-in-app-btn {
+    padding-top: 15vh;
+}

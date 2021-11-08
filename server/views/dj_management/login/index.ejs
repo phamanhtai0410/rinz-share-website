@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" class="js">
+	<head>
+		<meta charset="utf-8">
+
+		<!-- <meta property="og:url" content="https://rinzworld.com" />
+		<meta property="og:type" content="article" />
+		<meta property="og:title" content="" />
+		<meta property="og:description" content="Khám phá nhiều hơn tại RinZ" />
+		<meta property="og:image" content="" />
+		<meta name="turbolinks-cache-control" content="no-cache">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="turbolinks-cache-control" content="no-cache"> -->
+
+		<title>RinZ Stream Management Site</title>
+
+
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		
+		<link href="/template/css/dj_management/login/styles.css" rel="stylesheet" />
+        <link href="/template/css/dj_management/upload_track/styles.css" rel="stylesheet" />
+		<link href="/template/css/styles.css" rel="stylesheet" />
+		<link href="/template/css/styles.scss" rel="stylesheet" />
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+		<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+	</head>
+	<body>
+		<div class="top__nav row">
+			<div class="logo col">
+				<a href="/console/upload"><img src="/assets/img/share_website/logo.png" alt="RinZ" style="width: 6vw;"></a>
+				
+			</div>
+			<div class="nav__list row col">
+				<div class="upload col">
+					<a href="/console/upload">Upload</a>
+				</div>
+				<!-- <div class="create__album col">
+					<a href="#">Tạo Album</a>
+				</div> -->
+				<div class="live__stream col">
+					<a href="#">Live Stream</a>
+				</div>
+				<!-- <div class="library col">
+					<a href="#">Thư viện</a>
+				</div> -->
+				<div class="log__in col">
+					<a href="/console">Đăng nhập</a>
+				</div>
+			</div>
+		</div>
+		
+        <div class="login__panel">
+            <div class="login__title">
+                LOGIN WITH OTP
+            </div>
+            <div class="login__content">
+                <form action="" method='get' id="login__form">
+                    <div class="items row">
+                        <label for="phone">Số điện thoại:</label>  
+                        <input placeholder="Nhập số điện thoại..." name="phone" id="phone" type="text" required> 
+                    </div>
+                    <div class="submit__btn">
+                        <button type="submit" form="login__form" value="Submit">LOG IN</button>
+                    </div>
+                                         
+                </form>
+            </div>
+        </div>
+        
+        
+       
+    <script>
+		// if (!document.cookie.split(';').find(e => e.split('=')[0] == 'BearerToken')) {		
+		// 	// window.location.replace('/dj/login/upload');
+		// }
+		// else if (document.cookie.split(';').find(e => e.split('=')[0] == 'BearerToken').split('=')[1] !== "") {
+		// 	window.location.replace('/dj/login/upload');
+		// }
+
+		$(document).ready(function() {
+				if (!document.cookie.split(';').find(e => e.trim().split('=')[0] == 'BearerToken')) {		
+					// window.location.replace('/dj/login/upload');
+				}
+				else if (document.cookie.split(';').find(e => e.trim().split('=')[0] == 'BearerToken').split('=')[1] !== "") {
+					window.location.replace('/console/upload');
+				}
+			});
+
+			
+        $('#login__form').on('submit', function (e) {
+            e.preventDefault();
+
+
+            
+            var phone = document.getElementById('phone').value;
+            
+            $.ajax({
+                url: "/console/submit_phone?phone=" + phone,
+                type: 'GET',
+                success : function (data){
+                    console.log('login gencode resp: ', data);
+                    if (data.status === 1) {
+                        window.location.replace('/console/input_otp?phone=' + data.phone);
+                    }
+                }
+
+            });
+				
+				
+        });
+    </script>
+
+	</body>
+</html>
+
+
+
