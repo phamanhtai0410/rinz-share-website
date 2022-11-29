@@ -1,4 +1,4 @@
-const { response } = require('express');
+// const { response } = require('express');
 var express = require('express');
 const { reject } = require('lodash');
 var request = require('request');
@@ -8,7 +8,7 @@ const io = require("socket.io-client");
 const { IAPI, BEARER_TOKEN, SOCKET, LOGIN_URL, THECUATUI_IAPI, CHAT_URL } = require('../config');
 
 /////////////////////////////////////////
-//////  UTils 
+//////  UTils
 //////////////////////////////////
 function getTokenFromCookieRequest(req) {
   if(req.headers.cookie) {
@@ -18,16 +18,16 @@ function getTokenFromCookieRequest(req) {
     else return ""
   }
   return ""
-  
-  
-  
+
+
+
 }
 
 const debug_log = (msg, arg) => {
   /// Get terminal size
   const x =  process.stdout.columns;
   const y =  process.stdout.rows;
-  //// Log with 
+  //// Log with
   console.log('     ' + '-'.repeat(x-5));
   console.log('     ' + '- '+ msg, arg);
   console.log('     ' + '-'.repeat(x-5));
@@ -54,7 +54,7 @@ const _fetching = (url, method, headers, body=null) =>
         json: body
       };
     }
-    
+
 
     await request(options, function(error, response) {
       if (error) {
@@ -68,7 +68,7 @@ const _fetching = (url, method, headers, body=null) =>
         response_json = JSON.parse(response.body);
       }
       // console.log(response)
-     
+
       console.log(response_json.status)
       if (response_json.status === 1) {
         resolve(response_json);
@@ -126,14 +126,14 @@ const fetchMessageOfStream = (stream_id) =>
   });
 ////
 // Stream Management
-const fetchStreamInfo = stream_id => 
+const fetchStreamInfo = stream_id =>
   new Promise(async(resolve, reject) => {
     var fetchOptions = {
       method: 'GET',
       url: IAPI + `/v1/core-api/api/event/${stream_id}`,
       headers: {}
     };
-    
+
     await request(fetchOptions, function(error, response) {
       if (error) {
         reject();
@@ -147,7 +147,7 @@ const fetchStreamInfo = stream_id =>
     });
   });
 
-  const fetchStreamSource = (stream_id, token) => 
+  const fetchStreamSource = (stream_id, token) =>
   new Promise(async(resolve, reject) => {
     var fetchOptions = {
       method: 'GET',
@@ -156,7 +156,7 @@ const fetchStreamInfo = stream_id =>
         'Authorization': "Bearer " + token
       }
     };
-    
+
     await request(fetchOptions, function(error, response) {
       if (error) {
         reject();
@@ -174,7 +174,7 @@ const fetchStreamInfo = stream_id =>
   });
 
 
-  const getOwnerStreamList = (token) => 
+  const getOwnerStreamList = (token) =>
     new Promise(async(resolve, reject) => {
       var options = {
         method: 'GET',
@@ -200,13 +200,13 @@ const fetchStreamInfo = stream_id =>
       });
     });
 
-  const getBalance = (user_id) => 
+  const getBalance = (user_id) =>
     new Promise(async(resolve, reject) => {
       var options = {
         method: 'GET',
         url: THECUATUI_IAPI + `/v1/payment/loyalty/accounts?user_id=${user_id}`,
         headers: {
-         
+
         }
       };
       await request(options, function(error, response) {
@@ -229,7 +229,7 @@ const fetchStreamInfo = stream_id =>
 
 
 
-//// Upload Track 
+//// Upload Track
 
 const get_track_sumit_result = (body, token) =>
   new Promise(async (resolve, reject) => {
@@ -261,7 +261,7 @@ const get_track_sumit_result = (body, token) =>
 ////  LOG IN
 ///////////////
 
-const sendSMSForLoginByPhone = phone => 
+const sendSMSForLoginByPhone = phone =>
   new Promise (async(resolve, reject) => {
     var options = {
       method: 'POST',
@@ -284,7 +284,7 @@ const sendSMSForLoginByPhone = phone =>
     });
   });
 
-const loginWithPhoneOTP = (phone, otp) => 
+const loginWithPhoneOTP = (phone, otp) =>
   new Promise (async(resolve, reject) => {
     var options = {
       method: 'POST',
@@ -313,7 +313,7 @@ const loginWithPhoneOTP = (phone, otp) =>
     });
   });
 
-  
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 //            define the home page route
@@ -322,7 +322,7 @@ const loginWithPhoneOTP = (phone, otp) =>
 ///////////////////////////
 //    Upload Track    /////
 ///////////////////////////
-   
+
 
 router.get('/upload', async (req, res) => {
    const headers = req.headers;
@@ -341,7 +341,7 @@ router.post('/upload/submit', async (req, res) => {
   console.log('Submit track Token :', token);
 
   const result_submit_track = await get_track_sumit_result(body, token);
-  
+
   console.log('submit result = ', result_submit_track);
   if (result_submit_track.status == 1)
   {
@@ -356,7 +356,7 @@ router.post('/upload/submit', async (req, res) => {
   else {
     res.send(404, {result: 'failed', msg: result_submit_track.msg});
   }
-  
+
 });
 
 router.get('/upload/result', async (req, res) => {
@@ -385,7 +385,7 @@ router.get('/upload/result', async (req, res) => {
       msg: msg
     });
   }
-  
+
 });
 
 
@@ -445,7 +445,7 @@ router.get('/stream/:stream_id', async(req, res) => {
   else {
     res.redirect('/console')
   }
-  // const 
+  // const
   console.log('-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------');
   console.log(`----                                                       STREAM_<ID> - ${stream_id}                                                                                -------`);
   console.log('-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------');
@@ -455,12 +455,12 @@ router.get('/stream/:stream_id', async(req, res) => {
   console.log('-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------');
   const balance_resp = await getBalance(stream_info.data.author_id);
   const mess_resp = await fetchMessageOfStream(stream_id);
-  const messages = mess_resp.data.messages.map(e => ({
+  const messages = mess_resp.data?.messages?.map(e => ({
       user_full_name: e.user.user_full_name,
       content: e.content
-  }));
+  })) || [];
   console.log(`Call API get stream messages resp : ${ JSON.stringify(messages) }`);
-  const balance_amount = balance_resp.data.accounts.find(e => e.account_type_short_name === 'RPDA').account_balance;
+  const balance_amount = balance_resp.data?.accounts?.find(e => e.account_type_short_name === 'RPDA')?.account_balance || 0;
   console.log('- Balance = ', balance_amount);
   const stream_source = await fetchStreamSource(stream_id, token);
   if (stream_source.status !== 0) {
@@ -490,7 +490,7 @@ router.get('/stream/:stream_id', async(req, res) => {
       SOCKET: SOCKET
     });
   }
- 
+
 });
 
 
@@ -550,7 +550,7 @@ router.get('/submit_otp', async(req, res) => {
       msg: login_resp.msg
     });
   }
-  
+
 
 });
 
@@ -570,15 +570,15 @@ router.get('/library', async(req, res) => {
   else {
     res.redirect('/console')
   }
-  // const 
+  // const
   console.log('-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------');
   console.log(`----                                                       LIBRARY:                                                                                                    -------`);
   console.log('-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------');
   console.log('Stream Token : ', token);
   console.log('-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------');
-  
 
-  /// Get track-category 
+
+  /// Get track-category
   const track_category = await _fetching(IAPI + '/v1/core-api/api/meta?type=track-category', 'GET', {});
   debug_log(`Track Categories : `, track_category)
   /// Get list owner track
@@ -589,7 +589,7 @@ router.get('/library', async(req, res) => {
   var album_list = await _fetching(IAPI + '/v1/core-api/api/album', 'GET', {
     'Authorization': 'Bearer ' + token
   });
-  
+
 
   async function get_tracks_info_to_album_list(list) {
     for (let i=0; i< list.length; i++) {
@@ -610,7 +610,7 @@ router.get('/library', async(req, res) => {
 
 
   debug_log(`Album List : `, album_list.data)
-  
+
   res.render('dj_management/library/index', {
     track_category: track_category.data,
     track_list: track_list.data,
@@ -623,7 +623,7 @@ router.get('/library/get_data_load_more', async(req, res) => {
   const time = req.query.time;
   const page = req.query.p;
   var token = "";
-  
+
   if (req.headers.cookie && req.headers.cookie.split(';').find(e => e.trim().split('=')[0] === 'BearerToken')) {
     token = req.headers.cookie.split(';').find(e => e.trim().split('=')[0] === 'BearerToken').split('=')[1];
   }
@@ -634,15 +634,15 @@ router.get('/library/get_data_load_more', async(req, res) => {
       status: 0
     });
   }
-  
-  
-  /// Get track-category 
+
+
+  /// Get track-category
   const track_category = await _fetching(IAPI + '/v1/core-api/api/meta?type=track-category', 'GET', {});
-  
+
   const load_more_track_list = await _fetching(IAPI + `/v1/core-api/api/track?page=${page}`, 'GET', {
     'Authorization': 'Bearer ' + token
   })
-  
+
 
   if (load_more_track_list.total < (Number(page) - 2 ) * 10) {
     load_more_track_list.data = []
@@ -678,7 +678,7 @@ router.get('/create_album', async(req, res) => {
     'Authorization': 'Bearer ' + token
   })
 
-    /// Get track-category 
+    /// Get track-category
     const track_category = await _fetching(IAPI + '/v1/core-api/api/meta?type=track-category', 'GET', {});
     debug_log(`Track Categories : `, track_category)
 
@@ -694,7 +694,7 @@ router.get('/create_album/get_data_load_more', async(req, res) => {
   const time = req.query.time;
   const page = req.query.p;
   var token = "";
-  
+
   if (req.headers.cookie && req.headers.cookie.split(';').find(e => e.trim().split('=')[0] === 'BearerToken')) {
     token = req.headers.cookie.split(';').find(e => e.trim().split('=')[0] === 'BearerToken').split('=')[1];
   }
@@ -705,15 +705,15 @@ router.get('/create_album/get_data_load_more', async(req, res) => {
       status: 0
     });
   }
-  
-  
-  /// Get track-category 
+
+
+  /// Get track-category
   const track_category = await _fetching(IAPI + '/v1/core-api/api/meta?type=track-category', 'GET', {});
-  
+
   const load_more_track_list = await _fetching(IAPI + `/v1/core-api/api/track?page=${page}`, 'GET', {
     'Authorization': 'Bearer ' + token
   })
-  
+
 
   if (load_more_track_list.total < (Number(page) - 2 ) * 10) {
     load_more_track_list.data = []
@@ -734,7 +734,7 @@ router.get('/create_album/get_data_load_more', async(req, res) => {
 router.post('/create_album/submit_album', async(req, res) => {
   const time = req.query.time;
   var token = "";
-  
+
   if (req.headers.cookie && req.headers.cookie.split(';').find(e => e.trim().split('=')[0] === 'BearerToken')) {
     token = req.headers.cookie.split(';').find(e => e.trim().split('=')[0] === 'BearerToken').split('=')[1];
   }
@@ -748,14 +748,14 @@ router.post('/create_album/submit_album', async(req, res) => {
 
   var body = req.body;
  body.tracks = body.tracks.split(',');
-  
+
   const submit_album_resp = await _fetching(IAPI + '/v1/core-api/api/album', 'POST', {
     'Authorization': 'Bearer ' + token,
     'Content-Type': 'application/json'
-  }, 
+  },
     body
   )
-  
+
   debug_log('Req submit album resp = ', submit_album_resp)
 
   res.status(200).send(submit_album_resp);
